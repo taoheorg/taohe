@@ -1,0 +1,6 @@
+{
+    "network": "libra",
+    "sender": "0x2f66c09143acc52a85fec529a4e20c85",
+    "compilerDir": "out",
+    "stdlibPath": "./external/stdlib"
+}
