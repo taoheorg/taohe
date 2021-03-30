@@ -29,7 +29,7 @@ TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstud
 Move is changing rapidly at the moment, the chances are that when you clone this repository, the Move language already has changed, and this does not compile at all 😆
 
 ### Poor developer experience
-DX not good at the moment, since types must be known beforehand, and written in their full form, resulting lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script modules (a new Move feature).
+DX is not good at the moment, since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script modules (a new Move feature).
 
 ## Legal
 This repository is released under the *Apache License 2.0*. Original content is copyrighted to *Solarius Properties Ky* (Forssa, Finland, EU), and content in [external/](external/) is copyrighted to the *Diem Association* (Geneva, Switzerland), also under the same license. The *external* directory is meant to host 3rd party code available already on-chain, and is not part of the TaoHe project per se.
