@@ -15,7 +15,7 @@ Keeping code footprint per each tao in minimum is vital for safer code, and is s
 ### Tao lifespan
 Tao's lifespan is divided into three separate phases, listed here chronologically:
  * **Creation**: Tao is created by placing a resource into the tao, and initializing it with the constructor's arguments.
- * **Static**: During tao's existence, primarily resource reading (immutable references) is supported. However, in the future mutable references might also be supported.
+ * **Static**: During tao's existence, primarily resource reading (immutable references) will be supported. However, in the future mutable references might also be supported.
  * **Extraction**: When conditions are satisfied (such as passed time), the resource inside the tao is given away, and the tao is destroyed.
 
 ### What taos are not
