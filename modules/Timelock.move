@@ -17,6 +17,8 @@
  
 address {{sender}} {
 module Timelock {
+    use 0x1::DiemTimestamp;
+
     resource struct Tao<Content> {
         content: Content,
         unlock_time: u64
@@ -24,6 +26,21 @@ module Timelock {
 
     public fun new<Content>(unlock_time: u64, content: Content): Tao<Content> {
         Tao<Content>{unlock_time, content}
+    }
+
+    public fun extract<Content>(tao: Tao<Content>): Content {
+        let Tao<Content>{content, unlock_time} = tao;
+        let current_timestamp: u64 = 100; // Default timestamp if is_operating() is false
+
+        if (DiemTimestamp::is_operating()) {
+            // Currently move-executor does not support full genesis functionality,
+            // including timestamping. If available, then use the real timestamp.
+            current_timestamp = DiemTimestamp::now_seconds();
+        };
+
+        assert(current_timestamp > unlock_time, 123);
+
+        content
     }
 }
 }
