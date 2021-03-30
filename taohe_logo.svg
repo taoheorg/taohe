@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="taohe_logo.svg"
+   inkscape:export-filename="taohe_logo.png"
+   inkscape:export-xdpi="5000"
+   inkscape:export-ydpi="5000">
+  <title
+     id="title826">TaoHe logo</title>
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-151.42857"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>TaoHe logo</dc:title>
+        <dc:date>2021-03-29 22:25:00</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Ville Sundell</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Solarius Properties Ky</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>Solarius Properties Ky</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:description>TaoHe logo, based on ZCOOL KuaiLe: https://fonts.google.com/specimen/ZCOOL+KuaiLe. This masterpiece (this particular SVG) is licensed under Apache License 2.0.</dc:description>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>Ville Sundell / Solarius Properties Ky</dc:title>
+          </cc:Agent>
+        </dc:contributor>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       aria-label="回"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="text817"
+       transform="translate(-2e-6,1e-5)">
+      <path
+         d="m 86.000804,132.39639 2.4384,-2.5908 33.121596,0.0508 2.4384,2.54 -2.286,31.75 -2.286,2.2352 -28.041596,0.8128 -2.4384,-2.1336 z m 31.140396,29.21 1.8796,-26.9748 -27.990796,-0.0508 2.4892,27.7876 z m -20.573996,-6.9596 -0.6096,-12.6492 2.286,-2.4892 13.360396,-0.6096 2.4892,2.3876 -0.1016,13.208 -2.3876,2.3876 H 98.954804 Z m 12.750796,-10.8712 -8.4328,0.4064 0.3556,7.9248 h 8.0264 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:'ZCOOL KuaiLe';-inkscape-font-specification:'ZCOOL KuaiLe';stroke-width:0.26458332"
+         id="path822"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>
