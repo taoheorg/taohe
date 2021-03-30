@@ -14,7 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+/*
+ * A dummy tao for testing and development purposes.
+ * Can be passed along like.. ..a torch.
+ */
+
 address {{sender}} {
 module Torch {
     resource struct Tao {}
