@@ -21,6 +21,9 @@ Tao's lifespan is divided into three separate phases, listed here chronologicall
 ### What taos are not
 Taos are not meant to replace specialized smart contract development for complicated applications, but can be used as part of one.
 
+## Building and developing
+TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/), and [damirka's great `Move IDE` plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide).
+
 ## Known problems
 ### Move is under heavy development
 Move is changing rapidly at the moment, the chances are that when you clone this repository, the Move language already has changed, and this does not compile at all 😆
