@@ -14,7 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
+/* 
+ * Root is not technically a tao, since it can't be nested.
+ * Instead it's a special kind of resource used to host a tao.
+ */
+
 address {{sender}} {
 module Root {
     use 0x1::Signer;
