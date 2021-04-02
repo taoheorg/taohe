@@ -24,7 +24,7 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/), and [damirka's great `Move IDE` plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide).
 
-**Jumstart**: Probably the easiest way to get used to TaoHe and its inner workings is to run transaction scripts from [scripts/](scripts/) using Move IDE's `Move: Run Script` command (invoke using Shift+Ctrl+P).
+**Jumpstart**: Probably the easiest way to get used to TaoHe and its inner workings is to run transaction scripts from [scripts/](scripts/) using Move IDE's `Move: Run Script` command (invoke using Shift+Ctrl+P).
 
 ## Known problems
 ### Move is under heavy development
