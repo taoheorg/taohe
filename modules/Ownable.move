@@ -22,6 +22,7 @@
 
 address {{sender}} {
 module Ownable {
+    use {{sender}}::Errors;
     use 0x1::Signer;
 
     resource struct Tao<Content> {
@@ -36,7 +37,7 @@ module Ownable {
     public fun extract<Content>(account: &signer, tao: Tao<Content>): Content {
         let Tao<Content>{owner, content} = tao;
 
-        assert(owner == Signer::address_of(account), 123);
+        assert(owner == Signer::address_of(account), Errors::ownable_not_owned());
 
         content
     }

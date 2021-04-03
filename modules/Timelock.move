@@ -17,6 +17,7 @@
  
 address {{sender}} {
 module Timelock {
+    use {{sender}}::Errors;
     use 0x1::DiemTimestamp;
 
     resource struct Tao<Content> {
@@ -38,7 +39,7 @@ module Timelock {
             current_timestamp = DiemTimestamp::now_seconds();
         };
 
-        assert(current_timestamp > unlock_time, 123);
+        assert(current_timestamp > unlock_time, Errors::timelock_too_early());
 
         content
     }
