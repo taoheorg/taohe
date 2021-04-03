@@ -20,12 +20,22 @@ script {
     use {{sender}}::Root;
     use {{sender}}::Timelock;
 
-    // Timestamp must be > 100 in order to be extracted
-    const UNLOCK_TIMESTAMP: u64 = 101;
+    // Unlock timestamp must be < 100 in order to be extracted when
+    // using move-executor.
+    const UNLOCK_TIMESTAMP: u64 = 99;
 
     fun main(account: &signer) {
         Root::create<Timelock::Tao<Torch::Tao>>(account, Timelock::new<Torch::Tao>(UNLOCK_TIMESTAMP, Torch::new()));
+    }
+}
 
+script {
+    use {{sender}}::Torch;
+    use {{sender}}::Root;
+    use {{sender}}::Timelock;
+
+    fun main(account: &signer) {
+        // Extract torch, and wrap it into Root
         Root::create<Torch::Tao>(account, Timelock::extract<Torch::Tao>(Root::extract<Timelock::Tao<Torch::Tao>>(account)));
     }
 }
