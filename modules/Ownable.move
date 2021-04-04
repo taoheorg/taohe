@@ -31,11 +31,11 @@ module Ownable {
     }
 
     public fun new<Content>(owner: address, content: Content): Tao<Content> {
-        Tao<Content>{owner, content}
+        Tao<Content> { owner, content }
     }
 
     public fun extract<Content>(account: &signer, tao: Tao<Content>): Content {
-        let Tao<Content>{owner, content} = tao;
+        let Tao<Content> { owner, content } = tao;
 
         assert(owner == Signer::address_of(account), Errors::ownable_not_owned());
 

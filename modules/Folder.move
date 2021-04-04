@@ -26,7 +26,7 @@ module Folder {
     }
 
     public fun extract<Content>(tao: Tao<Content>): vector<Content> {
-        let Tao<Content>{content} = tao;
+        let Tao<Content> { content } = tao;
         
         content
     }

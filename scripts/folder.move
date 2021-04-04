@@ -16,7 +16,6 @@
  */
 
 script {
-    //use 0x1::Offer;
     use 0x1::Vector;
 
     use {{sender}}::Torch;

@@ -25,11 +25,11 @@ module Torch {
     resource struct Tao {}
 
     public fun new(): Tao {
-        Tao{}
+        Tao {}
     }
 
     public fun destroy(tao: Tao) {
-        let Tao{} = tao;
+        let Tao {} = tao;
     }
 }
 }

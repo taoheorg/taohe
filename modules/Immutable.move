@@ -26,7 +26,7 @@ module Immutable {
     }
 
     public fun new<Content>(content: Content): Tao<Content> {
-        Tao<Content>{content}
+        Tao<Content> { content }
     }
 }
 }

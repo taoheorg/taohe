@@ -29,7 +29,7 @@ module Root {
     }
 
     public fun create<Content>(account: &signer, content: Content) {
-        move_to<Root<Content>>(account, Root<Content>{ content: content });
+        move_to<Root<Content>>(account, Root<Content> { content: content });
     }
 
     public fun extract<Content: resource>(account: &signer): Content acquires Root {
