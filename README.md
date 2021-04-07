@@ -24,11 +24,11 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/), and [damirka's great `Move IDE` plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide).
 
-**Dove**: We use [Dove](https://github.com/pontem-network/move-tools) build system. After successful Dove installation, you can just run:
+**Build system**: We use [Dove](https://github.com/pontem-network/move-tools) build system. After successful Dove installation, you can just run:
 `dove build`
 You can also add TaoHe as a dependency for your Dove based project. 
 
-**Jumpstart**: Probably the easiest way to get used to TaoHe and its inner workings is to run transaction scripts from [scripts/](scripts/) using Move IDE's `Move: Run Script` command (invoke using Shift+Ctrl+P).
+> **Jumpstart**: `dove run timelock.move` (replace timelock.move with any script residing in [scripts/](scripts/))
 
 ## Known problems
 ### Move is under heavy development
@@ -41,4 +41,4 @@ DX is not good at the moment, since types must be known beforehand, and written 
 This repository is released under the *Apache License 2.0*. Original content is copyrighted to *Solarius Properties Ky* (Forssa, Finland, EU), and content in [external/](external/) is copyrighted to the *Diem Association* (Geneva, Switzerland), also under the same license. The *external* directory is meant to host 3rd party code available already on-chain, and is not part of the TaoHe project per se.
 
 ## Trusted source
-Smart contracts are mission critical and as such should always originate from trusted sources. That's why every commit on `master` is signed with [Ville's GPG key](http://keys.gnupg.net/pks/lookup?op=vindex&fingerprint=on&search=0x49065E1275E46F96). Upstream repository is [here](https://github.com/villesundell/taohe/) and the official webpage is at [www.taohe.org](https://www.taohe.org).
+Smart contracts are mission critical and as such should always originate from trusted sources. That's why every commit on `master` is signed with [Ville's GPG key](http://keys.gnupg.net/pks/lookup?op=vindex&fingerprint=on&search=0x49065E1275E46F96). Upstream repository is [here](https://github.com/taoheorg/taohe/) and the official webpage is at [www.taohe.org](https://www.taohe.org).
