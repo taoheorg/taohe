@@ -59,7 +59,7 @@ module Errors {
 
     /// This code is used by Ownable.sol when the `account` is not the owner
     public fun ownable_not_owned(): u64 { make(TAO_OWNABLE, 15) }
-    spec fun timelock_too_early {
+    spec fun ownable_not_owned {
         aborts_if false;
 
         ensures result == ((CATEGORY_TAOHE) + ((TAO_TIMELOCK) << 8) + (15 << 16));
