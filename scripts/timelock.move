@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Solarius Properties Ky
+ * Copyright 2021 Solarius Intellectual Properties Ky
  * Authors: Ville Sundell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
