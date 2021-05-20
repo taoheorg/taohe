@@ -21,7 +21,7 @@ address {{sender}} {
 /// tao is destroyed.
 module Folder {
     /// A simple tao struct containing a vector of taos
-    resource struct Tao<Content> {
+    struct Tao<Content> has key, store {
         content: vector<Content>
     }
 

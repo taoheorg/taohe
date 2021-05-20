@@ -20,7 +20,7 @@ address {{sender}} {
 module Torch {
     /// This tao does not contain anything, and is
     /// intended to be used only for testing.
-    resource struct Tao {}
+    struct Tao has key, store {}
 
     /// Create a new dummy tao
     public fun new(): Tao {

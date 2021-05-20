@@ -18,7 +18,7 @@ address {{sender}} {
 /// A simple tao whose only purpose is to keep the content immutable
 module Immutable {
     /// Static tao containing a tao. Can't be extracted.
-    resource struct Tao<Content> {
+    struct Tao<Content> has key, store {
         content: Content
     }
 

@@ -1,7 +1,8 @@
 [package]
 name = "taohe"
-dialect = "libra"
+dialect = "diem"
 account_address = "0x2f66c09143acc52a85fec529a4e20c85"
 dependencies = [
-    { git = "https://github.com/taoheorg/diem-stdlib" }
+    { git = "https://github.com/taoheorg/diem-stdlib" },
+    { git = "https://github.com/taoheorg/move-stdlib" }
 ]

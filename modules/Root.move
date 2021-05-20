@@ -21,12 +21,12 @@ module Root {
     use 0x1::Signer;
 
     /// Root resource used to host a tao
-    resource struct Root<Content> {
+    struct Root<Content> has key, store {
         content: Content
     }
 
     /// Create a `Root` for `account`
-    public fun create<Content>(account: &signer, content: Content) {
+    public fun create<Content: store>(account: &signer, content: Content) {
         move_to<Root<Content>>(account, Root<Content> { content: content });
     }
     spec fun create {
@@ -36,7 +36,7 @@ module Root {
     }
 
     /// Extract `Root` from `account`
-    public fun extract<Content: resource>(account: &signer): Content acquires Root {
+    public fun extract<Content: key + store>(account: &signer): Content acquires Root {
         let owner = Signer::address_of(account);
         let root = move_from<Root<Content>>(owner);
         let Root<Content> { content } = root;

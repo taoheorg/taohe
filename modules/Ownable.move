@@ -22,7 +22,7 @@ module Ownable {
     use 0x1::Signer;
 
     /// Simple ownership tao: the `owner` can extract `content`
-    resource struct Tao<Content> {
+    struct Tao<Content> has key, store {
         owner: address,
         content: Content
     }

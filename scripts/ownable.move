@@ -20,8 +20,8 @@ script {
     use {{sender}}::Root;
     use {{sender}}::Ownable;
 
-    fun main(account: &signer) {
-        Root::create<Ownable::Tao<Torch::Tao>>(account, Ownable::new<Torch::Tao>({{sender}}, Torch::new()));
+    fun main(account: signer) {
+        Root::create<Ownable::Tao<Torch::Tao>>(&account, Ownable::new<Torch::Tao>({{sender}}, Torch::new()));
     }
 }
 
@@ -30,8 +30,8 @@ script {
     use {{sender}}::Root;
     use {{sender}}::Ownable;
 
-    fun main(account: &signer) {
+    fun main(account: signer) {
         // Extract torch, and wrap it into Root
-        Root::create<Torch::Tao>(account, Ownable::extract<Torch::Tao>(account, Root::extract<Ownable::Tao<Torch::Tao>>(account)));
+        Root::create<Torch::Tao>(&account, Ownable::extract<Torch::Tao>(&account, Root::extract<Ownable::Tao<Torch::Tao>>(&account)));
     }
 }
