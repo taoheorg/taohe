@@ -5,6 +5,8 @@ TaoHe is a collection of nestable smart contract resources that can be used to c
 
 > **Example**: You could place Diem tokens into a time locked tao, and place that inside an NFT tao, effectively creating a non-fungible time locked token.
 
+[Participate to TaoHe discussion on Diem Community](https://community.diem.com/t/introducing-taohe-collection-of-nestable-move-resources).
+
 ## Design
 ### What taos are
 Taos are meant to form disposable structures that contain a meaningful resource (such as Diem tokens). In order to access the resource in question, taos must be dismantled. A new tao can be created though, if so desired. Nesting taos inside each other can form complicated logics, such as time locked non-fungible tokens.
@@ -24,7 +26,7 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/), and [damirka's great `Move IDE` plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide).
 
-We use **[Dove](https://github.com/pontem-network/move-tools) build system** (f2ed1b416fbbf580cdcc8d1b51f64d058f961b1c) for building, package management, dependencies, and testing. After successful Dove installation, you can just run:
+We use **[Dove](https://github.com/pontem-network/move-tools) build system** (5407fb358072a0a62671acbb5ace708a9e91afc8) for building, package management, dependencies, and testing. After successful Dove installation, you can just run:
 `dove build`
 
 > **Jumpstart**: `dove run timelock.move --signers 0x2f66c09143acc52a85fec529a4e20c85` (replace timelock.move with any script residing in [scripts/](scripts/))
