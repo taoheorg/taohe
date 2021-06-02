@@ -36,9 +36,6 @@ You can also add TaoHe as a dependency for your Dove based project by adding thi
 `dependencies = [{ git = "https://github.com/taoheorg/taohe" }]`
 
 ## Known problems
-### Move is under heavy development
-Move is changing rapidly at the moment, the chances are that when you clone this repository, the Move language already has changed, and this does not compile at all 😆
-
 ### Poor developer experience
 DX is not good at the moment, since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script modules (a new Move feature).
 
