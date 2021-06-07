@@ -40,7 +40,7 @@ You can also add TaoHe as a dependency for your Dove based project by adding thi
 DX is not good at the moment, since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script modules (a new Move feature).
 
 ## Legal
-This repository is released under the *Apache-2.0 License*, and is originally copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). This project currently depends on [diem-stdlib](https://github.com/taoheorg/diem-stdlib).
+This repository is released under the *Apache License 2.0*, and is originally copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). This project currently depends on [diem-stdlib](https://github.com/taoheorg/diem-stdlib) and [move-stdlib](https://github.com/taoheorg/move-stdlib).
 
 ## Documentation
 See [doc/](doc/) for `move-prover` generated documentation.
