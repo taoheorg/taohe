@@ -13,11 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// This dummy script serves two purposes:
-///  - help debugging by providing the simplest possible transaction, and
-///  - provide a template for future scripts.
 script {
+    /// This dummy script serves two purposes:
+    ///  - help debugging by providing the simplest possible transaction, and
+    ///  - provide a template for future scripts.
     fun main() {
-        assert(false, 123);
+        assert(true, 0);
     }
 }
