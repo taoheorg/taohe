@@ -26,10 +26,10 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/), and [damirka's great `Move IDE` plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide).
 
-We use **[Dove](https://github.com/pontem-network/move-tools/tree/1.2.0) build system** (tag: `1.2.0`) for building, package management, dependencies, and testing. After successful Dove installation, you can just run:
+We use **[Dove](https://github.com/pontem-network/move-tools/tree/1.2.8) build system** (tag: `1.2.8`) for building, package management, dependencies, and testing. After successful Dove installation, you can just run:
 `dove build`
 
-> **Jumpstart**: `dove run timelock.move --signers 0x2f66c09143acc52a85fec529a4e20c85` (replace timelock.move with any script residing in [scripts/](scripts/))
+> **Jumpstart**: `dove run --file immutable` (replace timelock.move with any script residing in [scripts/](scripts/))
 
 ### Using TaoHe for your projects
 You can also add TaoHe as a dependency for your Dove based project by adding this line to your project's Dove.toml:
