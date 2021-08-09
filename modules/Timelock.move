@@ -23,8 +23,8 @@ module Timelock {
     /// Tao for a simple timelock: extract `content` if `unlock_time` has
     /// passed (in seconds).
     struct Tao<Content> has key, store {
-        content: Content,
-        unlock_time: u64
+        unlock_time: u64,
+        content: Content
     }
 
     /// Create a new timelocked tao. `unlock_time` is in seconds, will be
