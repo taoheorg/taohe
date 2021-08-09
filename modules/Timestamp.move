@@ -36,6 +36,12 @@ module Timestamp {
         Tao<Content> { timestamp: current_timestamp, content }
     }
 
+    public fun read<Content>(tao: &Tao<Content>): (&u64, &Content) {
+        let Tao<Content> { timestamp, content } = tao;
+
+        (timestamp, content)
+    }
+
     public fun extract<Content>(tao: Tao<Content>): Content {
         let Tao<Content> { timestamp: _, content } = tao;
 
