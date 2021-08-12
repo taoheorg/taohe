@@ -1,27 +1,27 @@
 
-<a name="0x3_Immutable"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable"></a>
 
-# Module `0x3::Immutable`
+# Module `0x2f66c09143acc52a85fec529a4e20c85::Immutable`
 
 A simple tao whose only purpose is to keep the content immutable
 
 
--  [Resource `Tao`](#0x3_Immutable_Tao)
--  [Function `new`](#0x3_Immutable_new)
+-  [Resource `Tao`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao)
+-  [Function `new`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_new)
 
 
 <pre><code></code></pre>
 
 
 
-<a name="0x3_Immutable_Tao"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao"></a>
 
 ## Resource `Tao`
 
 Static tao containing a tao. Can't be extracted.
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Immutable.md#0x3_Immutable_Tao">Tao</a>&lt;Content&gt;
+<pre><code><b>resource</b> <b>struct</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -42,14 +42,14 @@ Static tao containing a tao. Can't be extracted.
 
 </details>
 
-<a name="0x3_Immutable_new"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_new"></a>
 
 ## Function `new`
 
 Creating a static tao whose content tao cannot be extracted
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x3_Immutable_new">new</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x3_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_new">new</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -58,8 +58,8 @@ Creating a static tao whose content tao cannot be extracted
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x3_Immutable_new">new</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x3_Immutable_Tao">Tao</a>&lt;Content&gt; {
-    <a href="Immutable.md#0x3_Immutable_Tao">Tao</a>&lt;Content&gt; { content }
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_new">new</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; {
+    <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; { content }
 }
 </code></pre>
 
@@ -72,8 +72,13 @@ Creating a static tao whose content tao cannot be extracted
 
 
 
-<pre><code><b>aborts_if</b> <b>false</b>;
-<b>ensures</b> result.content == content;
+<pre><code><b>ensures</b> result.content == content;
+</code></pre>
+
+
+
+
+<pre><code><b>pragma</b> aborts_if_is_strict;
 </code></pre>
 
 

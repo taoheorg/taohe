@@ -1,23 +1,23 @@
 
-<a name="0x3_Timelock"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Timelock"></a>
 
-# Module `0x3::Timelock`
+# Module `0x2f66c09143acc52a85fec529a4e20c85::Timelock`
 
 Simple timelocked tao: allow extracting only when time has passed
 
 
--  [Resource `Tao`](#0x3_Timelock_Tao)
--  [Function `new`](#0x3_Timelock_new)
--  [Function `extract`](#0x3_Timelock_extract)
+-  [Resource `Tao`](#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao)
+-  [Function `new`](#0x2f66c09143acc52a85fec529a4e20c85_Timelock_new)
+-  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Timelock_extract)
 
 
 <pre><code><b>use</b> <a href="DiemTimestamp.md#0x1_DiemTimestamp">0x1::DiemTimestamp</a>;
-<b>use</b> <a href="Errors.md#0x3_TaoErrors">0x3::TaoErrors</a>;
+<b>use</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors">0x2f66c09143acc52a85fec529a4e20c85::Errors</a>;
 </code></pre>
 
 
 
-<a name="0x3_Timelock_Tao"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao"></a>
 
 ## Resource `Tao`
 
@@ -25,7 +25,7 @@ Tao for a simple timelock: extract <code>content</code> if <code>unlock_time</co
 passed (in seconds).
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Timelock.md#0x3_Timelock_Tao">Tao</a>&lt;Content&gt;
+<pre><code><b>resource</b> <b>struct</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -36,13 +36,13 @@ passed (in seconds).
 
 <dl>
 <dt>
-<code>content: Content</code>
+<code>unlock_time: u64</code>
 </dt>
 <dd>
 
 </dd>
 <dt>
-<code>unlock_time: u64</code>
+<code>content: Content</code>
 </dt>
 <dd>
 
@@ -52,7 +52,7 @@ passed (in seconds).
 
 </details>
 
-<a name="0x3_Timelock_new"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Timelock_new"></a>
 
 ## Function `new`
 
@@ -61,7 +61,7 @@ compared against <code><a href="DiemTimestamp.md#0x1_DiemTimestamp_now_seconds">
 network.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x3_Timelock_new">new</a>&lt;Content&gt;(unlock_time: u64, content: Content): <a href="Timelock.md#0x3_Timelock_Tao">Timelock::Tao</a>&lt;Content&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_new">new</a>&lt;Content&gt;(unlock_time: u64, content: Content): <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Timelock::Tao</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -70,8 +70,8 @@ network.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x3_Timelock_new">new</a>&lt;Content&gt;(unlock_time: u64, content: Content): <a href="Timelock.md#0x3_Timelock_Tao">Tao</a>&lt;Content&gt; {
-    <a href="Timelock.md#0x3_Timelock_Tao">Tao</a>&lt;Content&gt; { unlock_time, content }
+<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_new">new</a>&lt;Content&gt;(unlock_time: u64, content: Content): <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt; {
+    <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt; { unlock_time, content }
 }
 </code></pre>
 
@@ -84,15 +84,14 @@ network.
 
 
 
-<pre><code><b>aborts_if</b> <b>false</b>;
-<b>ensures</b> result.unlock_time == unlock_time && result.content == content;
+<pre><code><b>ensures</b> result.unlock_time == unlock_time && result.content == content;
 </code></pre>
 
 
 
 </details>
 
-<a name="0x3_Timelock_extract"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Timelock_extract"></a>
 
 ## Function `extract`
 
@@ -101,7 +100,7 @@ Currently move-executor does not support full genesis functionality,
 including timestamping. If available, then use the real timestamp.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x3_Timelock_extract">extract</a>&lt;Content&gt;(tao: <a href="Timelock.md#0x3_Timelock_Tao">Timelock::Tao</a>&lt;Content&gt;): Content
+<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_extract">extract</a>&lt;Content&gt;(tao: <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Timelock::Tao</a>&lt;Content&gt;): Content
 </code></pre>
 
 
@@ -110,8 +109,8 @@ including timestamping. If available, then use the real timestamp.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x3_Timelock_extract">extract</a>&lt;Content&gt;(tao: <a href="Timelock.md#0x3_Timelock_Tao">Tao</a>&lt;Content&gt;): Content {
-    <b>let</b> <a href="Timelock.md#0x3_Timelock_Tao">Tao</a>&lt;Content&gt; { content, unlock_time } = tao;
+<pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_extract">extract</a>&lt;Content&gt;(tao: <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt;): Content {
+    <b>let</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt; { content, unlock_time } = tao;
     <b>let</b> current_timestamp: u64 = 100; // Default timestamp <b>if</b> is_operating() is <b>false</b>
 
     <b>if</b> (<a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>()) {
@@ -120,7 +119,7 @@ including timestamping. If available, then use the real timestamp.
         current_timestamp = <a href="DiemTimestamp.md#0x1_DiemTimestamp_now_seconds">DiemTimestamp::now_seconds</a>();
     };
 
-    <b>assert</b>(current_timestamp &gt; unlock_time, <a href="Errors.md#0x3_TaoErrors_timelock_too_early">TaoErrors::timelock_too_early</a>());
+    <b>assert</b>(current_timestamp &gt; unlock_time, Errors::timelock_too_early());
 
     content
 }
@@ -132,6 +131,17 @@ including timestamping. If available, then use the real timestamp.
 
 <details>
 <summary>Specification</summary>
+
+
+
+<pre><code><b>aborts_if</b> (<a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>() && tao.unlock_time &gt;= <a href="DiemTimestamp.md#0x1_DiemTimestamp_spec_now_seconds">DiemTimestamp::spec_now_seconds</a>()) || (!<a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>() && tao.unlock_time &gt;= 100);
+</code></pre>
+
+
+
+
+<pre><code><b>pragma</b> aborts_if_is_strict;
+</code></pre>
 
 
 

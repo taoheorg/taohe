@@ -1,30 +1,32 @@
 
-<a name="0x2_Torch"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Torch"></a>
 
-# Module `0x2::Torch`
+# Module `0x2f66c09143acc52a85fec529a4e20c85::Torch`
 
-A dummy tao for testing and development purposes.
+A dummy resource for testing and development purposes.
 Can be passed along like.. ..a torch.
+This is not technically a tao, since it can't contain
+other taos.
 
 
--  [Resource `Tao`](#0x2_Torch_Tao)
--  [Function `new`](#0x2_Torch_new)
--  [Function `destroy`](#0x2_Torch_destroy)
+-  [Resource `Torch`](#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch)
+-  [Function `new`](#0x2f66c09143acc52a85fec529a4e20c85_Torch_new)
+-  [Function `destroy`](#0x2f66c09143acc52a85fec529a4e20c85_Torch_destroy)
 
 
 <pre><code></code></pre>
 
 
 
-<a name="0x2_Torch_Tao"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch"></a>
 
-## Resource `Tao`
+## Resource `Torch`
 
-This tao does not contain anything, and is
+This resource does not contain anything, and is
 intended to be used only for testing.
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Torch.md#0x2_Torch_Tao">Tao</a>
+<pre><code><b>resource</b> <b>struct</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch">Torch</a>
 </code></pre>
 
 
@@ -45,14 +47,14 @@ intended to be used only for testing.
 
 </details>
 
-<a name="0x2_Torch_new"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Torch_new"></a>
 
 ## Function `new`
 
-Create a new dummy tao
+Create a new torch
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2_Torch_new">new</a>(): <a href="Torch.md#0x2_Torch_Tao">Torch::Tao</a>
+<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_new">new</a>(): <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>
 </code></pre>
 
 
@@ -61,8 +63,8 @@ Create a new dummy tao
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2_Torch_new">new</a>(): <a href="Torch.md#0x2_Torch_Tao">Tao</a> {
-    <a href="Torch.md#0x2_Torch_Tao">Tao</a> {}
+<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_new">new</a>(): <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch">Torch</a> {
+    <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch">Torch</a> {}
 }
 </code></pre>
 
@@ -82,14 +84,14 @@ Create a new dummy tao
 
 </details>
 
-<a name="0x2_Torch_destroy"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Torch_destroy"></a>
 
 ## Function `destroy`
 
-Destroy a dummy tao created with <code><a href="Torch.md#0x2_Torch_new">new</a>()</code>
+Destroy a torch created with <code><a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_new">new</a>()</code>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2_Torch_destroy">destroy</a>(tao: <a href="Torch.md#0x2_Torch_Tao">Torch::Tao</a>)
+<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_destroy">destroy</a>(torch: <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>)
 </code></pre>
 
 
@@ -98,8 +100,8 @@ Destroy a dummy tao created with <code><a href="Torch.md#0x2_Torch_new">new</a>(
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2_Torch_destroy">destroy</a>(tao: <a href="Torch.md#0x2_Torch_Tao">Tao</a>) {
-    <b>let</b> <a href="Torch.md#0x2_Torch_Tao">Tao</a> {} = tao;
+<pre><code><b>public</b> <b>fun</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_destroy">destroy</a>(torch: <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch">Torch</a>) {
+    <b>let</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch">Torch</a> {} = torch;
 }
 </code></pre>
 
