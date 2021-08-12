@@ -19,6 +19,8 @@ address {{sender}} {
 module Timestamp {
     use 0x1::DiemTimestamp;
 
+    /// Timestamped tao, containing timestamp when the tao was created.
+    /// Timestamp is fetched on-chain, so it can't be manipulated.
     struct Tao<Content> has key, store {
         timestamp: u64,
         content: Content
@@ -27,6 +29,8 @@ module Timestamp {
         invariant timestamp > 0;
     }
 
+    /// Creating a timestamped tao. On-chain timestamp is used, to prevent
+    /// timestamp manipulation.
     public fun new<Content>(content: Content): Tao<Content> {
         let current_timestamp: u64 = 100; // Default timestamp if is_operating() is false
 
@@ -47,6 +51,8 @@ module Timestamp {
         ensures result.timestamp == 100 || result.timestamp == DiemTimestamp::spec_now_seconds();
     }
 
+    /// Immutable read-only reference to the timestamp, and child tao.
+    /// Timestamp is the on-chain timestamp, to prevent manipulation.
     public fun read<Content>(tao: &Tao<Content>): (&u64, &Content) {
         let Tao<Content> { timestamp, content } = tao;
 
@@ -57,6 +63,8 @@ module Timestamp {
         ensures result_2 == tao.content;
     }
 
+    /// Extracting the child tao, destroying the timestamp along with the
+    /// mother tao.
     public fun extract<Content>(tao: Tao<Content>): Content {
         let Tao<Content> { timestamp: _, content } = tao;
 
