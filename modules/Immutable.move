@@ -27,9 +27,12 @@ module Immutable {
         Tao<Content> { content }
     }
     spec fun new {
-        aborts_if false;
-
         ensures result.content == content;
+    }
+
+    spec module {
+        // Never abort, unless explicitly defined so:
+        pragma aborts_if_is_strict;
     }
 }
 }

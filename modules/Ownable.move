@@ -32,8 +32,6 @@ module Ownable {
         Tao<Content> { owner, content }
     }
     spec fun new {
-        aborts_if false;
-
         ensures result.owner == owner && result.content == content;
     }
 
@@ -49,6 +47,11 @@ module Ownable {
         aborts_if tao.owner != Signer::address_of(account);
 
         ensures result == tao.content;
+    }
+
+    spec module {
+        // Never abort, unless explicitly defined so:
+        pragma aborts_if_is_strict;
     }
 }
 }

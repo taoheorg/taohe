@@ -48,5 +48,10 @@ module Root {
 
         ensures !exists<Root<Content>>(Signer::spec_address_of(account));
     }
+
+    spec module {
+        // Never abort, unless explicitly defined so:
+        pragma aborts_if_is_strict;
+    }
 }
 }

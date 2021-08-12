@@ -36,8 +36,6 @@ module Errors {
         (reason << 16) | ((tao_id as u64) << 8) | (CATEGORY_TAOHE as u64)
     }
     spec fun make {
-        aborts_if false;
-
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
@@ -45,8 +43,6 @@ module Errors {
     /// This is used for general TaoHe errors, not part of any specific module
     public fun general(reason: u64): u64 { make(TAO_GENERAL, reason) }
     spec fun general {
-        aborts_if false;
-
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
@@ -54,8 +50,6 @@ module Errors {
     /// This code is used by Timelock.move when unlock time haven't passed yet
     public fun timelock_too_early(): u64 { make(TAO_TIMELOCK, 15) }
     spec fun timelock_too_early {
-        aborts_if false;
-
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
@@ -63,10 +57,13 @@ module Errors {
     /// This code is used by Ownable.sol when the `account` is not the owner
     public fun ownable_not_owned(): u64 { make(TAO_OWNABLE, 15) }
     spec fun ownable_not_owned {
-        aborts_if false;
-
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
+    }
+
+    spec module {
+        // Never abort, unless explicitly defined so:
+        pragma aborts_if_is_strict;
     }
 }
 }

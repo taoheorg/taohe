@@ -30,8 +30,6 @@ module Folder {
         Tao<Content> { content }
     }
     spec fun new {
-        aborts_if false;
-
         ensures result ==  Tao<Content> { content: content };
     }
 
@@ -42,9 +40,12 @@ module Folder {
         content
     }
     spec fun extract {
-        aborts_if false;
-
         ensures result == tao.content;
+    }
+
+    spec module {
+        // Never abort, unless explicitly defined so:
+        pragma aborts_if_is_strict;
     }
 }
 }

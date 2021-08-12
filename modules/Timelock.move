@@ -34,8 +34,6 @@ module Timelock {
         Tao<Content> { unlock_time, content }
     }
     spec fun new {
-        aborts_if false;
-
         ensures result.unlock_time == unlock_time && result.content == content;
     }
 
@@ -57,8 +55,15 @@ module Timelock {
         content
     }
     spec fun extract {
-        // At the moment this can't be tested.
-        // See: https://github.com/diem/diem/issues/8303
+        aborts_if (DiemTimestamp::is_operating() && tao.unlock_time >= DiemTimestamp::spec_now_seconds()) || (!DiemTimestamp::is_operating() && tao.unlock_time >= 100);
+
+        // Result cannot be verified at the moment:
+        // https://github.com/diem/diem/issues/8303
+    }
+
+    spec module {
+        // Never abort, unless explicitly defined so:
+        pragma aborts_if_is_strict;
     }
 }
 }
