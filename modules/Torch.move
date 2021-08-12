@@ -15,24 +15,26 @@
 
 address {{sender}} {
 
-/// A dummy tao for testing and development purposes.
+/// A dummy resource for testing and development purposes.
 /// Can be passed along like.. ..a torch.
+/// This is not technically a tao, since it can't contain
+/// other taos.
 module Torch {
-    /// This tao does not contain anything, and is
+    /// This resource does not contain anything, and is
     /// intended to be used only for testing.
-    struct Tao has key, store {}
+    struct Torch has key, store {}
 
-    /// Create a new dummy tao
-    public fun new(): Tao {
-        Tao {}
+    /// Create a new torch
+    public fun new(): Torch {
+        Torch {}
     }
     spec fun new {
         aborts_if false;
     }
 
-    /// Destroy a dummy tao created with `new()`
-    public fun destroy(tao: Tao) {
-        let Tao {} = tao;
+    /// Destroy a torch created with `new()`
+    public fun destroy(torch: Torch) {
+        let Torch {} = torch;
     }
     spec fun destroy {
         aborts_if false;

@@ -19,6 +19,6 @@ script {
     use {{sender}}::Immutable;
 
     fun main(account: signer) {
-        Root::create<Immutable::Tao<Torch::Tao>>(&account, Immutable::new<Torch::Tao>(Torch::new()));
+        Root::create<Immutable::Tao<Torch::Torch>>(&account, Immutable::new<Torch::Torch>(Torch::new()));
     }
 }
