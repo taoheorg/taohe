@@ -17,7 +17,7 @@ script {
     /// This dummy script serves two purposes:
     ///  - help debugging by providing the simplest possible transaction, and
     ///  - provide a template for future scripts.
-    fun main() {
+    fun dummy() {
         assert(true, 0);
     }
 }

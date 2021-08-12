@@ -18,7 +18,7 @@ script {
     use {{sender}}::Root;
     use {{sender}}::Timestamp;
 
-    fun main(account: signer) {
+    fun timestamp(account: signer) {
         Root::create<Timestamp::Tao<Torch::Torch>>(&account, Timestamp::new<Torch::Torch>(Torch::new()));
     }
 }

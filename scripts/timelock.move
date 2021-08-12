@@ -22,7 +22,7 @@ script {
     // using move-executor.
     const UNLOCK_TIMESTAMP: u64 = 99;
 
-    fun main(account: signer) {
+    fun timelock_1(account: signer) {
         Root::create<Timelock::Tao<Torch::Torch>>(&account, Timelock::new<Torch::Torch>(UNLOCK_TIMESTAMP, Torch::new()));
     }
 }
@@ -32,7 +32,7 @@ script {
     use {{sender}}::Root;
     use {{sender}}::Timelock;
 
-    fun main(account: signer) {
+    fun timelock_2(account: signer) {
         // Extract torch, and wrap it into Root
         Root::create<Torch::Torch>(&account, Timelock::extract<Torch::Torch>(Root::extract<Timelock::Tao<Torch::Torch>>(&account)));
     }
