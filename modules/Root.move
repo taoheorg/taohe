@@ -32,6 +32,8 @@ module Root {
     spec fun create {
         aborts_if exists<Root<Content>>(Signer::spec_address_of(account));
 
+        modifies global<Root<Content>>(Signer::spec_address_of(account));
+
         ensures exists<Root<Content>>(Signer::spec_address_of(account));
     }
 
@@ -45,6 +47,8 @@ module Root {
     }
     spec fun extract {
         aborts_if !exists<Root<Content>>(Signer::spec_address_of(account));
+
+        modifies global<Root<Content>>(Signer::spec_address_of(account));
 
         ensures !exists<Root<Content>>(Signer::spec_address_of(account));
     }
