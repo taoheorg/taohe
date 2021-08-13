@@ -38,6 +38,7 @@ module Torch {
     }
     spec fun destroy {
         aborts_if false;
+        ensures torch != Torch{};
     }
 }
 }
