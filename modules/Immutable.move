@@ -30,6 +30,18 @@ module Immutable {
         ensures result.content == content;
     }
 
+    /// For semantic reasons providing `extract`, although it
+    /// always fails.
+    public fun extract<Content>(_tao: Tao<Content>): Content {
+        // Aborting with general error for now: using our
+        // Errors module would break formal verification
+        // (https://github.com/diem/diem/issues/8303).
+        abort(1)
+    }
+    spec fun extract {
+        aborts_if true with 1;
+    }
+
     spec module {
         // Never abort, unless explicitly defined so:
         pragma aborts_if_is_strict;
