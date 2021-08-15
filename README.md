@@ -31,9 +31,17 @@ We use **[Dove build system 1.2.8](https://github.com/pontem-network/move-tools/
 
 > **Jumpstart**: `dove run --file immutable` (replace timelock.move with any script residing in [scripts/](scripts/))
 
+### Formal verification
+Every tao has formal verification specs embedded. You can run the formal verification by running:
+`dove prove` (If Dove has been compiled with `--features prover`, to be enabled by default in 1.3.0)
+
+> **Warning**: Althought every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
+
 ### Using TaoHe for your projects
 You can also add TaoHe as a dependency for your Dove based project by adding this line to your project's Dove.toml:
-`dependencies = [{ git = "https://github.com/taoheorg/taohe" }]`
+`dependencies = [{ git = "https://github.com/taoheorg/taohe", rev="c3b766a3a7e7ca05d9dbf68dfe9c5e6f6fd44131" }]`
+
+> **Warning**: Due to signed commits, commit hash should be used, since it cannot be spoofed. After you know which TaoHe version you want to use, replace `rev` with your desired commit hash.
 
 ## Known problems
 ### Poor developer experience
