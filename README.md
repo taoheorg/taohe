@@ -24,22 +24,25 @@ Tao's lifespan is divided into three separate phases, listed here chronologicall
 Taos are not meant to replace specialized smart contract development for complicated applications, but can be used as part of one.
 
 ## Building and developing
-TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/), and [damirka's great `Move IDE` plugin](https://marketplace.visualstudio.com/items?itemName=damirka.move-ide).
+TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [great `Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language) originally developed by @damirka and currently supported by [Pontem Network](https://pontem.network).
 
-We use **[Dove build system 1.2.8](https://github.com/pontem-network/move-tools/releases/tag/1.2.8)** for building, package management, dependencies, and testing. After successful Dove installation, you can just run:
+We use **[Dove build system 1.2.8](https://github.com/pontem-network/move-tools/releases/tag/1.2.8)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
 `dove build`
 
 > **Jumpstart**: `dove run --file immutable` (replace timelock.move with any script residing in [scripts/](scripts/))
 
 ### Formal verification
 Every tao has formal verification specs embedded. You can run the formal verification by running:
-`dove prove` (If Dove has been compiled with `--features prover`, to be enabled by default in 1.3.0)
+`dove prove` (If Dove has been compiled with `--features prover`, to be enabled by default in 1.3.0).
 
-> **Warning**: Althought every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
+> **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
 ### Using TaoHe for your projects
 You can also add TaoHe as a dependency for your Dove based project by adding this line to your project's Dove.toml:
-`dependencies = [{ git = "https://github.com/taoheorg/taohe", rev="c3b766a3a7e7ca05d9dbf68dfe9c5e6f6fd44131" }]`
+
+```
+dependencies = [{ git = "https://github.com/taoheorg/taohe", rev="c3b766a3a7e7ca05d9dbf68dfe9c5e6f6fd44131" }]
+```
 
 > **Warning**: Due to signed commits, commit hash should be used, since it cannot be spoofed. After you know which TaoHe version you want to use, replace `rev` with your desired commit hash.
 
@@ -51,7 +54,7 @@ DX is not good at the moment, since types must be known beforehand, and written 
 This repository is released under the *Apache License 2.0*, and is originally copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). This project currently depends on [diem-stdlib](https://github.com/taoheorg/diem-stdlib) and [move-stdlib](https://github.com/taoheorg/move-stdlib).
 
 ## Documentation
-See [doc/](doc/) for `move-prover` generated documentation.
+See [doc/](doc/) for `dove doc-gen` generated documentation.
 
 ## Trusted source
 Smart contracts are mission critical and as such should always originate from trusted sources. That's why every commit on `master` is signed with [Ville's GPG key](http://keys.gnupg.net/pks/lookup?op=vindex&fingerprint=on&search=0x49065E1275E46F96). Upstream repository is [here](https://github.com/taoheorg/taohe/) and the official webpage is at [www.taohe.org](https://www.taohe.org).
