@@ -29,7 +29,7 @@ module Folder {
     public fun new<Content>(content: vector<Content>): Tao<Content> {
         Tao<Content> { content }
     }
-    spec fun new {
+    spec new {
         ensures result ==  Tao<Content> { content: content };
     }
 
@@ -39,7 +39,7 @@ module Folder {
         
         content
     }
-    spec fun extract {
+    spec extract {
         ensures result == tao.content;
     }
 

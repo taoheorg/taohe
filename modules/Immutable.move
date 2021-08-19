@@ -26,7 +26,7 @@ module Immutable {
     public fun new<Content>(content: Content): Tao<Content> {
         Tao<Content> { content }
     }
-    spec fun new {
+    spec new {
         ensures result.content == content;
     }
 
@@ -38,7 +38,7 @@ module Immutable {
         // (https://github.com/diem/diem/issues/8303).
         abort(1)
     }
-    spec fun extract {
+    spec extract {
         aborts_if true with 1;
     }
 

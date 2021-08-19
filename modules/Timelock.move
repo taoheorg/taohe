@@ -33,7 +33,7 @@ module Timelock {
     public fun new<Content>(unlock_time: u64, content: Content): Tao<Content> {
         Tao<Content> { unlock_time, content }
     }
-    spec fun new {
+    spec new {
         ensures result.unlock_time == unlock_time && result.content == content;
     }
 
@@ -54,7 +54,7 @@ module Timelock {
 
         content
     }
-    spec fun extract {
+    spec extract {
         aborts_if (DiemTimestamp::is_operating() && tao.unlock_time >= DiemTimestamp::spec_now_seconds()) || (!DiemTimestamp::is_operating() && tao.unlock_time >= 100);
 
         // Result cannot be verified at the moment:

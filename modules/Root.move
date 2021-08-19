@@ -29,7 +29,7 @@ module Root {
     public fun create<Content: store>(account: &signer, content: Content) {
         move_to<Root<Content>>(account, Root<Content> { content: content });
     }
-    spec fun create {
+    spec create {
         aborts_if exists<Root<Content>>(Signer::spec_address_of(account));
 
         modifies global<Root<Content>>(Signer::spec_address_of(account));
@@ -45,7 +45,7 @@ module Root {
 
         content
     }
-    spec fun extract {
+    spec extract {
         aborts_if !exists<Root<Content>>(Signer::spec_address_of(account));
 
         modifies global<Root<Content>>(Signer::spec_address_of(account));

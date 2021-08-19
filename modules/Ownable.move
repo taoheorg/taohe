@@ -31,7 +31,7 @@ module Ownable {
     public fun new<Content>(owner: address, content: Content): Tao<Content> {
         Tao<Content> { owner, content }
     }
-    spec fun new {
+    spec new {
         ensures result.owner == owner && result.content == content;
     }
 
@@ -43,7 +43,7 @@ module Ownable {
 
         content
     }
-    spec fun extract {
+    spec extract {
         aborts_if tao.owner != Signer::address_of(account);
 
         ensures result == tao.content;

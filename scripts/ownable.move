@@ -19,7 +19,7 @@ script {
     use {{sender}}::Ownable;
 
     fun ownable_1(account: signer) {
-        Root::create<Ownable::Tao<Torch::Torch>>(&account, Ownable::new<Torch::Torch>({{sender}}, Torch::new()));
+        Root::create<Ownable::Tao<Torch::Torch>>(&account, Ownable::new<Torch::Torch>(@{{sender}}, Torch::new()));
     }
 }
 

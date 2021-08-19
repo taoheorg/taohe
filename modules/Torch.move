@@ -28,7 +28,7 @@ module Torch {
     public fun new(): Torch {
         Torch {}
     }
-    spec fun new {
+    spec new {
         aborts_if false;
     }
 
@@ -36,9 +36,12 @@ module Torch {
     public fun destroy(torch: Torch) {
         let Torch {} = torch;
     }
-    spec fun destroy {
+    spec destroy {
         aborts_if false;
-        ensures torch != Torch{};
+
+        // This does not work on 1.3.0 anymore, looking
+        // for alternatives:
+        //ensures torch != Torch{};
     }
 }
 }

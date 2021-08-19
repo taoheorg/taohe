@@ -35,28 +35,28 @@ module Errors {
     fun make(tao_id: u8, reason: u64): u64 {
         (reason << 16) | ((tao_id as u64) << 8) | (CATEGORY_TAOHE as u64)
     }
-    spec fun make {
+    spec make {
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
 
     /// This is used for general TaoHe errors, not part of any specific module
     public fun general(reason: u64): u64 { make(TAO_GENERAL, reason) }
-    spec fun general {
+    spec general {
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
 
     /// This code is used by Timelock.move when unlock time haven't passed yet
     public fun timelock_too_early(): u64 { make(TAO_TIMELOCK, 15) }
-    spec fun timelock_too_early {
+    spec timelock_too_early {
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
 
     /// This code is used by Ownable.sol when the `account` is not the owner
     public fun ownable_not_owned(): u64 { make(TAO_OWNABLE, 15) }
-    spec fun ownable_not_owned {
+    spec ownable_not_owned {
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }

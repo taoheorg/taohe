@@ -26,14 +26,18 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [great `Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language) originally developed by @damirka and currently supported by [Pontem Network](https://pontem.network).
 
-We use **[Dove build system 1.2.8](https://github.com/pontem-network/move-tools/releases/tag/1.2.8)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
-`dove build`
+We use **[Dove build system 1.3.0](https://github.com/pontem-network/move-tools/releases/tag/1.3.0)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
+```
+dove build
+```
 
 > **Jumpstart**: `dove run --file immutable` (replace timelock.move with any script residing in [scripts/](scripts/))
 
 ### Formal verification
 Every tao has formal verification specs embedded. You can run the formal verification by running:
-`dove prove` (If Dove has been compiled with `--features prover`, to be enabled by default in 1.3.0).
+```
+dove prove
+```
 
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 

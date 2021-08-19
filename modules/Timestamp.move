@@ -25,7 +25,7 @@ module Timestamp {
         timestamp: u64,
         content: Content
     }
-    spec struct Tao {
+    spec Tao {
         invariant timestamp > 0;
     }
 
@@ -44,7 +44,7 @@ module Timestamp {
 
         Tao<Content> { timestamp: current_timestamp, content }
     }
-    spec fun new {
+    spec new {
         aborts_if DiemTimestamp::spec_now_seconds() == 0 && DiemTimestamp::is_operating() with 123;
 
         ensures result.content == content;
@@ -58,7 +58,7 @@ module Timestamp {
 
         (timestamp, content)
     }
-    spec fun read {
+    spec read {
         ensures result_1 == tao.timestamp;
         ensures result_2 == tao.content;
     }
@@ -70,7 +70,7 @@ module Timestamp {
 
         content
     }
-    spec fun extract {
+    spec extract {
         ensures result == tao.content;
     }
 

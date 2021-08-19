@@ -3,6 +3,6 @@ name = "taohe"
 dialect = "diem"
 account_address = "0x2f66c09143acc52a85fec529a4e20c85"
 dependencies = [
-    { git = "https://github.com/taoheorg/diem-stdlib", rev="6a3d5963d3fad7dde02fe2362bc77fc7b829f7ee" },
-    { git = "https://github.com/taoheorg/move-stdlib", rev="f4cd448465cf9958fffaa8cdb9973ffd240e76cf" }
+    { git = "https://github.com/taoheorg/diem-stdlib", rev="e12c391124afc007aa261c37a56dceff962fbc4c" },
+    { git = "https://github.com/taoheorg/move-stdlib", rev="94f4878bfbd3d031914617598f43858d6b8bc1a3" }
 ]
