@@ -24,7 +24,7 @@ Tao's lifespan is divided into three separate phases, listed here chronologicall
 Taos are not meant to replace specialized smart contract development for complicated applications, but can be used as part of one.
 
 ## Building and developing
-TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [great `Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language) originally developed by @damirka and currently supported by [Pontem Network](https://pontem.network).
+TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [great `Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language) by [Pontem Network](https://pontem.network), originally developed by damirka.
 
 We use **[Dove build system 1.3.0](https://github.com/pontem-network/move-tools/releases/tag/1.3.0)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
 ```
@@ -39,7 +39,7 @@ Every tao has formal verification specs embedded. You can run the formal verific
 dove prove
 ```
 
-> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's development setup script: `[./scripts/dev_setup.sh](https://github.com/diem/diem/blob/diem-core-v1.3.0/scripts/dev_setup.sh) -y`. Make sure that both executables reside in your `PATH`, for more info, see pontem-network/move-tools#129.
+> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's [development setup script](https://github.com/diem/diem/blob/diem-core-v1.3.0/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. Make sure that both executables reside in your `PATH`, for more info, see [this issue](https://github.com/pontem-network/move-tools/issues/129).
 
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
