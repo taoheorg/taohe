@@ -11,7 +11,7 @@ Simple timelocked tao: allow extracting only when time has passed
 -  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Timelock_extract)
 
 
-<pre><code><b>use</b> <a href="DiemTimestamp.md#0x1_DiemTimestamp">0x1::DiemTimestamp</a>;
+<pre><code><b>use</b> <a href="">0x1::DiemTimestamp</a>;
 <b>use</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors">0x2f66c09143acc52a85fec529a4e20c85::Errors</a>;
 </code></pre>
 
@@ -25,7 +25,7 @@ Tao for a simple timelock: extract <code>content</code> if <code>unlock_time</co
 passed (in seconds).
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt;
+<pre><code><b>struct</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt; has store, key
 </code></pre>
 
 
@@ -57,7 +57,7 @@ passed (in seconds).
 ## Function `new`
 
 Create a new timelocked tao. <code>unlock_time</code> is in seconds, will be
-compared against <code><a href="DiemTimestamp.md#0x1_DiemTimestamp_now_seconds">DiemTimestamp::now_seconds</a>()</code> on production
+compared against <code><a href="_now_seconds">DiemTimestamp::now_seconds</a>()</code> on production
 network.
 
 
@@ -113,10 +113,10 @@ including timestamping. If available, then use the real timestamp.
     <b>let</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt; { content, unlock_time } = tao;
     <b>let</b> current_timestamp: u64 = 100; // Default timestamp <b>if</b> is_operating() is <b>false</b>
 
-    <b>if</b> (<a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>()) {
+    <b>if</b> (<a href="_is_operating">DiemTimestamp::is_operating</a>()) {
         // Currently <b>move</b>-executor does not support full genesis functionality,
         // including timestamping. If available, then <b>use</b> the real timestamp.
-        current_timestamp = <a href="DiemTimestamp.md#0x1_DiemTimestamp_now_seconds">DiemTimestamp::now_seconds</a>();
+        current_timestamp = <a href="_now_seconds">DiemTimestamp::now_seconds</a>();
     };
 
     <b>assert</b>(current_timestamp &gt; unlock_time, Errors::timelock_too_early());
@@ -134,7 +134,7 @@ including timestamping. If available, then use the real timestamp.
 
 
 
-<pre><code><b>aborts_if</b> (<a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>() && tao.unlock_time &gt;= <a href="DiemTimestamp.md#0x1_DiemTimestamp_spec_now_seconds">DiemTimestamp::spec_now_seconds</a>()) || (!<a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>() && tao.unlock_time &gt;= 100);
+<pre><code><b>aborts_if</b> (<a href="_is_operating">DiemTimestamp::is_operating</a>() && tao.unlock_time &gt;= <a href="_spec_now_seconds">DiemTimestamp::spec_now_seconds</a>()) || (!<a href="_is_operating">DiemTimestamp::is_operating</a>() && tao.unlock_time &gt;= 100);
 </code></pre>
 
 

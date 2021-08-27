@@ -8,6 +8,7 @@ A simple tao whose only purpose is to keep the content immutable
 
 -  [Resource `Tao`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao)
 -  [Function `new`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_new)
+-  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract)
 
 
 <pre><code></code></pre>
@@ -21,7 +22,7 @@ A simple tao whose only purpose is to keep the content immutable
 Static tao containing a tao. Can't be extracted.
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt;
+<pre><code><b>struct</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; has store, key
 </code></pre>
 
 
@@ -73,6 +74,47 @@ Creating a static tao whose content tao cannot be extracted
 
 
 <pre><code><b>ensures</b> result.content == content;
+</code></pre>
+
+
+
+</details>
+
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract"></a>
+
+## Function `extract`
+
+For semantic reasons providing <code>extract</code>, although it
+always fails.
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract">extract</a>&lt;Content&gt;(_tao: <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;): Content
+</code></pre>
+
+
+
+<details>
+<summary>Implementation</summary>
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract">extract</a>&lt;Content&gt;(_tao: <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt;): Content {
+    // Aborting <b>with</b> general error for now: using our
+    // <a href="">Errors</a> <b>module</b> would <b>break</b> formal verification
+    // (https://github.com/diem/diem/issues/8303).
+    <b>abort</b>(1)
+}
+</code></pre>
+
+
+
+</details>
+
+<details>
+<summary>Specification</summary>
+
+
+
+<pre><code><b>aborts_if</b> <b>true</b> <b>with</b> 1;
 </code></pre>
 
 

@@ -12,7 +12,7 @@ Simple timestamped tao: timestamp when the tao was created.
 -  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_extract)
 
 
-<pre><code><b>use</b> <a href="DiemTimestamp.md#0x1_DiemTimestamp">0x1::DiemTimestamp</a>;
+<pre><code><b>use</b> <a href="">0x1::DiemTimestamp</a>;
 </code></pre>
 
 
@@ -25,7 +25,7 @@ Timestamped tao, containing timestamp when the tao was created.
 Timestamp is fetched on-chain, so it can't be manipulated.
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt;
+<pre><code><b>struct</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; has drop, store, key
 </code></pre>
 
 
@@ -84,10 +84,10 @@ timestamp manipulation.
 <pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_new">new</a>&lt;Content&gt;(content: Content): <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; {
     <b>let</b> current_timestamp: u64 = 100; // Default timestamp <b>if</b> is_operating() is <b>false</b>
 
-    <b>if</b> (<a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>()) {
+    <b>if</b> (<a href="_is_operating">DiemTimestamp::is_operating</a>()) {
         // Currently <b>move</b>-executor does not support full genesis functionality,
         // including timestamping. If available, then <b>use</b> the real timestamp.
-        current_timestamp = <a href="DiemTimestamp.md#0x1_DiemTimestamp_now_seconds">DiemTimestamp::now_seconds</a>();
+        current_timestamp = <a href="_now_seconds">DiemTimestamp::now_seconds</a>();
 
         <b>assert</b>(current_timestamp &gt; 0, 123);
     };
@@ -105,9 +105,9 @@ timestamp manipulation.
 
 
 
-<pre><code><b>aborts_if</b> <a href="DiemTimestamp.md#0x1_DiemTimestamp_spec_now_seconds">DiemTimestamp::spec_now_seconds</a>() == 0 && <a href="DiemTimestamp.md#0x1_DiemTimestamp_is_operating">DiemTimestamp::is_operating</a>() <b>with</b> 123;
+<pre><code><b>aborts_if</b> <a href="_spec_now_seconds">DiemTimestamp::spec_now_seconds</a>() == 0 && <a href="_is_operating">DiemTimestamp::is_operating</a>() <b>with</b> 123;
 <b>ensures</b> result.content == content;
-<b>ensures</b> result.timestamp == 100 || result.timestamp == <a href="DiemTimestamp.md#0x1_DiemTimestamp_spec_now_seconds">DiemTimestamp::spec_now_seconds</a>();
+<b>ensures</b> result.timestamp == 100 || result.timestamp == <a href="_spec_now_seconds">DiemTimestamp::spec_now_seconds</a>();
 </code></pre>
 
 

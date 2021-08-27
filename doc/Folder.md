@@ -25,7 +25,7 @@ tao is destroyed.
 A simple tao struct containing a vector of taos
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt;
+<pre><code><b>struct</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; has store, key
 </code></pre>
 
 

@@ -12,7 +12,7 @@ Instead it's a special kind of resource used to host a tao.
 -  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Root_extract)
 
 
-<pre><code><b>use</b> <a href="Signer.md#0x1_Signer">0x1::Signer</a>;
+<pre><code><b>use</b> <a href="">0x1::Signer</a>;
 </code></pre>
 
 
@@ -24,7 +24,7 @@ Instead it's a special kind of resource used to host a tao.
 Root resource used to host a tao
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;
+<pre><code><b>struct</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt; has store, key
 </code></pre>
 
 
@@ -52,7 +52,7 @@ Root resource used to host a tao
 Create a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> for <code>account</code>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">create</a>&lt;Content&gt;(account: &signer, content: Content)
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">create</a>&lt;Content: store&gt;(account: &signer, content: Content)
 </code></pre>
 
 
@@ -75,8 +75,9 @@ Create a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a
 
 
 
-<pre><code><b>aborts_if</b> <b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="Signer.md#0x1_Signer_spec_address_of">Signer::spec_address_of</a>(account));
-<b>ensures</b> <b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="Signer.md#0x1_Signer_spec_address_of">Signer::spec_address_of</a>(account));
+<pre><code><b>aborts_if</b> <b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="_spec_address_of">Signer::spec_address_of</a>(account));
+<b>modifies</b> <b>global</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="_spec_address_of">Signer::spec_address_of</a>(account));
+<b>ensures</b> <b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="_spec_address_of">Signer::spec_address_of</a>(account));
 </code></pre>
 
 
@@ -90,7 +91,7 @@ Create a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a
 Extract <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> from <code>account</code>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: <b>resource</b>&gt;(account: &signer): Content
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store, key&gt;(account: &signer): Content
 </code></pre>
 
 
@@ -100,7 +101,7 @@ Extract <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: key + store&gt;(account: &signer): Content <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
-    <b>let</b> owner = <a href="Signer.md#0x1_Signer_address_of">Signer::address_of</a>(account);
+    <b>let</b> owner = <a href="_address_of">Signer::address_of</a>(account);
     <b>let</b> root = move_from&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(owner);
     <b>let</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt; { content } = root;
 
@@ -117,8 +118,9 @@ Extract <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>
 
 
 
-<pre><code><b>aborts_if</b> !<b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="Signer.md#0x1_Signer_spec_address_of">Signer::spec_address_of</a>(account));
-<b>ensures</b> !<b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="Signer.md#0x1_Signer_spec_address_of">Signer::spec_address_of</a>(account));
+<pre><code><b>aborts_if</b> !<b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="_spec_address_of">Signer::spec_address_of</a>(account));
+<b>modifies</b> <b>global</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="_spec_address_of">Signer::spec_address_of</a>(account));
+<b>ensures</b> !<b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<a href="_spec_address_of">Signer::spec_address_of</a>(account));
 </code></pre>
 
 

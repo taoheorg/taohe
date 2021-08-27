@@ -12,7 +12,7 @@ the content.
 -  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Ownable_extract)
 
 
-<pre><code><b>use</b> <a href="Signer.md#0x1_Signer">0x1::Signer</a>;
+<pre><code><b>use</b> <a href="">0x1::Signer</a>;
 <b>use</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors">0x2f66c09143acc52a85fec529a4e20c85::Errors</a>;
 </code></pre>
 
@@ -25,7 +25,7 @@ the content.
 Simple ownership tao: the <code>owner</code> can extract <code>content</code>
 
 
-<pre><code><b>resource</b> <b>struct</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Tao</a>&lt;Content&gt;
+<pre><code><b>struct</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Tao</a>&lt;Content&gt; has store, key
 </code></pre>
 
 
@@ -108,7 +108,7 @@ If <code>account </code> is the <code>owner</code>, extract <code>content</code>
 <pre><code><b>public</b> <b>fun</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_extract">extract</a>&lt;Content&gt;(account: &signer, tao: <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Tao</a>&lt;Content&gt;): Content {
     <b>let</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Tao</a>&lt;Content&gt; { owner, content } = tao;
 
-    <b>assert</b>(owner == <a href="Signer.md#0x1_Signer_address_of">Signer::address_of</a>(account), Errors::ownable_not_owned());
+    <b>assert</b>(owner == <a href="_address_of">Signer::address_of</a>(account), Errors::ownable_not_owned());
 
     content
 }
@@ -123,7 +123,7 @@ If <code>account </code> is the <code>owner</code>, extract <code>content</code>
 
 
 
-<pre><code><b>aborts_if</b> tao.owner != <a href="Signer.md#0x1_Signer_address_of">Signer::address_of</a>(account);
+<pre><code><b>aborts_if</b> tao.owner != <a href="_address_of">Signer::address_of</a>(account);
 <b>ensures</b> result == tao.content;
 </code></pre>
 
