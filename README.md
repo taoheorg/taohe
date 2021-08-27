@@ -39,6 +39,8 @@ Every tao has formal verification specs embedded. You can run the formal verific
 dove prove
 ```
 
+> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's development setup script: `[./scripts/dev_setup.sh](https://github.com/diem/diem/blob/diem-core-v1.3.0/scripts/dev_setup.sh) -y`. Make sure that both executables reside in your `PATH`, for more info, see pontem-network/move-tools#129.
+
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
 ### Using TaoHe for your projects
