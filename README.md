@@ -26,12 +26,12 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [great `Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language) by [Pontem Network](https://pontem.network), originally developed by damirka.
 
-We use **[Dove build system 1.3.0](https://github.com/pontem-network/move-tools/releases/tag/1.3.0)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
+We use **[Dove build system 1.3.2](https://github.com/pontem-network/move-tools/releases/tag/1.3.2)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
 ```
 dove build
 ```
 
-> **Jumpstart**: `dove run --file immutable` (replace timelock.move with any script residing in [scripts/](scripts/))
+> **Jumpstart**: `dove run -v "immutable(_)"` (replace `immutable` with any function residing in [scripts/](scripts/))
 
 ### Formal verification
 Every tao has formal verification specs embedded. You can run the formal verification by running:
@@ -39,7 +39,7 @@ Every tao has formal verification specs embedded. You can run the formal verific
 dove prove
 ```
 
-> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's [development setup script](https://github.com/diem/diem/blob/diem-core-v1.3.0/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. Make sure that both executables reside in your `PATH`, for more info, see [this issue](https://github.com/pontem-network/move-tools/issues/129).
+> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's [development setup script](https://github.com/diem/diem/blob/diem-core-v1.3.0/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. If you want to change the default paths, edit `./prover-env.toml`.
 
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
