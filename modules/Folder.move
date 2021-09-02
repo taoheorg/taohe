@@ -59,6 +59,7 @@ module Folder {
         let vec1 = Vector::empty<bool>();
         let tao = new<bool>(vec1);
         let content = extract<bool>(tao);
+
         assert(content == Vector::empty<bool>(), 123);
     }
 

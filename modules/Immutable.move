@@ -31,7 +31,7 @@ module Immutable {
     }
     #[test]
     fun test_new() {
-        let Tao {content} = new<bool>(true);
+        let Tao { content } = new<bool>(true);
 
         assert(content == true, 123);
     }

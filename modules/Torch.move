@@ -43,9 +43,8 @@ module Torch {
     spec destroy {
         aborts_if false;
 
-        // This does not work on 1.3.0 anymore, looking
-        // for alternatives ():
-        //ensures torch != Torch{};
+        // Move 1.3.0 does not permit verifying destruction of resources anymore:
+        // https://community.diem.com/t/formal-verification-how-to-ensure-a-struct-is-actually-destroyed/3662
     }
     #[test]
     fun test_destroy() {

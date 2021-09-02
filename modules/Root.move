@@ -60,6 +60,7 @@ module Root {
     fun test_extract(account: signer) acquires Root {
         create<bool>(&account, true);
         let content = extract<bool>(&account);
+
         assert(content == true, 123);
     }
 

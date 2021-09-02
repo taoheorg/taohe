@@ -38,7 +38,7 @@ module Timelock {
     }
     #[test]
     fun test_new() {
-        let Tao {unlock_time, content} = new<bool>(0, true);
+        let Tao { unlock_time, content } = new<bool>(0, true);
 
         assert(unlock_time == 0, 123);
         assert(content == true, 123);
@@ -72,6 +72,7 @@ module Timelock {
         let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
         let tao = new<bool>(timestamp - 1, true);
         let content = extract<bool>(tao);
+
         assert(content == true, 123);
     }
     #[test, expected_failure]
@@ -79,6 +80,7 @@ module Timelock {
         let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
         let tao = new<bool>(timestamp + 1, true);
         let content = extract<bool>(tao);
+
         assert(content == true, 123);
     }
 

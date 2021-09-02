@@ -95,6 +95,7 @@ module Timestamp {
     fun test_extract() {
         let tao = Tao<bool> { timestamp: 0, content: false };
         let content = extract<bool>(tao);
+
         assert(content == false, 123);
     }
 

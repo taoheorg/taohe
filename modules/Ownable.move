@@ -36,7 +36,7 @@ module Ownable {
     }
     #[test]
     fun test_new() {
-        let Tao {owner, content} = new<bool>(@0x123, true);
+        let Tao { owner, content } = new<bool>(@0x123, true);
 
         assert(owner == @0x123, 123);
         assert(content == true, 123);
