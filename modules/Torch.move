@@ -31,6 +31,10 @@ module Torch {
     spec new {
         aborts_if false;
     }
+    #[test]
+    fun test_new() {
+        let Torch {} = new();
+    }
 
     /// Destroy a torch created with `new()`
     public fun destroy(torch: Torch) {
@@ -40,8 +44,13 @@ module Torch {
         aborts_if false;
 
         // This does not work on 1.3.0 anymore, looking
-        // for alternatives:
+        // for alternatives ():
         //ensures torch != Torch{};
+    }
+    #[test]
+    fun test_destroy() {
+        let torch = Torch {}; 
+        destroy(torch);
     }
 }
 }

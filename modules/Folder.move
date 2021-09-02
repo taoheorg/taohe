@@ -20,6 +20,9 @@ address {{sender}} {
 /// set of taos, and the same set will be returned when the
 /// tao is destroyed.
 module Folder {
+    #[test]
+    use 0x1::Vector;
+
     /// A simple tao struct containing a vector of taos
     struct Tao<Content> has key, store {
         content: vector<Content>
@@ -32,6 +35,15 @@ module Folder {
     spec new {
         ensures result ==  Tao<Content> { content: content };
     }
+    #[test]
+    fun test_new() {
+        let vec1 = Vector::empty<bool>();
+        Vector::push_back<bool>(&mut vec1, true);
+        let Tao {content} = new<bool>(vec1);
+        let value = Vector::pop_back(&mut content);
+
+        assert(value == true, 123);
+    }
 
     /// Destroy the tao, and return the static set of taos inside it
     public fun extract<Content>(tao: Tao<Content>): vector<Content> {
@@ -41,6 +53,13 @@ module Folder {
     }
     spec extract {
         ensures result == tao.content;
+    }
+    #[test]
+    fun test_extract() {
+        let vec1 = Vector::empty<bool>();
+        let tao = new<bool>(vec1);
+        let content = extract<bool>(tao);
+        assert(content == Vector::empty<bool>(), 123);
     }
 
     spec module {

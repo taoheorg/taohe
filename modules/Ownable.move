@@ -34,6 +34,13 @@ module Ownable {
     spec new {
         ensures result.owner == owner && result.content == content;
     }
+    #[test]
+    fun test_new() {
+        let Tao {owner, content} = new<bool>(@0x123, true);
+
+        assert(owner == @0x123, 123);
+        assert(content == true, 123);
+    }
 
     /// If `account ` is the `owner`, extract `content`
     public fun extract<Content>(account: &signer, tao: Tao<Content>): Content {
@@ -47,6 +54,13 @@ module Ownable {
         aborts_if tao.owner != Signer::address_of(account);
 
         ensures result == tao.content;
+    }
+    #[test(account = @0x123)]
+    fun test_extract(account: signer) {
+        let tao = new<bool>(@0x123, true);
+        let content = extract<bool>(&account, tao);
+
+        assert(content == true, 123);
     }
 
     spec module {

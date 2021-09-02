@@ -29,6 +29,12 @@ module Immutable {
     spec new {
         ensures result.content == content;
     }
+    #[test]
+    fun test_new() {
+        let Tao {content} = new<bool>(true);
+
+        assert(content == true, 123);
+    }
 
     /// For semantic reasons providing `extract`, although it
     /// always fails.
@@ -40,6 +46,13 @@ module Immutable {
     }
     spec extract {
         aborts_if true with 1;
+    }
+    #[test, expected_failure]
+    fun test_extract() {
+        let tao = new<bool>(true);
+
+        // Always fails:
+        let _content = extract<bool>(tao);
     }
 
     spec module {

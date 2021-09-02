@@ -50,6 +50,13 @@ module Timestamp {
         ensures result.content == content;
         ensures result.timestamp == 100 || result.timestamp == DiemTimestamp::spec_now_seconds();
     }
+    #[test]
+    fun test_new() {
+        let Tao {timestamp, content} = new<bool>(true);
+
+        assert(timestamp != 0, 123);
+        assert(content == true, 123);
+    }
 
     /// Immutable read-only reference to the timestamp, and child tao.
     /// Timestamp is the on-chain timestamp, to prevent manipulation.
@@ -62,6 +69,17 @@ module Timestamp {
         ensures result_1 == tao.timestamp;
         ensures result_2 == tao.content;
     }
+    #[test]
+    fun test_read() {
+        let tao = new<bool>(true);
+
+        let (timestamp, content) = read<bool>(&tao);
+        assert(*timestamp > 0, 123);
+        assert(*content == true, 123);
+
+        let value = extract<bool>(tao);
+        assert(value == true, 123);
+    }
 
     /// Extracting the child tao, destroying the timestamp along with the
     /// mother tao.
@@ -72,6 +90,12 @@ module Timestamp {
     }
     spec extract {
         ensures result == tao.content;
+    }
+    #[test]
+    fun test_extract() {
+        let tao = Tao<bool> { timestamp: 0, content: false };
+        let content = extract<bool>(tao);
+        assert(content == false, 123);
     }
 
     spec module {

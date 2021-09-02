@@ -36,9 +36,13 @@ module Root {
 
         ensures exists<Root<Content>>(Signer::spec_address_of(account));
     }
+    #[test(account = @0x123)]
+    fun test_create(account: signer) {
+        create<bool>(&account, true);
+    }
 
     /// Extract `Root` from `account`
-    public fun extract<Content: key + store>(account: &signer): Content acquires Root {
+    public fun extract<Content: store>(account: &signer): Content acquires Root {
         let owner = Signer::address_of(account);
         let root = move_from<Root<Content>>(owner);
         let Root<Content> { content } = root;
@@ -51,6 +55,12 @@ module Root {
         modifies global<Root<Content>>(Signer::spec_address_of(account));
 
         ensures !exists<Root<Content>>(Signer::spec_address_of(account));
+    }
+    #[test(account = @0x123)]
+    fun test_extract(account: signer) acquires Root {
+        create<bool>(&account, true);
+        let content = extract<bool>(&account);
+        assert(content == true, 123);
     }
 
     spec module {

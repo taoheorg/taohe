@@ -29,12 +29,19 @@ module Timelock {
 
     /// Create a new timelocked tao. `unlock_time` is in seconds, will be
     /// compared against `DiemTimestamp::now_seconds()` on production
-    /// network.
+    /// network. Time can be 0, at least for now.
     public fun new<Content>(unlock_time: u64, content: Content): Tao<Content> {
         Tao<Content> { unlock_time, content }
     }
     spec new {
         ensures result.unlock_time == unlock_time && result.content == content;
+    }
+    #[test]
+    fun test_new() {
+        let Tao {unlock_time, content} = new<bool>(0, true);
+
+        assert(unlock_time == 0, 123);
+        assert(content == true, 123);
     }
 
     /// Extract `tao.content` if `tao.unlock_time` has passed.
@@ -59,6 +66,20 @@ module Timelock {
 
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
+    }
+    #[test]
+    fun test_extract() {
+        let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
+        let tao = new<bool>(timestamp - 1, true);
+        let content = extract<bool>(tao);
+        assert(content == true, 123);
+    }
+    #[test, expected_failure]
+    fun test_extract_too_early() {
+        let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
+        let tao = new<bool>(timestamp + 1, true);
+        let content = extract<bool>(tao);
+        assert(content == true, 123);
     }
 
     spec module {
