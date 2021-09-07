@@ -20,7 +20,7 @@ address {{sender}} {
 module Root {
     use 0x1::Signer;
 
-    /// Root resource used to host a tao
+    /// Root resource used to host another resource (can be a tao)
     struct Root<Content> has key, store {
         content: Content
     }

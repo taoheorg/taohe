@@ -15,20 +15,20 @@
 
 address {{sender}} {
 
-/// This tao is designed to contain a static array of taos.
+/// This tao is designed to contain a static array of resources.
 /// As with normal tao lifespan, the tao is created with a
-/// set of taos, and the same set will be returned when the
+/// set of resources, and the same set will be returned when the
 /// tao is destroyed.
 module Folder {
     #[test]
     use 0x1::Vector;
 
-    /// A simple tao struct containing a vector of taos
+    /// A simple tao struct containing a vector of resources
     struct Tao<Content> has key, store {
         content: vector<Content>
     }
 
-    /// Create a new tao, with the static set of taos inside it
+    /// Create a new tao, with the static set of resources inside it
     public fun new<Content>(content: vector<Content>): Tao<Content> {
         Tao<Content> { content }
     }
@@ -45,7 +45,7 @@ module Folder {
         assert(value == true, 123);
     }
 
-    /// Immutable read-only reference to the vector containing taos.
+    /// Immutable read-only reference to the vector containing resources
     public fun read<Content>(tao: &Tao<Content>): &vector<Content> {
         let Tao<Content> { content } = tao;
 
@@ -65,7 +65,7 @@ module Folder {
         move_to<Tao<bool>>(&account, tao);
     }
 
-    /// Destroy the tao, and return the static set of taos inside it
+    /// Destroy the tao, and return the static set of resources inside it
     public fun extract<Content>(tao: Tao<Content>): vector<Content> {
         let Tao<Content> { content } = tao;
         

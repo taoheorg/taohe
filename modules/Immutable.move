@@ -17,12 +17,12 @@ address {{sender}} {
 
 /// A simple tao whose only purpose is to keep the content immutable
 module Immutable {
-    /// Static tao containing a tao. Can't be extracted.
+    /// Static tao containing a resource. Can't be extracted.
     struct Tao<Content> has key, store {
         content: Content
     }
 
-    /// Creating a static tao whose content tao cannot be extracted
+    /// Creating a static tao whose `content` cannot be extracted
     public fun new<Content>(content: Content): Tao<Content> {
         Tao<Content> { content }
     }
@@ -36,7 +36,7 @@ module Immutable {
         assert(content == true, 123);
     }
 
-    /// Immutable read-only reference to the child tao.
+    /// Immutable read-only reference to the `content`.
     public fun read<Content>(tao: &Tao<Content>): &Content {
         let Tao<Content> { content } = tao;
 

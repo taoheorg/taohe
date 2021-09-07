@@ -58,7 +58,7 @@ module Timestamp {
         assert(content == true, 123);
     }
 
-    /// Immutable read-only reference to the timestamp, and child tao.
+    /// Immutable read-only reference to the timestamp, and the `content`.
     /// Timestamp is the on-chain timestamp, to prevent manipulation.
     public fun read<Content>(tao: &Tao<Content>): (&u64, &Content) {
         let Tao<Content> { timestamp, content } = tao;
@@ -81,8 +81,8 @@ module Timestamp {
         assert(value == true, 123);
     }
 
-    /// Extracting the child tao, destroying the timestamp along with the
-    /// mother tao.
+    /// Extracting the `content`, destroying the timestamp along with the
+    /// tao.
     public fun extract<Content>(tao: Tao<Content>): Content {
         let Tao<Content> { timestamp: _, content } = tao;
 

@@ -44,7 +44,7 @@ module Timelock {
         assert(content == true, 123);
     }
 
-    /// Immutable read-only reference to the unlock time, and child tao.
+    /// Immutable read-only reference to the unlock time, and the `content`.
     public fun read<Content>(tao: &Tao<Content>): (&u64, &Content) {
         let Tao<Content> { unlock_time, content } = tao;
 

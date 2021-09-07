@@ -42,7 +42,7 @@ module Ownable {
         assert(content == true, 123);
     }
 
-    /// Immutable read-only reference to the owner address, and child tao.
+    /// Immutable read-only reference to the owner address, and `content`.
     public fun read<Content>(tao: &Tao<Content>): (&address, &Content) {
         let Tao<Content> { owner, content } = tao;
 
