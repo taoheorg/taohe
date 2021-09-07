@@ -23,7 +23,7 @@ script {
     fun folder_1(account: signer) {
         let vec1 = Vector::empty<Torch::Torch>();
         Vector::push_back<Torch::Torch>(&mut vec1, Torch::new());
-        Root::create<Folder::Tao<Torch::Torch>>(&account, Folder::new<Torch::Torch>(vec1));
+        Root::create<Folder::Tao<Torch::Torch>>(&account, Folder::wrap<Torch::Torch>(vec1));
     }
 }
 
@@ -34,7 +34,7 @@ script {
 
     fun folder_2(account: signer) {
         // Extracting, and inserting it again
-        let vec2: vector<Torch::Torch> = Folder::extract<Torch::Torch>(Root::extract<Folder::Tao<Torch::Torch>>(&account));
-        Root::create<Folder::Tao<Torch::Torch>>(&account, Folder::new<Torch::Torch>(vec2));
+        let vec2: vector<Torch::Torch> = Folder::unwrap<Torch::Torch>(Root::extract<Folder::Tao<Torch::Torch>>(&account));
+        Root::create<Folder::Tao<Torch::Torch>>(&account, Folder::wrap<Torch::Torch>(vec2));
     }
 }

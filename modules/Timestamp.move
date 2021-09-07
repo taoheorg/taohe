@@ -31,7 +31,7 @@ module Timestamp {
 
     /// Creating a timestamped tao. On-chain timestamp is used, to prevent
     /// timestamp manipulation.
-    public fun new<Content>(content: Content): Tao<Content> {
+    public fun wrap<Content>(content: Content): Tao<Content> {
         let current_timestamp: u64 = 100; // Default timestamp if is_operating() is false
 
         if (DiemTimestamp::is_operating()) {
@@ -44,15 +44,15 @@ module Timestamp {
 
         Tao<Content> { timestamp: current_timestamp, content }
     }
-    spec new {
+    spec wrap {
         aborts_if DiemTimestamp::spec_now_seconds() == 0 && DiemTimestamp::is_operating() with 123;
 
         ensures result.content == content;
         ensures result.timestamp == 100 || result.timestamp == DiemTimestamp::spec_now_seconds();
     }
     #[test]
-    fun test_new() {
-        let Tao {timestamp, content} = new<bool>(true);
+    fun test_wrap() {
+        let Tao {timestamp, content} = wrap<bool>(true);
 
         assert(timestamp != 0, 123);
         assert(content == true, 123);
@@ -71,30 +71,30 @@ module Timestamp {
     }
     #[test]
     fun test_read() {
-        let tao = new<bool>(true);
+        let tao = wrap<bool>(true);
 
         let (timestamp, content) = read<bool>(&tao);
         assert(*timestamp > 0, 123);
         assert(*content == true, 123);
 
-        let value = extract<bool>(tao);
+        let value = unwrap<bool>(tao);
         assert(value == true, 123);
     }
 
     /// Extracting the `content`, destroying the timestamp along with the
     /// tao.
-    public fun extract<Content>(tao: Tao<Content>): Content {
+    public fun unwrap<Content>(tao: Tao<Content>): Content {
         let Tao<Content> { timestamp: _, content } = tao;
 
         content
     }
-    spec extract {
+    spec unwrap {
         ensures result == tao.content;
     }
     #[test]
-    fun test_extract() {
+    fun test_unwrap() {
         let tao = Tao<bool> { timestamp: 0, content: false };
-        let content = extract<bool>(tao);
+        let content = unwrap<bool>(tao);
 
         assert(content == false, 123);
     }

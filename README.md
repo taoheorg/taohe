@@ -16,9 +16,9 @@ Keeping code footprint per each tao in minimum is vital for safer code, and is s
 
 ### Tao lifespan
 Tao's lifespan is divided into three separate phases, listed here chronologically:
- * **Creation**: Tao is created by placing a resource into the tao, and initializing it with the constructor's arguments.
- * **Static**: In the current design taos are static, but it is possible that in the future immutable (and even mutable) references might be supported.
- * **Extraction**: When conditions are satisfied (such as passed time), the resource inside the tao is given away, and the tao is destroyed.
+ * **Wrap**: Tao is created by placing a resource into the tao, and initializing it with the constructor's arguments.
+ * **Wrapped**: In the current design taos are static, with support of immutable references to the resource(s) inside.
+ * **Unwrap**: When conditions are satisfied (such as passed time), the resource inside the tao is given away, and the tao is destroyed.
 
 ### What taos are not
 Taos are not meant to replace specialized smart contract development for complicated applications, but can be used as part of one.

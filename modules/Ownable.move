@@ -28,15 +28,15 @@ module Ownable {
     }
 
     /// Wrapping `content` into a tao the `owner` can only extract.
-    public fun new<Content>(owner: address, content: Content): Tao<Content> {
+    public fun wrap<Content>(owner: address, content: Content): Tao<Content> {
         Tao<Content> { owner, content }
     }
-    spec new {
+    spec wrap {
         ensures result.owner == owner && result.content == content;
     }
     #[test]
-    fun test_new() {
-        let Tao { owner, content } = new<bool>(@0x123, true);
+    fun test_wrap() {
+        let Tao { owner, content } = wrap<bool>(@0x123, true);
 
         assert(owner == @0x123, 123);
         assert(content == true, 123);
@@ -54,33 +54,33 @@ module Ownable {
     }
     #[test(account = @0x123)]
     fun test_read(account: signer) {
-        let tao = new<bool>(@0x123, true);
+        let tao = wrap<bool>(@0x123, true);
 
         let (owner, content) = read<bool>(&tao);
         assert(*owner == @0x123, 123);
         assert(*content == true, 123);
 
-        let value = extract<bool>(&account, tao);
+        let value = unwrap<bool>(&account, tao);
         assert(value == true, 123);
     }
 
     /// If `account ` is the `owner`, extract `content`.
-    public fun extract<Content>(account: &signer, tao: Tao<Content>): Content {
+    public fun unwrap<Content>(account: &signer, tao: Tao<Content>): Content {
         let Tao<Content> { owner, content } = tao;
 
         assert(owner == Signer::address_of(account), Errors::ownable_not_owned());
 
         content
     }
-    spec extract {
+    spec unwrap {
         aborts_if tao.owner != Signer::address_of(account);
 
         ensures result == tao.content;
     }
     #[test(account = @0x123)]
-    fun test_extract(account: signer) {
-        let tao = new<bool>(@0x123, true);
-        let content = extract<bool>(&account, tao);
+    fun test_unwrap(account: signer) {
+        let tao = wrap<bool>(@0x123, true);
+        let content = unwrap<bool>(&account, tao);
 
         assert(content == true, 123);
     }

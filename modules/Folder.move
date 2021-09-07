@@ -29,17 +29,17 @@ module Folder {
     }
 
     /// Create a new tao, with the static set of resources inside it.
-    public fun new<Content>(content: vector<Content>): Tao<Content> {
+    public fun wrap<Content>(content: vector<Content>): Tao<Content> {
         Tao<Content> { content }
     }
-    spec new {
+    spec wrap {
         ensures result ==  Tao<Content> { content: content };
     }
     #[test]
-    fun test_new() {
+    fun test_wrap() {
         let vec1 = Vector::empty<bool>();
         Vector::push_back<bool>(&mut vec1, true);
-        let Tao {content} = new<bool>(vec1);
+        let Tao {content} = wrap<bool>(vec1);
         let value = Vector::pop_back(&mut content);
 
         assert(value == true, 123);
@@ -57,7 +57,7 @@ module Folder {
     #[test(account = @0x123)]
     fun test_read(account: signer) {
         let vector = Vector::empty<bool>();
-        let tao = new<bool>(vector);
+        let tao = wrap<bool>(vector);
 
         let (content) = read<bool>(&tao);
         assert(*content == Vector::empty<bool>(), 123);
@@ -66,19 +66,19 @@ module Folder {
     }
 
     /// Destroy the tao, and return the static set of resources inside it.
-    public fun extract<Content>(tao: Tao<Content>): vector<Content> {
+    public fun unwrap<Content>(tao: Tao<Content>): vector<Content> {
         let Tao<Content> { content } = tao;
         
         content
     }
-    spec extract {
+    spec unwrap {
         ensures result == tao.content;
     }
     #[test]
-    fun test_extract() {
+    fun test_unwrap() {
         let vec1 = Vector::empty<bool>();
-        let tao = new<bool>(vec1);
-        let content = extract<bool>(tao);
+        let tao = wrap<bool>(vec1);
+        let content = unwrap<bool>(tao);
 
         assert(content == Vector::empty<bool>(), 123);
     }
