@@ -45,6 +45,26 @@ module Folder {
         assert(value == true, 123);
     }
 
+    /// Immutable read-only reference to the vector containing taos.
+    public fun read<Content>(tao: &Tao<Content>): &vector<Content> {
+        let Tao<Content> { content } = tao;
+
+        content
+    }
+    spec read {
+        ensures result == tao.content;
+    }
+    #[test(account = @0x123)]
+    fun test_read(account: signer) {
+        let vector = Vector::empty<bool>();
+        let tao = new<bool>(vector);
+
+        let (content) = read<bool>(&tao);
+        assert(*content == Vector::empty<bool>(), 123);
+
+        move_to<Tao<bool>>(&account, tao);
+    }
+
     /// Destroy the tao, and return the static set of taos inside it
     public fun extract<Content>(tao: Tao<Content>): vector<Content> {
         let Tao<Content> { content } = tao;

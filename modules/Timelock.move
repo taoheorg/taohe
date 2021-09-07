@@ -44,6 +44,28 @@ module Timelock {
         assert(content == true, 123);
     }
 
+    /// Immutable read-only reference to the unlock time, and child tao.
+    public fun read<Content>(tao: &Tao<Content>): (&u64, &Content) {
+        let Tao<Content> { unlock_time, content } = tao;
+
+        (unlock_time, content)
+    }
+    spec read {
+        ensures result_1 == tao.unlock_time;
+        ensures result_2 == tao.content;
+    }
+    #[test]
+    fun test_read() {
+        let tao = new<bool>(1, true);
+
+        let (unlock_time, content) = read<bool>(&tao);
+        assert(*unlock_time > 0, 123);
+        assert(*content == true, 123);
+
+        let value = extract<bool>(tao);
+        assert(value == true, 123);
+    }
+
     /// Extract `tao.content` if `tao.unlock_time` has passed.
     /// Currently move-executor does not support full genesis functionality,
     /// including timestamping. If available, then use the real timestamp.

@@ -42,6 +42,28 @@ module Ownable {
         assert(content == true, 123);
     }
 
+    /// Immutable read-only reference to the owner address, and child tao.
+    public fun read<Content>(tao: &Tao<Content>): (&address, &Content) {
+        let Tao<Content> { owner, content } = tao;
+
+        (owner, content)
+    }
+    spec read {
+        ensures result_1 == tao.owner;
+        ensures result_2 == tao.content;
+    }
+    #[test(account = @0x123)]
+    fun test_read(account: signer) {
+        let tao = new<bool>(@0x123, true);
+
+        let (owner, content) = read<bool>(&tao);
+        assert(*owner == @0x123, 123);
+        assert(*content == true, 123);
+
+        let value = extract<bool>(&account, tao);
+        assert(value == true, 123);
+    }
+
     /// If `account ` is the `owner`, extract `content`
     public fun extract<Content>(account: &signer, tao: Tao<Content>): Content {
         let Tao<Content> { owner, content } = tao;

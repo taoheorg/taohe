@@ -36,6 +36,27 @@ module Immutable {
         assert(content == true, 123);
     }
 
+    /// Immutable read-only reference to the child tao.
+    public fun read<Content>(tao: &Tao<Content>): &Content {
+        let Tao<Content> { content } = tao;
+
+        content
+    }
+    spec read {
+        ensures result == tao.content;
+    }
+    #[test(account = @0x123)]
+    fun test_read(account: signer) {
+        let tao = new<bool>(true);
+
+        let (content) = read<bool>(&tao);
+        assert(*content == true, 123);
+
+        // We wont test extracting here, since this tao is immutable
+        // We just save it instead.
+        move_to<Tao<bool>>(&account, tao);
+    }
+
     /// For semantic reasons providing `extract`, although it
     /// always fails.
     public fun extract<Content>(_tao: Tao<Content>): Content {
