@@ -21,13 +21,13 @@ module Ownable {
     use {{sender}}::Errors;
     use 0x1::Signer;
 
-    /// Simple ownership tao: the `owner` can extract `content`
+    /// Simple ownership tao: the `owner` can extract `content`.
     struct Tao<Content> has key, store {
         owner: address,
         content: Content
     }
 
-    /// Wrapping `content` into a tao the `owner` can only extract
+    /// Wrapping `content` into a tao the `owner` can only extract.
     public fun new<Content>(owner: address, content: Content): Tao<Content> {
         Tao<Content> { owner, content }
     }
@@ -64,7 +64,7 @@ module Ownable {
         assert(value == true, 123);
     }
 
-    /// If `account ` is the `owner`, extract `content`
+    /// If `account ` is the `owner`, extract `content`.
     public fun extract<Content>(account: &signer, tao: Tao<Content>): Content {
         let Tao<Content> { owner, content } = tao;
 

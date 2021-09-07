@@ -22,7 +22,7 @@ module Immutable {
         content: Content
     }
 
-    /// Creating a static tao whose `content` cannot be extracted
+    /// Creating a static tao whose `content` cannot be extracted.
     public fun new<Content>(content: Content): Tao<Content> {
         Tao<Content> { content }
     }

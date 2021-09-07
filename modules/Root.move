@@ -20,12 +20,12 @@ address {{sender}} {
 module Root {
     use 0x1::Signer;
 
-    /// Root resource used to host another resource (can be a tao)
+    /// Root resource used to host another resource (can be a tao).
     struct Root<Content> has key, store {
         content: Content
     }
 
-    /// Create a `Root` for `account`
+    /// Create a `Root` for `account`.
     public fun create<Content: store>(account: &signer, content: Content) {
         move_to<Root<Content>>(account, Root<Content> { content: content });
     }
@@ -41,7 +41,7 @@ module Root {
         create<bool>(&account, true);
     }
 
-    /// Extract `Root` from `account`
+    /// Extract `Root` from `account`.
     public fun extract<Content: store>(account: &signer): Content acquires Root {
         let owner = Signer::address_of(account);
         let root = move_from<Root<Content>>(owner);
