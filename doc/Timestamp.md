@@ -7,9 +7,9 @@ Simple timestamped tao: timestamp when the tao was created.
 
 
 -  [Resource `Tao`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao)
--  [Function `new`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_new)
+-  [Function `wrap`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_wrap)
 -  [Function `read`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_read)
--  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_extract)
+-  [Function `unwrap`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_unwrap)
 
 
 <pre><code><b>use</b> <a href="">0x1::DiemTimestamp</a>;
@@ -25,7 +25,7 @@ Timestamped tao, containing timestamp when the tao was created.
 Timestamp is fetched on-chain, so it can't be manipulated.
 
 
-<pre><code><b>struct</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; has drop, store, key
+<pre><code><b>struct</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; has store, key
 </code></pre>
 
 
@@ -64,15 +64,15 @@ Timestamp is fetched on-chain, so it can't be manipulated.
 
 </details>
 
-<a name="0x2f66c09143acc52a85fec529a4e20c85_Timestamp_new"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Timestamp_wrap"></a>
 
-## Function `new`
+## Function `wrap`
 
 Creating a timestamped tao. On-chain timestamp is used, to prevent
 timestamp manipulation.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_new">new</a>&lt;Content&gt;(content: Content): <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Timestamp::Tao</a>&lt;Content&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_wrap">wrap</a>&lt;Content&gt;(content: Content): <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Timestamp::Tao</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -81,7 +81,7 @@ timestamp manipulation.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_new">new</a>&lt;Content&gt;(content: Content): <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; {
+<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_wrap">wrap</a>&lt;Content&gt;(content: Content): <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; {
     <b>let</b> current_timestamp: u64 = 100; // Default timestamp <b>if</b> is_operating() is <b>false</b>
 
     <b>if</b> (<a href="_is_operating">DiemTimestamp::is_operating</a>()) {
@@ -118,7 +118,7 @@ timestamp manipulation.
 
 ## Function `read`
 
-Immutable read-only reference to the timestamp, and child tao.
+Immutable read-only reference to the timestamp, and the <code>content</code>.
 Timestamp is the on-chain timestamp, to prevent manipulation.
 
 
@@ -155,15 +155,15 @@ Timestamp is the on-chain timestamp, to prevent manipulation.
 
 </details>
 
-<a name="0x2f66c09143acc52a85fec529a4e20c85_Timestamp_extract"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Timestamp_unwrap"></a>
 
-## Function `extract`
+## Function `unwrap`
 
-Extracting the child tao, destroying the timestamp along with the
-mother tao.
+Extracting the <code>content</code>, destroying the timestamp along with the
+tao.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_extract">extract</a>&lt;Content&gt;(tao: <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Timestamp::Tao</a>&lt;Content&gt;): Content
+<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_unwrap">unwrap</a>&lt;Content&gt;(tao: <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Timestamp::Tao</a>&lt;Content&gt;): Content
 </code></pre>
 
 
@@ -172,7 +172,7 @@ mother tao.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_extract">extract</a>&lt;Content&gt;(tao: <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt;): Content {
+<pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_unwrap">unwrap</a>&lt;Content&gt;(tao: <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt;): Content {
     <b>let</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; { timestamp: _, content } = tao;
 
     content

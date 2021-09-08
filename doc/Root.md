@@ -21,7 +21,7 @@ Instead it's a special kind of resource used to host a tao.
 
 ## Resource `Root`
 
-Root resource used to host a tao
+Root resource used to host another resource (can be a tao).
 
 
 <pre><code><b>struct</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt; has store, key
@@ -49,7 +49,7 @@ Root resource used to host a tao
 
 ## Function `create`
 
-Create a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> for <code>account</code>
+Create a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> for <code>account</code>.
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">create</a>&lt;Content: store&gt;(account: &signer, content: Content)
@@ -88,10 +88,10 @@ Create a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a
 
 ## Function `extract`
 
-Extract <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> from <code>account</code>
+Extract <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> from <code>account</code>.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store, key&gt;(account: &signer): Content
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store&gt;(account: &signer): Content
 </code></pre>
 
 
@@ -100,7 +100,7 @@ Extract <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: key + store&gt;(account: &signer): Content <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store&gt;(account: &signer): Content <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
     <b>let</b> owner = <a href="_address_of">Signer::address_of</a>(account);
     <b>let</b> root = move_from&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(owner);
     <b>let</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt; { content } = root;

@@ -32,7 +32,7 @@
 
 <pre><code><b>fun</b> <a href="ownable.md#0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff_ownable_2">ownable_2</a>(account: signer) {
     // Extract torch, and wrap it into <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>
-    <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">Root::create</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(&account, <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_extract">Ownable::extract</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(&account, <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">Root::extract</a>&lt;<a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Ownable::Tao</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;&gt;(&account)));
+    <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">Root::create</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(&account, <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_unwrap">Ownable::unwrap</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(&account, <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">Root::extract</a>&lt;<a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Ownable::Tao</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;&gt;(&account)));
 }
 </code></pre>
 

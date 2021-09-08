@@ -7,8 +7,9 @@ A simple tao whose only purpose is to keep the content immutable
 
 
 -  [Resource `Tao`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao)
--  [Function `new`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_new)
--  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract)
+-  [Function `wrap`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_wrap)
+-  [Function `read`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_read)
+-  [Function `unwrap`](#0x2f66c09143acc52a85fec529a4e20c85_Immutable_unwrap)
 
 
 <pre><code></code></pre>
@@ -19,7 +20,7 @@ A simple tao whose only purpose is to keep the content immutable
 
 ## Resource `Tao`
 
-Static tao containing a tao. Can't be extracted.
+Static tao containing a resource. Can't be extracted.
 
 
 <pre><code><b>struct</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; has store, key
@@ -43,14 +44,14 @@ Static tao containing a tao. Can't be extracted.
 
 </details>
 
-<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_new"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_wrap"></a>
 
-## Function `new`
+## Function `wrap`
 
-Creating a static tao whose content tao cannot be extracted
+Creating a static tao whose <code>content</code> cannot be extracted.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_new">new</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_wrap">wrap</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -59,7 +60,7 @@ Creating a static tao whose content tao cannot be extracted
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_new">new</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; {
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_wrap">wrap</a>&lt;Content&gt;(content: Content): <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; {
     <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; { content }
 }
 </code></pre>
@@ -80,15 +81,14 @@ Creating a static tao whose content tao cannot be extracted
 
 </details>
 
-<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract"></a>
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_read"></a>
 
-## Function `extract`
+## Function `read`
 
-For semantic reasons providing <code>extract</code>, although it
-always fails.
+Immutable read-only reference to the <code>content</code>.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract">extract</a>&lt;Content&gt;(_tao: <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;): Content
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_read">read</a>&lt;Content&gt;(tao: &<a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;): &Content
 </code></pre>
 
 
@@ -97,7 +97,47 @@ always fails.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_extract">extract</a>&lt;Content&gt;(_tao: <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt;): Content {
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_read">read</a>&lt;Content&gt;(tao: &<a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt;): &Content {
+    <b>let</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; { content } = tao;
+
+    content
+}
+</code></pre>
+
+
+
+</details>
+
+<details>
+<summary>Specification</summary>
+
+
+
+<pre><code><b>ensures</b> result == tao.content;
+</code></pre>
+
+
+
+</details>
+
+<a name="0x2f66c09143acc52a85fec529a4e20c85_Immutable_unwrap"></a>
+
+## Function `unwrap`
+
+For semantic reasons providing <code>extract</code>, although it
+always fails.
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_unwrap">unwrap</a>&lt;Content&gt;(_tao: <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;Content&gt;): Content
+</code></pre>
+
+
+
+<details>
+<summary>Implementation</summary>
+
+
+<pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_unwrap">unwrap</a>&lt;Content&gt;(_tao: <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt;): Content {
     // Aborting <b>with</b> general error for now: using our
     // <a href="">Errors</a> <b>module</b> would <b>break</b> formal verification
     // (https://github.com/diem/diem/issues/8303).

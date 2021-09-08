@@ -101,7 +101,7 @@ Added tao identifier.
 
 ## Function `general`
 
-This is used for general TaoHe errors, not part of any specific module
+This is used for general TaoHe errors, not part of any specific module.
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors_general">general</a>(reason: u64): u64
@@ -131,7 +131,7 @@ This is used for general TaoHe errors, not part of any specific module
 
 ## Function `timelock_too_early`
 
-This code is used by Timelock.move when unlock time haven't passed yet
+This code is used by Timelock.move when unlock time haven't passed yet.
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors_timelock_too_early">timelock_too_early</a>(): u64
@@ -161,7 +161,7 @@ This code is used by Timelock.move when unlock time haven't passed yet
 
 ## Function `ownable_not_owned`
 
-This code is used by Ownable.sol when the <code>account</code> is not the owner
+This code is used by Ownable.sol when the <code>account</code> is not the owner.
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors_ownable_not_owned">ownable_not_owned</a>(): u64
