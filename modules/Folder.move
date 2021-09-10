@@ -54,15 +54,14 @@ module Folder {
     spec read {
         ensures result == tao.content;
     }
-    #[test(account = @0x123)]
-    fun test_read(account: signer) {
-        let vector = Vector::empty<bool>();
-        let tao = wrap<bool>(vector);
+    #[test]
+    fun test_read() {
+        let tao = Tao { content: Vector::empty<bool>() };
 
         let (content) = read<bool>(&tao);
         assert(*content == Vector::empty<bool>(), 123);
 
-        move_to<Tao<bool>>(&account, tao);
+        let Tao<bool> { content: _ } = tao;
     }
 
     /// Destroy the tao, and return the static set of resources inside it.
@@ -76,8 +75,7 @@ module Folder {
     }
     #[test]
     fun test_unwrap() {
-        let vec1 = Vector::empty<bool>();
-        let tao = wrap<bool>(vec1);
+        let tao = Tao { content: Vector::empty<bool>() };
         let content = unwrap<bool>(tao);
 
         assert(content == Vector::empty<bool>(), 123);

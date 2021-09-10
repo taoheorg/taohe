@@ -52,7 +52,7 @@ module Timestamp {
     }
     #[test]
     fun test_wrap() {
-        let Tao {timestamp, content} = wrap<bool>(true);
+        let Tao { timestamp, content } = wrap<bool>(true);
 
         assert(timestamp != 0, 123);
         assert(content == true, 123);
@@ -71,14 +71,13 @@ module Timestamp {
     }
     #[test]
     fun test_read() {
-        let tao = wrap<bool>(true);
+        let tao = Tao { timestamp: 123, content: true };
 
         let (timestamp, content) = read<bool>(&tao);
-        assert(*timestamp > 0, 123);
+        assert(*timestamp == 123, 123);
         assert(*content == true, 123);
 
-        let value = unwrap<bool>(tao);
-        assert(value == true, 123);
+        let Tao { timestamp: _, content: _ } = tao;
     }
 
     /// Extracting the `content`, destroying the timestamp along with the
@@ -93,7 +92,7 @@ module Timestamp {
     }
     #[test]
     fun test_unwrap() {
-        let tao = Tao<bool> { timestamp: 0, content: false };
+        let tao = Tao { timestamp: 0, content: false };
         let content = unwrap<bool>(tao);
 
         assert(content == false, 123);

@@ -52,16 +52,15 @@ module Ownable {
         ensures result_1 == tao.owner;
         ensures result_2 == tao.content;
     }
-    #[test(account = @0x123)]
-    fun test_read(account: signer) {
-        let tao = wrap<bool>(@0x123, true);
+    #[test]
+    fun test_read() {
+        let tao = Tao { owner: @0x123, content: true };
 
         let (owner, content) = read<bool>(&tao);
         assert(*owner == @0x123, 123);
         assert(*content == true, 123);
 
-        let value = unwrap<bool>(&account, tao);
-        assert(value == true, 123);
+        let Tao { owner: _, content: _ } = tao;
     }
 
     /// If `account ` is the `owner`, extract `content`.
@@ -79,7 +78,7 @@ module Ownable {
     }
     #[test(account = @0x123)]
     fun test_unwrap(account: signer) {
-        let tao = wrap<bool>(@0x123, true);
+        let tao = Tao { owner: @0x123, content: true };
         let content = unwrap<bool>(&account, tao);
 
         assert(content == true, 123);

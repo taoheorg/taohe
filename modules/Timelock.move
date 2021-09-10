@@ -56,14 +56,13 @@ module Timelock {
     }
     #[test]
     fun test_read() {
-        let tao = wrap<bool>(1, true);
+        let tao = Tao { unlock_time: 1, content: true };
 
         let (unlock_time, content) = read<bool>(&tao);
         assert(*unlock_time > 0, 123);
         assert(*content == true, 123);
 
-        let value = unwrap<bool>(tao);
-        assert(value == true, 123);
+        let Tao { unlock_time: _, content: _ } = tao;
     }
 
     /// Extract `tao.content` if `tao.unlock_time` has passed.
@@ -92,7 +91,7 @@ module Timelock {
     #[test]
     fun test_unwrap() {
         let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
-        let tao = wrap<bool>(timestamp - 1, true);
+        let tao = Tao { unlock_time: timestamp - 1, content: true };
         let content = unwrap<bool>(tao);
 
         assert(content == true, 123);
@@ -100,7 +99,7 @@ module Timelock {
     #[test, expected_failure]
     fun test_unwrap_too_early() {
         let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
-        let tao = wrap<bool>(timestamp + 1, true);
+        let tao = Tao { unlock_time: timestamp + 1, content: true };
         let content = unwrap<bool>(tao);
 
         assert(content == true, 123);

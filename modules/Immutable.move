@@ -45,19 +45,17 @@ module Immutable {
     spec read {
         ensures result == tao.content;
     }
-    #[test(account = @0x123)]
-    fun test_read(account: signer) {
-        let tao = wrap<bool>(true);
+    #[test]
+    fun test_read() {
+        let tao = Tao { content: true };
 
         let (content) = read<bool>(&tao);
         assert(*content == true, 123);
 
-        // We wont test extracting here, since this tao is immutable
-        // We just save it instead.
-        move_to<Tao<bool>>(&account, tao);
+        let Tao { content: _ } = tao;
     }
 
-    /// For semantic reasons providing `extract`, although it
+    /// For semantic reasons providing `unwrap`, although it
     /// always fails.
     public fun unwrap<Content>(_tao: Tao<Content>): Content {
         // Aborting with general error for now: using our
@@ -70,7 +68,7 @@ module Immutable {
     }
     #[test, expected_failure]
     fun test_unwrap() {
-        let tao = wrap<bool>(true);
+        let tao = Tao { content: true };
 
         // Always fails:
         let _content = unwrap<bool>(tao);
