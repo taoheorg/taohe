@@ -19,15 +19,36 @@ address {{sender}} {
 /// Instead it's a special kind of resource used to host a tao.
 module Root {
     use 0x1::Signer;
+    use 0x1::Vector;
+    #[test]
+    use {{sender}}::Torch;
 
     /// Root resource used to host another resource (can be a tao).
-    struct Root<Content> has key, store {
-        content: Content
+    struct Root<Content: key + store> has key, store {
+        content: vector<Content>
+    }
+
+    fun push_content<Content: key + store>(account: &signer, content: Content) acquires Root {
+        let address = Signer::address_of(account);
+        if (exists<Root<Content>>(address)) {
+            let root = borrow_global_mut<Root<Content>>(address);
+            Vector::push_back<Content>(&mut root.content, content);
+        } else {
+            let vec1 = Vector::empty<Content>();
+            Vector::push_back<Content>(&mut vec1, content);
+            move_to<Root<Content>>(account, Root<Content> { content: vec1 });
+        }
+    }
+
+    fun pop_content<Content: key + store>(account: &signer): Content acquires Root {
+        let address = Signer::address_of(account);
+        let root = borrow_global_mut<Root<Content>>(address);
+        Vector::pop_back<Content>(&mut root.content)
     }
 
     /// Create a `Root` for `account`.
-    public fun create<Content: store>(account: &signer, content: Content) {
-        move_to<Root<Content>>(account, Root<Content> { content: content });
+    public fun create<Content: key + store>(account: &signer, content: Content) acquires Root {
+        push_content<Content>(account, content);
     }
     spec create {
         aborts_if exists<Root<Content>>(Signer::spec_address_of(account));
@@ -37,17 +58,14 @@ module Root {
         ensures exists<Root<Content>>(Signer::spec_address_of(account));
     }
     #[test(account = @0x123)]
-    fun test_create(account: signer) {
-        create<bool>(&account, true);
+    fun test_create(account: signer) acquires Root {
+        let torch = Torch::new();
+        create<Torch::Torch>(&account, torch);
     }
 
     /// Extract `Root` from `account`.
-    public fun extract<Content: store>(account: &signer): Content acquires Root {
-        let owner = Signer::address_of(account);
-        let root = move_from<Root<Content>>(owner);
-        let Root<Content> { content } = root;
-
-        content
+    public fun extract<Content: store + key>(account: &signer): Content acquires Root {
+        pop_content<Content>(account)
     }
     spec extract {
         aborts_if !exists<Root<Content>>(Signer::spec_address_of(account));
@@ -58,10 +76,10 @@ module Root {
     }
     #[test(account = @0x123)]
     fun test_extract(account: signer) acquires Root {
-        create<bool>(&account, true);
-        let content = extract<bool>(&account);
-
-        assert(content == true, 123);
+        let torch = Torch::new();
+        create<Torch::Torch>(&account, torch);
+        let content = extract<Torch::Torch>(&account);
+        Torch::destroy(content);
     }
 
     spec module {
