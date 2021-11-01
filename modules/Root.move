@@ -16,18 +16,19 @@
 address {{sender}} {
 
 /// Root is not technically a tao, since it can't be nested.
-/// Instead it's a special kind of resource used to host a tao.
+/// Instead it's a special kind of resource used to host taos.
 module Root {
     use 0x1::Signer;
     use 0x1::Vector;
     #[test]
     use {{sender}}::Torch;
 
-    /// Root resource used to host another resource (can be a tao).
+    /// Root resource used to host other resources (can be taos).
     struct Root<Content: key + store> has key, store {
         content: vector<Content>
     }
 
+    ///
     fun push_content<Content: key + store>(account: &signer, content: Content) acquires Root {
         let address = Signer::address_of(account);
         if (exists<Root<Content>>(address)) {
@@ -46,24 +47,18 @@ module Root {
         Vector::pop_back<Content>(&mut root.content)
     }
 
-    /// Create a `Root` for `account`.
+    /// Place a resource into a `Root` for `account`. Create one if neccessary.
     public fun create<Content: key + store>(account: &signer, content: Content) acquires Root {
         push_content<Content>(account, content);
     }
-    spec create {
-        aborts_if exists<Root<Content>>(Signer::spec_address_of(account));
 
-        modifies global<Root<Content>>(Signer::spec_address_of(account));
-
-        ensures exists<Root<Content>>(Signer::spec_address_of(account));
-    }
     #[test(account = @0x123)]
     fun test_create(account: signer) acquires Root {
         let torch = Torch::new();
         create<Torch::Torch>(&account, torch);
     }
 
-    /// Extract `Root` from `account`.
+    /// Extract a resource from a `Root` of an `account`.
     public fun extract<Content: store + key>(account: &signer): Content acquires Root {
         pop_content<Content>(account)
     }
