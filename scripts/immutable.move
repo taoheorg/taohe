@@ -14,9 +14,9 @@
 // limitations under the License.
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Immutable;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Immutable;
 
     fun immutable(account: signer) {
         Root::create<Immutable::Tao<Torch::Torch>>(&account, Immutable::wrap<Torch::Torch>(Torch::new()));

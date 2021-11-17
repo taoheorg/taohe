@@ -13,11 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-address {{sender}} {
-module Mailbox {
-    use 0x1::Vector;
-    use 0x1::Signer;
-    use 0x1::Event;
+module TaoHe::Mailbox {
+    use Std::Vector;
+    use Std::Signer;
+    use Std::Event;
+    #[test]
+    use TaoHe::Torch;
 
     struct Item<Content: key + store> has key, store {
         from: address,
@@ -50,6 +51,11 @@ module Mailbox {
 
         modifies global<Mailbox<Content>>(Signer::spec_address_of(account));
     }
+    #[test(account = @0x123)]
+    fun test_init(account: signer) {
+        Event::publish_generator(&account);
+        init<Torch::Torch>(&account);
+    }
 
     public fun put<Content: key + store>(account: &signer, to: address, reclaimable: bool, content: Content) acquires Mailbox, MailboxConfiguration {
         let addr = Signer::address_of(account);
@@ -69,6 +75,12 @@ module Mailbox {
         aborts_if !exists<MailboxConfiguration>(Signer::spec_address_of(account));
         aborts_if to == @0x0;
     }
+    #[test(account = @0x123)]
+    fun test_put(account: signer) acquires Mailbox, MailboxConfiguration {
+        Event::publish_generator(&account);
+        init<Torch::Torch>(&account);
+        put<Torch::Torch>(&account, @0x123, true, Torch::new());
+    }
 
     public fun fetch<Content: key + store>(account: &signer, from: address, index: u64): Content acquires Mailbox {
         let addr = Signer::address_of(account);
@@ -84,5 +96,41 @@ module Mailbox {
         aborts_if (global<Mailbox<Content>>(from).content[index].to != Signer::spec_address_of(account)) && (global<Mailbox<Content>>(from).content[index].from != Signer::spec_address_of(account));
         aborts_if index >= Vector::length(global<Mailbox<Content>>(from).content);
     }
-}
+    #[test(account = @0x123)]
+    fun test_fetch(account: signer) acquires Mailbox, MailboxConfiguration {
+        Event::publish_generator(&account);
+        init<Torch::Torch>(&account);
+        put<Torch::Torch>(&account, @0x123, true, Torch::new());
+        put<Torch::Torch>(&account, @0x123, true, Torch::new());
+        let torch1 = fetch<Torch::Torch>(&account, @0x123, 0);
+        Torch::destroy(torch1);
+        let torch2 = fetch<Torch::Torch>(&account, @0x123, 0);
+        Torch::destroy(torch2);
+    }
+    #[test(account = @0x123), expected_failure]
+    fun test_fetch_notmine(account: signer) acquires Mailbox, MailboxConfiguration {
+        Event::publish_generator(&account);
+        init<Torch::Torch>(&account);
+        put<Torch::Torch>(&account, @0x456, false, Torch::new());
+        put<Torch::Torch>(&account, @0x456, false, Torch::new());
+        let torch1 = fetch<Torch::Torch>(&account, @0x123, 0);
+        Torch::destroy(torch1);
+        let torch2 = fetch<Torch::Torch>(&account, @0x123, 0);
+        Torch::destroy(torch2);
+    }
+    #[test(account = @0x123)]
+    fun test_recover(account: signer) acquires Mailbox, MailboxConfiguration {
+        Event::publish_generator(&account);
+        init<Torch::Torch>(&account);
+        put<Torch::Torch>(&account, @0x456, true, Torch::new());
+        put<Torch::Torch>(&account, @0x456, true, Torch::new());
+        let torch1 = fetch<Torch::Torch>(&account, @0x123, 0);
+        Torch::destroy(torch1);
+        let torch2 = fetch<Torch::Torch>(&account, @0x123, 0);
+        Torch::destroy(torch2);
+    }
+
+    /* public(script) fun put<Content: key + store>(account: signer, ) {
+
+    } */
 }

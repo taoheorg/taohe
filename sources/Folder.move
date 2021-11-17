@@ -13,15 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-address {{sender}} {
 
 /// This tao is designed to contain a static array of resources.
 /// As with normal tao lifespan, the tao is created with a
 /// set of resources, and the same set will be returned when the
 /// tao is destroyed.
-module Folder {
+module TaoHe::Folder {
     #[test]
-    use 0x1::Vector;
+    use Std::Vector;
 
     /// A simple tao struct containing a vector of resources.
     struct Tao<Content> has key, store {
@@ -85,5 +84,4 @@ module Folder {
         // Never abort, unless explicitly defined so:
         pragma aborts_if_is_strict;
     }
-}
 }

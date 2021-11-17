@@ -13,12 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
  
-address {{sender}} {
 
 /// Simple timelocked tao: allow extracting only when time has passed
-module Timelock {
-    use {{sender}}::Errors;
-    use 0x1::DiemTimestamp;
+module TaoHe::Timelock {
+    use DiemFramework::DiemTimestamp;
+    use TaoHe::Errors;
 
     /// Tao for a simple timelock: extract `content` if `unlock_time` has
     /// passed (in seconds).
@@ -109,5 +108,4 @@ module Timelock {
         // Never abort, unless explicitly defined so:
         pragma aborts_if_is_strict;
     }
-}
 }

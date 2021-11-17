@@ -13,15 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-address {{sender}} {
 
 /// Root is not technically a tao, since it can't be nested.
 /// Instead it's a special kind of resource used to host taos.
-module Root {
-    use 0x1::Signer;
-    use 0x1::Vector;
+module TaoHe::Root {
+    use Std::Signer;
+    use Std::Vector;
     #[test]
-    use {{sender}}::Torch;
+    use TaoHe::Torch;
 
     /// Root resource used to host other resources (can be taos).
     struct Root<Content: key + store> has key, store {
@@ -62,13 +61,7 @@ module Root {
     public fun extract<Content: store + key>(account: &signer): Content acquires Root {
         pop_content<Content>(account)
     }
-    spec extract {
-        aborts_if !exists<Root<Content>>(Signer::spec_address_of(account));
 
-        modifies global<Root<Content>>(Signer::spec_address_of(account));
-
-        ensures !exists<Root<Content>>(Signer::spec_address_of(account));
-    }
     #[test(account = @0x123)]
     fun test_extract(account: signer) acquires Root {
         let torch = Torch::new();
@@ -77,9 +70,4 @@ module Root {
         Torch::destroy(content);
     }
 
-    spec module {
-        // Never abort, unless explicitly defined so:
-        pragma aborts_if_is_strict;
-    }
-}
 }

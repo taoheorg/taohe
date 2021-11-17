@@ -13,13 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-address {{sender}} {
 
 /// A tao for implementing a simple ownership model: owner can extract
 /// the content.
-module Ownable {
-    use {{sender}}::Errors;
-    use 0x1::Signer;
+module TaoHe::Ownable {
+    use Std::Signer;
+    use TaoHe::Errors;
 
     /// Simple ownership tao: the `owner` can extract `content`.
     struct Tao<Content> has key, store {
@@ -88,5 +87,4 @@ module Ownable {
         // Never abort, unless explicitly defined so:
         pragma aborts_if_is_strict;
     }
-}
 }

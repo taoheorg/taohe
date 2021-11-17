@@ -14,9 +14,9 @@
 // limitations under the License.
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Timestamp;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Timestamp;
 
     fun timestamp_1(account: signer) {
         Root::create<Timestamp::Tao<Torch::Torch>>(&account, Timestamp::wrap<Torch::Torch>(Torch::new()));
@@ -24,9 +24,9 @@ script {
 }
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Timestamp;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Timestamp;
 
     fun timestamp_2(account: signer) {
         let t1 = Root::extract<Timestamp::Tao<Torch::Torch>>(&account);

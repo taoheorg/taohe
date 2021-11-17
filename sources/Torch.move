@@ -13,13 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-address {{sender}} {
 
 /// A dummy resource for testing and development purposes.
 /// Can be passed along like.. ..a torch.
 /// This is not technically a tao, since it can't contain
 /// other taos.
-module Torch {
+module TaoHe::Torch {
     /// This resource does not contain anything, and is
     /// intended to be used only for testing.
     struct Torch has key, store {}
@@ -51,5 +50,4 @@ module Torch {
         let torch = Torch {}; 
         destroy(torch);
     }
-}
 }

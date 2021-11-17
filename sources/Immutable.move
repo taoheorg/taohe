@@ -13,10 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-address {{sender}} {
 
 /// A simple tao whose only purpose is to keep the content immutable
-module Immutable {
+module TaoHe::Immutable {
     /// Static tao containing a resource. Can't be extracted.
     struct Tao<Content> has key, store {
         content: Content
@@ -78,5 +77,4 @@ module Immutable {
         // Never abort, unless explicitly defined so:
         pragma aborts_if_is_strict;
     }
-}
 }

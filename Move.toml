@@ -1,0 +1,14 @@
+[package]
+name = "TaoHe"
+version = "0.0.1"
+authors = ["Ville Sundell / Solarius Intellectual Properties Ky"]
+dialect = "Diem"
+
+[addresses]
+TaoHe = "0x2f66c09143acc52a85fec529a4e20c85"
+Std = "0x1"
+DiemFramework = "0x1"
+
+[dependencies]
+MoveStdlib = { git = "https://github.com/taoheorg/move-stdlib", rev="2f2639bbecb5c7fdaa66a5deaed5b8015ec858cd"}
+DiemCoreFramework = { git = "https://github.com/taoheorg/diem-stdlib", rev="2f2639bbecb5c7fdaa66a5deaed5b8015ec858cd" }

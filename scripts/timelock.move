@@ -14,9 +14,9 @@
 // limitations under the License.
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Timelock;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Timelock;
 
     // Unlock timestamp must be < 100 in order to be extracted when
     // using move-executor.
@@ -28,9 +28,9 @@ script {
 }
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Timelock;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Timelock;
 
     fun timelock_2(account: signer) {
         // Extract torch, and wrap it into Root

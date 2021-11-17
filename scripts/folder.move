@@ -14,11 +14,11 @@
 // limitations under the License.
 
 script {
-    use 0x1::Vector;
+    use Std::Vector;
 
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Folder;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Folder;
 
     fun folder_1(account: signer) {
         let vec1 = Vector::empty<Torch::Torch>();
@@ -28,9 +28,9 @@ script {
 }
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Folder;
-    use {{sender}}::Root;
+    use TaoHe::Torch;
+    use TaoHe::Folder;
+    use TaoHe::Root;
 
     fun folder_2(account: signer) {
         // Extracting, and inserting it again

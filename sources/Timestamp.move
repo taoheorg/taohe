@@ -13,11 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
  
-address {{sender}} {
 
 /// Simple timestamped tao: timestamp when the tao was created.
-module Timestamp {
-    use 0x1::DiemTimestamp;
+module TaoHe::Timestamp {
+    use DiemFramework::DiemTimestamp;
 
     /// Timestamped tao, containing timestamp when the tao was created.
     /// Timestamp is fetched on-chain, so it can't be manipulated.
@@ -102,5 +101,4 @@ module Timestamp {
         // Never abort, unless explicitly defined so:
         pragma aborts_if_is_strict;
     }
-}
 }

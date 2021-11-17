@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-address {{sender}} {
 
 /// This is to improve our error handling, and to make it more informative.
 ///
@@ -22,7 +21,7 @@ address {{sender}} {
 /// Subcategories start from 1, so a TaoHe error message can be
 /// distinguished from other error messages by:
 ///     category == 0x80 and subcategory >= 0x01.
-module Errors {
+module TaoHe::Errors {
     // We define our own category (0x80)
     const CATEGORY_TAOHE: u8 = 128;
 
@@ -65,5 +64,4 @@ module Errors {
         // Never abort, unless explicitly defined so:
         pragma aborts_if_is_strict;
     }
-}
 }

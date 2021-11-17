@@ -14,19 +14,19 @@
 // limitations under the License.
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Ownable;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Ownable;
 
     fun ownable_1(account: signer) {
-        Root::create<Ownable::Tao<Torch::Torch>>(&account, Ownable::wrap<Torch::Torch>(@{{sender}}, Torch::new()));
+        Root::create<Ownable::Tao<Torch::Torch>>(&account, Ownable::wrap<Torch::Torch>(@TaoHe, Torch::new()));
     }
 }
 
 script {
-    use {{sender}}::Torch;
-    use {{sender}}::Root;
-    use {{sender}}::Ownable;
+    use TaoHe::Torch;
+    use TaoHe::Root;
+    use TaoHe::Ownable;
 
     fun ownable_2(account: signer) {
         // Extract torch, and wrap it into Root

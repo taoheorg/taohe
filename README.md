@@ -24,9 +24,9 @@ Tao's lifespan is divided into three separate phases, listed here chronologicall
 Taos are not meant to replace specialized smart contract development for complicated applications, but can be used as part of one.
 
 ## Building and developing
-TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [great `Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language) by [Pontem Network](https://pontem.network), originally developed by damirka.
+TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [`Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language).
 
-We use **[Dove build system 1.3.2](https://github.com/pontem-network/move-tools/releases/tag/1.3.2)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
+We use **[Dove build system 1.5.x](https://github.com/pontem-network/move-tools/releases/tag/1.5.0)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
 ```
 dove build
 ```
@@ -44,17 +44,18 @@ dove prove
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
 ### Using TaoHe for your projects
-You can also add TaoHe as a dependency for your Dove based project by adding this line to your project's Dove.toml:
+You can also add TaoHe as a dependency for your Dove based project by adding this line to your project's Move.toml:
 
 ```
-dependencies = [{ git = "https://github.com/taoheorg/taohe", rev="c3b766a3a7e7ca05d9dbf68dfe9c5e6f6fd44131" }]
+[dependencies]
+TaoHe = { git = "https://github.com/taoheorg/taohe", rev="...." }
 ```
 
 > **Warning**: Due to signed commits, commit hash should be used, since it cannot be spoofed. After you know which TaoHe version you want to use, replace `rev` with your desired commit hash.
 
 ## Known problems
 ### Poor developer experience
-DX is not good at the moment, since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script modules (a new Move feature).
+DX is not good at the moment, since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script functions (a new Move feature).
 
 ## Documentation
 See [doc/](doc/) for `dove doc-gen` generated documentation.
