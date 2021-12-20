@@ -26,12 +26,12 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [`Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language).
 
-We use **[Dove build system 1.5.x](https://github.com/pontem-network/move-tools/releases/tag/1.5.0)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
+We use **[Dove build system 1.5.1](https://github.com/pontem-network/move-tools/releases/tag/1.5.1)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
 ```
 dove build
 ```
 
-> **Jumpstart**: `dove run -v "immutable(_)"` (replace `immutable` with any function residing in [scripts/](scripts/))
+> **Jumpstart**: `dove run -v "dummy()"` (replace `dummy` with any function residing in [scripts/](scripts/))
 
 ### Formal verification
 Every tao has formal verification specs embedded. You can run the formal verification by running:
@@ -39,7 +39,7 @@ Every tao has formal verification specs embedded. You can run the formal verific
 dove prove
 ```
 
-> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's [development setup script](https://github.com/diem/diem/blob/diem-core-v1.3.0/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. If you want to change the default paths, edit `./prover-env.toml`.
+> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's [development setup script](https://github.com/diem/diem/blob/main/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. If you want to change the default paths, edit `./prover-env.toml`.
 
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
@@ -58,7 +58,7 @@ TaoHe = { git = "https://github.com/taoheorg/taohe", rev="...." }
 DX is not good at the moment, since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script functions (a new Move feature).
 
 ## Documentation
-See [doc/](doc/) for `dove doc-gen` generated documentation.
+See [doc/](doc/) for `dove build -d` generated documentation.
 
 ## Legal
 This repository is released under the *Apache License 2.0*, and is originally copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). This project currently depends on [diem-stdlib](https://github.com/taoheorg/diem-stdlib) and [move-stdlib](https://github.com/taoheorg/move-stdlib). No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/master/LICENSE#L143).
