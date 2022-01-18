@@ -19,7 +19,7 @@
 /// set of resources, and the same set will be returned when the
 /// tao is destroyed.
 module TaoHe::Folder {
-    #[test]
+    #[test_only]
     use Std::Vector;
 
     /// A simple tao struct containing a vector of resources.
@@ -41,7 +41,7 @@ module TaoHe::Folder {
         let Tao {content} = wrap<bool>(vec1);
         let value = Vector::pop_back(&mut content);
 
-        assert(value == true, 123);
+        assert!(value == true, 123);
     }
 
     /// Immutable read-only reference to the vector containing resources.
@@ -58,7 +58,7 @@ module TaoHe::Folder {
         let tao = Tao { content: Vector::empty<bool>() };
 
         let (content) = read<bool>(&tao);
-        assert(*content == Vector::empty<bool>(), 123);
+        assert!(*content == Vector::empty<bool>(), 123);
 
         let Tao<bool> { content: _ } = tao;
     }
@@ -77,7 +77,7 @@ module TaoHe::Folder {
         let tao = Tao { content: Vector::empty<bool>() };
         let content = unwrap<bool>(tao);
 
-        assert(content == Vector::empty<bool>(), 123);
+        assert!(content == Vector::empty<bool>(), 123);
     }
 
     spec module {

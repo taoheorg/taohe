@@ -19,7 +19,7 @@
 module TaoHe::Root {
     use Std::Signer;
     use Std::Vector;
-    #[test]
+    #[test_only]
     use TaoHe::Torch;
 
     /// Root resource used to host other resources (can be taos).

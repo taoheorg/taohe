@@ -9,6 +9,12 @@ TaoHe = "0x2f66c09143acc52a85fec529a4e20c85"
 Std = "0x1"
 DiemFramework = "0x1"
 
-[dependencies]
-MoveStdlib = { git = "https://github.com/taoheorg/move-stdlib", rev="2f2639bbecb5c7fdaa66a5deaed5b8015ec858cd"}
-DiemCoreFramework = { git = "https://github.com/taoheorg/diem-stdlib", rev="2f2639bbecb5c7fdaa66a5deaed5b8015ec858cd" }
+[dependencies.MoveStdlib]
+git = "https://github.com/diem/move.git"
+rev = "d253bf1c21314679d17e6935116f30baf409f264"
+subdir = "language/move-stdlib"
+
+[dependencies.DiemCoreFramework]
+git = "https://github.com/diem/diem.git"
+rev = "ba30d42acfb4d11b3791e22658c8765cf578f706"
+subdir = "diem-move/diem-framework/core"

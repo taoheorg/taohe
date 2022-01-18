@@ -1,5 +1,5 @@
-# 回 TaoHe: Collection of nestable Move resources
-TaoHe is a collection of nestable smart contract resources that can be used to create secure on-chain applications on MoveVM blockchains, such as **Diem**. Resources can be nested like a Russian doll ([матрёшка](https://en.wikipedia.org/wiki/Matryoshka_doll)), or Chinese boxes ([套盒](https://en.wikipedia.org/wiki/Chinese_boxes)), the namesake of this project. 回 is used as the logo, since it depicts a box inside another box.
+# ▣ TaoHe: Collection of nestable Move resources
+TaoHe is a collection of nestable smart contract resources that can be used to create secure on-chain applications on MoveVM blockchains, such as **Diem**. Resources can be nested like a Russian doll ([матрёшка](https://en.wikipedia.org/wiki/Matryoshka_doll)), or Chinese boxes ([套盒](https://en.wikipedia.org/wiki/Chinese_boxes)), the namesake of this project. ▣ is used as the logo, since it depicts a box inside another box.
 
 *Tao* is a simple Move resource that has been designed to be nested inside other taos. *TaoHe* is a collection of taos, and a special Root resource that can be used to store a resource directly into an account (taos themselves can be stored into resources only, for simplicity).
 
@@ -26,7 +26,7 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [`Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language).
 
-We use **[Dove build system 1.5.1](https://github.com/pontem-network/move-tools/releases/tag/1.5.1)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
+We use **[Dove build system 1.5.4](https://github.com/pontem-network/move-tools/releases/tag/1.5.4)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
 ```
 dove build
 ```
@@ -44,24 +44,28 @@ dove prove
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
 ### Using TaoHe for your projects
-You can also add TaoHe as a dependency for your Dove based project by adding this line to your project's Move.toml:
+You can also add TaoHe as a dependency for your Dove based project by adding these lines to your project's `Move.toml`:
 
 ```
-[dependencies]
-TaoHe = { git = "https://github.com/taoheorg/taohe", rev="...." }
+[addresses]
+TaoHe = "0x2f66c09143acc52a85fec529a4e20c85"
+
+[dependencies.TaoHe]
+git = "https://github.com/taoheorg/taohe"
+rev="...."
 ```
 
-> **Warning**: Due to signed commits, commit hash should be used, since it cannot be spoofed. After you know which TaoHe version you want to use, replace `rev` with your desired commit hash.
+> **Warning**: Due to signed commits, commit hash should be used since it cannot be spoofed. After you know which TaoHe version you want to use, replace `rev` with your desired commit hash.
 
 ## Known problems
 ### Poor developer experience
-DX is not good at the moment, since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script functions (a new Move feature).
+DX is not good at the moment since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script functions (a new Move feature).
 
 ## Documentation
 See [doc/](doc/) for `dove build -d` generated documentation.
 
 ## Legal
-This repository is released under the *Apache License 2.0*, and is originally copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). This project currently depends on [diem-stdlib](https://github.com/taoheorg/diem-stdlib) and [move-stdlib](https://github.com/taoheorg/move-stdlib). No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/master/LICENSE#L143).
+This repository is released under the *Apache License 2.0*, and is copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). See `Move.toml` for more information on dependencies. No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/master/LICENSE#L143).
 
 ## Trusted source
-Smart contracts are mission critical and as such should always originate from trusted sources. That's why every commit on `master` is signed with [Ville's GPG key](http://keys.gnupg.net/pks/lookup?op=vindex&fingerprint=on&search=0x49065E1275E46F96). Upstream repository is [here](https://github.com/taoheorg/taohe/) and the official webpage is at [www.taohe.org](https://www.taohe.org).
+Smart contracts are mission critical and as such should always originate from trusted sources. That's why every commit on `master` is signed with [Ville's GPG key](https://keys.openpgp.org/search?q=0x49065E1275E46F96). Upstream repository is [here](https://github.com/taoheorg/taohe/) and the official webpage is at [www.taohe.org](https://www.taohe.org).

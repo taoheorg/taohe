@@ -38,7 +38,7 @@ module TaoHe::Timestamp {
             // including timestamping. If available, then use the real timestamp.
             current_timestamp = DiemTimestamp::now_seconds();
 
-            assert(current_timestamp > 0, 123);            
+            assert!(current_timestamp > 0, 123);
         };
 
         Tao<Content> { timestamp: current_timestamp, content }
@@ -53,8 +53,8 @@ module TaoHe::Timestamp {
     fun test_wrap() {
         let Tao { timestamp, content } = wrap<bool>(true);
 
-        assert(timestamp != 0, 123);
-        assert(content == true, 123);
+        assert!(timestamp != 0, 123);
+        assert!(content == true, 123);
     }
 
     /// Immutable read-only reference to the timestamp, and the `content`.
@@ -73,8 +73,8 @@ module TaoHe::Timestamp {
         let tao = Tao { timestamp: 123, content: true };
 
         let (timestamp, content) = read<bool>(&tao);
-        assert(*timestamp == 123, 123);
-        assert(*content == true, 123);
+        assert!(*timestamp == 123, 123);
+        assert!(*content == true, 123);
 
         let Tao { timestamp: _, content: _ } = tao;
     }
@@ -94,7 +94,7 @@ module TaoHe::Timestamp {
         let tao = Tao { timestamp: 0, content: false };
         let content = unwrap<bool>(tao);
 
-        assert(content == false, 123);
+        assert!(content == false, 123);
     }
 
     spec module {

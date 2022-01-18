@@ -17,7 +17,7 @@ module TaoHe::Mailbox {
     use Std::Vector;
     use Std::Signer;
     use Std::Event;
-    #[test]
+    #[test_only]
     use TaoHe::Torch;
 
     struct Item<Content: key + store> has key, store {
@@ -53,7 +53,7 @@ module TaoHe::Mailbox {
     }
     #[test(account = @0x123)]
     fun test_init(account: signer) {
-        Event::publish_generator(&account);
+        //Event::publish_generator(&account);
         init<Torch::Torch>(&account);
     }
 
@@ -63,7 +63,7 @@ module TaoHe::Mailbox {
         let from = if(reclaimable){addr} else {@0x0};
         let item = Item<Content>{from, to, content};
 
-        assert(to != @0x0, 123);
+        assert!(to != @0x0, 123);
 
         Vector::push_back<Item<Content>>(&mut mailbox.content, item);
 
@@ -77,7 +77,7 @@ module TaoHe::Mailbox {
     }
     #[test(account = @0x123)]
     fun test_put(account: signer) acquires Mailbox, MailboxConfiguration {
-        Event::publish_generator(&account);
+        //Event::publish_generator(&account);
         init<Torch::Torch>(&account);
         put<Torch::Torch>(&account, @0x123, true, Torch::new());
     }
@@ -87,7 +87,7 @@ module TaoHe::Mailbox {
         let mailbox = borrow_global_mut<Mailbox<Content>>(from);
 
         let Item<Content>{from, to, content} = Vector::swap_remove<Item<Content>>(&mut mailbox.content, index);
-        assert(to == addr || from == addr, 123);
+        assert!(to == addr || from == addr, 123);
 
         content
     }
@@ -98,7 +98,7 @@ module TaoHe::Mailbox {
     }
     #[test(account = @0x123)]
     fun test_fetch(account: signer) acquires Mailbox, MailboxConfiguration {
-        Event::publish_generator(&account);
+        //Event::publish_generator(&account);
         init<Torch::Torch>(&account);
         put<Torch::Torch>(&account, @0x123, true, Torch::new());
         put<Torch::Torch>(&account, @0x123, true, Torch::new());
@@ -109,7 +109,7 @@ module TaoHe::Mailbox {
     }
     #[test(account = @0x123), expected_failure]
     fun test_fetch_notmine(account: signer) acquires Mailbox, MailboxConfiguration {
-        Event::publish_generator(&account);
+        //Event::publish_generator(&account);
         init<Torch::Torch>(&account);
         put<Torch::Torch>(&account, @0x456, false, Torch::new());
         put<Torch::Torch>(&account, @0x456, false, Torch::new());
@@ -120,7 +120,7 @@ module TaoHe::Mailbox {
     }
     #[test(account = @0x123)]
     fun test_recover(account: signer) acquires Mailbox, MailboxConfiguration {
-        Event::publish_generator(&account);
+        //Event::publish_generator(&account);
         init<Torch::Torch>(&account);
         put<Torch::Torch>(&account, @0x456, true, Torch::new());
         put<Torch::Torch>(&account, @0x456, true, Torch::new());

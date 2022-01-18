@@ -39,8 +39,8 @@ module TaoHe::Timelock {
     fun test_wrap() {
         let Tao { unlock_time, content } = wrap<bool>(0, true);
 
-        assert(unlock_time == 0, 123);
-        assert(content == true, 123);
+        assert!(unlock_time == 0, 123);
+        assert!(content == true, 123);
     }
 
     /// Immutable read-only reference to the unlock time, and the `content`.
@@ -58,8 +58,8 @@ module TaoHe::Timelock {
         let tao = Tao { unlock_time: 1, content: true };
 
         let (unlock_time, content) = read<bool>(&tao);
-        assert(*unlock_time > 0, 123);
-        assert(*content == true, 123);
+        assert!(*unlock_time > 0, 123);
+        assert!(*content == true, 123);
 
         let Tao { unlock_time: _, content: _ } = tao;
     }
@@ -77,7 +77,7 @@ module TaoHe::Timelock {
             current_timestamp = DiemTimestamp::now_seconds();
         };
 
-        assert(current_timestamp > unlock_time, Errors::timelock_too_early());
+        assert!(current_timestamp > unlock_time, Errors::timelock_too_early());
 
         content
     }
@@ -93,7 +93,7 @@ module TaoHe::Timelock {
         let tao = Tao { unlock_time: timestamp - 1, content: true };
         let content = unwrap<bool>(tao);
 
-        assert(content == true, 123);
+        assert!(content == true, 123);
     }
     #[test, expected_failure]
     fun test_unwrap_too_early() {
@@ -101,7 +101,7 @@ module TaoHe::Timelock {
         let tao = Tao { unlock_time: timestamp + 1, content: true };
         let content = unwrap<bool>(tao);
 
-        assert(content == true, 123);
+        assert!(content == true, 123);
     }
 
     spec module {

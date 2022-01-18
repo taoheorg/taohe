@@ -32,7 +32,7 @@ module TaoHe::Immutable {
     fun test_wrap() {
         let Tao { content } = wrap<bool>(true);
 
-        assert(content == true, 123);
+        assert!(content == true, 123);
     }
 
     /// Immutable read-only reference to the `content`.
@@ -49,7 +49,7 @@ module TaoHe::Immutable {
         let tao = Tao { content: true };
 
         let (content) = read<bool>(&tao);
-        assert(*content == true, 123);
+        assert!(*content == true, 123);
 
         let Tao { content: _ } = tao;
     }

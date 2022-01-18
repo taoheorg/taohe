@@ -37,8 +37,8 @@ module TaoHe::Ownable {
     fun test_wrap() {
         let Tao { owner, content } = wrap<bool>(@0x123, true);
 
-        assert(owner == @0x123, 123);
-        assert(content == true, 123);
+        assert!(owner == @0x123, 123);
+        assert!(content == true, 123);
     }
 
     /// Immutable read-only reference to the owner address, and `content`.
@@ -56,8 +56,8 @@ module TaoHe::Ownable {
         let tao = Tao { owner: @0x123, content: true };
 
         let (owner, content) = read<bool>(&tao);
-        assert(*owner == @0x123, 123);
-        assert(*content == true, 123);
+        assert!(*owner == @0x123, 123);
+        assert!(*content == true, 123);
 
         let Tao { owner: _, content: _ } = tao;
     }
@@ -66,7 +66,7 @@ module TaoHe::Ownable {
     public fun unwrap<Content>(account: &signer, tao: Tao<Content>): Content {
         let Tao<Content> { owner, content } = tao;
 
-        assert(owner == Signer::address_of(account), Errors::ownable_not_owned());
+        assert!(owner == Signer::address_of(account), Errors::ownable_not_owned());
 
         content
     }
@@ -80,7 +80,7 @@ module TaoHe::Ownable {
         let tao = Tao { owner: @0x123, content: true };
         let content = unwrap<bool>(&account, tao);
 
-        assert(content == true, 123);
+        assert!(content == true, 123);
     }
 
     spec module {

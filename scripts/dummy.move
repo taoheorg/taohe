@@ -18,6 +18,6 @@ script {
     ///  - help debugging by providing the simplest possible transaction, and
     ///  - provide a template for future scripts.
     fun dummy() {
-        assert(true, 0);
+        assert!(true, 0);
     }
 }
