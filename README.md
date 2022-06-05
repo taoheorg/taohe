@@ -26,7 +26,7 @@ Taos are not meant to replace specialized smart contract development for complic
 ## Building and developing
 TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [`Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language).
 
-We use **[Dove build system 1.5.4](https://github.com/pontem-network/move-tools/releases/tag/1.5.4)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
+We use **[Dove build system 1.7.1](https://github.com/pontem-network/move-tools/releases/tag/1.7.1)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
 ```
 dove build
 ```
