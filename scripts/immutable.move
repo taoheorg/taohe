@@ -18,7 +18,7 @@ script {
     use TaoHe::Root;
     use TaoHe::Immutable;
 
-    fun immutable(account: signer) {
+    fun immutable_1(account: signer) {
         Root::create<Immutable::Tao<Torch::Torch>>(&account, Immutable::wrap<Torch::Torch>(Torch::new()));
     }
 }

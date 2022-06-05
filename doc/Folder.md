@@ -26,7 +26,7 @@ tao is destroyed.
 A simple tao struct containing a vector of resources.
 
 
-<pre><code><b>struct</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; has store, key
+<pre><code><b>struct</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; <b>has</b> store, key
 </code></pre>
 
 

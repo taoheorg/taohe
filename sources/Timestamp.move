@@ -16,7 +16,7 @@
 
 /// Simple timestamped tao: timestamp when the tao was created.
 module TaoHe::Timestamp {
-    use DiemFramework::DiemTimestamp;
+    use Adapter::Adapter;
 
     /// Timestamped tao, containing timestamp when the tao was created.
     /// Timestamp is fetched on-chain, so it can't be manipulated.
@@ -31,23 +31,17 @@ module TaoHe::Timestamp {
     /// Creating a timestamped tao. On-chain timestamp is used, to prevent
     /// timestamp manipulation.
     public fun wrap<Content>(content: Content): Tao<Content> {
-        let current_timestamp: u64 = 100; // Default timestamp if is_operating() is false
+        let current_timestamp: u64 = Adapter::current_timestamp();
 
-        if (DiemTimestamp::is_operating()) {
-            // Currently move-executor does not support full genesis functionality,
-            // including timestamping. If available, then use the real timestamp.
-            current_timestamp = DiemTimestamp::now_seconds();
-
-            assert!(current_timestamp > 0, 123);
-        };
+        assert!(current_timestamp > 0, 123);
 
         Tao<Content> { timestamp: current_timestamp, content }
     }
     spec wrap {
-        aborts_if DiemTimestamp::spec_now_seconds() == 0 && DiemTimestamp::is_operating() with 123;
+        aborts_if Adapter::current_timestamp() == 0 with 123;
 
         ensures result.content == content;
-        ensures result.timestamp == 100 || result.timestamp == DiemTimestamp::spec_now_seconds();
+        ensures result.timestamp == Adapter::current_timestamp();
     }
     #[test]
     fun test_wrap() {

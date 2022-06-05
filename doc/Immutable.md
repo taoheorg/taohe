@@ -23,7 +23,7 @@ A simple tao whose only purpose is to keep the content immutable
 Static tao containing a resource. Can't be extracted.
 
 
-<pre><code><b>struct</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; has store, key
+<pre><code><b>struct</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt; <b>has</b> store, key
 </code></pre>
 
 
@@ -124,7 +124,7 @@ Immutable read-only reference to the <code>content</code>.
 
 ## Function `unwrap`
 
-For semantic reasons providing <code>extract</code>, although it
+For semantic reasons providing <code>unwrap</code>, although it
 always fails.
 
 
@@ -139,7 +139,7 @@ always fails.
 
 <pre><code><b>public</b> <b>fun</b> <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_unwrap">unwrap</a>&lt;Content&gt;(_tao: <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Tao</a>&lt;Content&gt;): Content {
     // Aborting <b>with</b> general error for now: using our
-    // <a href="">Errors</a> <b>module</b> would <b>break</b> formal verification
+    // <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors">Errors</a> <b>module</b> would <b>break</b> formal verification
     // (https://github.com/diem/diem/issues/8303).
     <b>abort</b>(1)
 }

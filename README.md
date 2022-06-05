@@ -1,15 +1,15 @@
 # ▣ TaoHe: Collection of nestable Move resources
-TaoHe is a collection of nestable smart contract resources that can be used to create secure on-chain applications on MoveVM blockchains, such as **Diem**. Resources can be nested like a Russian doll ([матрёшка](https://en.wikipedia.org/wiki/Matryoshka_doll)), or Chinese boxes ([套盒](https://en.wikipedia.org/wiki/Chinese_boxes)), the namesake of this project. ▣ is used as the logo, since it depicts a box inside another box.
+TaoHe is a collection of nestable smart contract resources that can be used to create secure on-chain applications on various [Move-powered blockchains](https://github.com/MystenLabs/awesome-move#move-powered-blockchains). Resources can be nested like a Russian doll ([матрёшка](https://en.wikipedia.org/wiki/Matryoshka_doll)), or Chinese boxes ([套盒](https://en.wikipedia.org/wiki/Chinese_boxes)), the namesake of this project. ▣ is used as the logo, since it depicts a box inside another box.
 
 *Tao* is a simple Move resource that has been designed to be nested inside other taos. *TaoHe* is a collection of taos, and a special Root resource that can be used to store a resource directly into an account (taos themselves can be stored into resources only, for simplicity).
 
-> **Example**: You could place Diem tokens into a time locked tao, and place that inside an NFT tao, effectively creating a non-fungible time locked token.
+> **Example**: You could place tokens into a time locked tao, and place that inside an NFT tao, effectively creating a non-fungible time locked token.
 
 [Participate to TaoHe discussion on Diem Community](https://community.diem.com/t/introducing-taohe-collection-of-nestable-move-resources).
 
 ## Design
 ### What taos are
-Taos are meant to form disposable structures that contain a meaningful resource (such as Diem tokens). In order to access the resource in question, taos must be dismantled. A new tao can be created though, if so desired. Nesting taos inside each other can form complicated logics, such as time locked non-fungible tokens.
+Taos are meant to form disposable structures that contain a meaningful resource (such as tokens). In order to access the resource in question, taos must be dismantled. A new tao can be created though, if so desired. Nesting taos inside each other can form complicated logics, such as time locked non-fungible tokens.
 
 ### Why taos are small
 Keeping code footprint per each tao in minimum is vital for safer code, and is simpler to audit. Keeping taos simple also shifts the code footprint to scripts, which are easier to develop and update than smart contracts.
@@ -39,7 +39,7 @@ Every tao has formal verification specs embedded. You can run the formal verific
 dove prove
 ```
 
-> You'll need `boogie` and `z3` solver, which can be easily installed with Diem's [development setup script](https://github.com/diem/diem/blob/main/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. If you want to change the default paths, edit `./prover-env.toml`.
+> You'll need `boogie` and `z3` solver, which can be easily installed with Move's [development setup script](https://github.com/move-language/move/blob/main/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. If you want to change the default paths, edit `./prover-env.toml`.
 
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 

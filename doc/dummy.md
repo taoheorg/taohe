@@ -1,27 +1,21 @@
 
-<a name="0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff_dummy"></a>
+<a name="dummy"></a>
 
-# Module `0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff::dummy`
+# Script `dummy`
 
 
 
--  [Function `dummy`](#0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff_dummy_dummy)
 
 
 <pre><code></code></pre>
 
-
-
-<a name="0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff_dummy_dummy"></a>
-
-## Function `dummy`
 
 This dummy script serves two purposes:
 - help debugging by providing the simplest possible transaction, and
 - provide a template for future scripts.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="dummy.md#0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff_dummy">dummy</a>()
+<pre><code><b>public</b>(<b>script</b>) <b>fun</b> <a href="dummy.md#dummy">dummy</a>()
 </code></pre>
 
 
@@ -30,8 +24,8 @@ This dummy script serves two purposes:
 <summary>Implementation</summary>
 
 
-<pre><code><b>fun</b> <a href="dummy.md#0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff_dummy">dummy</a>() {
-    <b>assert</b>(<b>true</b>, 0);
+<pre><code><b>fun</b> <a href="dummy.md#dummy">dummy</a>() {
+    <b>assert</b>!(<b>true</b>, 0);
 }
 </code></pre>
 

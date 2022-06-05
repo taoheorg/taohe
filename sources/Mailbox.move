@@ -47,9 +47,9 @@ module TaoHe::Mailbox {
         }
     }
     spec init {
-        aborts_if exists<Mailbox<Content>>(Signer::spec_address_of(account));
+        aborts_if exists<Mailbox<Content>>(Signer::address_of(account));
 
-        modifies global<Mailbox<Content>>(Signer::spec_address_of(account));
+        modifies global<Mailbox<Content>>(Signer::address_of(account));
     }
     #[test(account = @0x123)]
     fun test_init(account: signer) {
@@ -71,8 +71,8 @@ module TaoHe::Mailbox {
         Event::emit_event(&mut mailbox_configuration.event_handle, Event1{from, to});
     }
     spec put {
-        aborts_if !exists<Mailbox<Content>>(Signer::spec_address_of(account));
-        aborts_if !exists<MailboxConfiguration>(Signer::spec_address_of(account));
+        aborts_if !exists<Mailbox<Content>>(Signer::address_of(account));
+        aborts_if !exists<MailboxConfiguration>(Signer::address_of(account));
         aborts_if to == @0x0;
     }
     #[test(account = @0x123)]
@@ -93,7 +93,7 @@ module TaoHe::Mailbox {
     }
     spec fetch {
         aborts_if !exists<Mailbox<Content>>(from);
-        aborts_if (global<Mailbox<Content>>(from).content[index].to != Signer::spec_address_of(account)) && (global<Mailbox<Content>>(from).content[index].from != Signer::spec_address_of(account));
+        aborts_if (global<Mailbox<Content>>(from).content[index].to != Signer::address_of(account)) && (global<Mailbox<Content>>(from).content[index].from != Signer::address_of(account));
         aborts_if index >= Vector::length(global<Mailbox<Content>>(from).content);
     }
     #[test(account = @0x123)]

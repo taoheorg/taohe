@@ -14,9 +14,9 @@
 // limitations under the License.
  
 
-/// Simple timelocked tao: allow extracting only when time has passed
+/// Simple timelocked tao: allow extracting only when a certain time has passed
 module TaoHe::Timelock {
-    use DiemFramework::DiemTimestamp;
+    use Adapter::Adapter;
     use TaoHe::Errors;
 
     /// Tao for a simple timelock: extract `content` if `unlock_time` has
@@ -27,7 +27,7 @@ module TaoHe::Timelock {
     }
 
     /// Create a new timelocked tao. `unlock_time` is in seconds, will be
-    /// compared against `DiemTimestamp::now_seconds()` on production
+    /// compared against `Adapter::current_timestamp()` on production
     /// network. Time can be 0, at least for now.
     public fun wrap<Content>(unlock_time: u64, content: Content): Tao<Content> {
         Tao<Content> { unlock_time, content }
@@ -65,31 +65,23 @@ module TaoHe::Timelock {
     }
 
     /// Extract `tao.content` if `tao.unlock_time` has passed.
-    /// Currently move-executor does not support full genesis functionality,
-    /// including timestamping. If available, then use the real timestamp.
     public fun unwrap<Content>(tao: Tao<Content>): Content {
         let Tao<Content> { content, unlock_time } = tao;
-        let current_timestamp: u64 = 100; // Default timestamp if is_operating() is false
-
-        if (DiemTimestamp::is_operating()) {
-            // Currently move-executor does not support full genesis functionality,
-            // including timestamping. If available, then use the real timestamp.
-            current_timestamp = DiemTimestamp::now_seconds();
-        };
+        let current_timestamp: u64 = Adapter::current_timestamp();
 
         assert!(current_timestamp > unlock_time, Errors::timelock_too_early());
 
         content
     }
     spec unwrap {
-        aborts_if (DiemTimestamp::is_operating() && tao.unlock_time >= DiemTimestamp::spec_now_seconds()) || (!DiemTimestamp::is_operating() && tao.unlock_time >= 100);
+        aborts_if (tao.unlock_time >= Adapter::current_timestamp());
 
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
     #[test]
     fun test_unwrap() {
-        let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
+        let timestamp = Adapter::current_timestamp();
         let tao = Tao { unlock_time: timestamp - 1, content: true };
         let content = unwrap<bool>(tao);
 
@@ -97,7 +89,7 @@ module TaoHe::Timelock {
     }
     #[test, expected_failure]
     fun test_unwrap_too_early() {
-        let timestamp = if (DiemTimestamp::is_operating()) {DiemTimestamp::now_seconds()} else {100};
+        let timestamp = Adapter::current_timestamp();
         let tao = Tao { unlock_time: timestamp + 1, content: true };
         let content = unwrap<bool>(tao);
 

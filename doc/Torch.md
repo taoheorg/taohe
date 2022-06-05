@@ -26,7 +26,7 @@ This resource does not contain anything, and is
 intended to be used only for testing.
 
 
-<pre><code><b>struct</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch">Torch</a> has store, key
+<pre><code><b>struct</b> <a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch">Torch</a> <b>has</b> store, key
 </code></pre>
 
 
