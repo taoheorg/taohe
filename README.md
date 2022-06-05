@@ -39,7 +39,7 @@ Every tao has formal verification specs embedded. You can run the formal verific
 dove prove
 ```
 
-> You'll need `boogie` and `z3` solver, which can be easily installed with Move's [development setup script](https://github.com/move-language/move/blob/main/scripts/dev_setup.sh): `./scripts/dev_setup.sh -y`. If you want to change the default paths, edit `./prover-env.toml`.
+> Learn more about installing the formal verification tools and dependencies [here](https://github.com/move-language/move/blob/main/language/move-prover/doc/user/install.md).
 
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
@@ -62,7 +62,7 @@ rev="...."
 DX is not good at the moment since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script functions (a new Move feature).
 
 ## Documentation
-See [doc/](doc/) for `dove build -d` generated documentation.
+See [doc/](doc/) for `dove prove -- --docgen` generated documentation.
 
 ## Legal
 This repository is released under the *Apache License 2.0*, and is copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). See `Move.toml` for more information on dependencies. No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/master/LICENSE#L143).
