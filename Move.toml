@@ -10,7 +10,8 @@ Adapter = "0x2f66c09143acc52a85fec529a4e20c85"
 Std = "0x1"
 
 [dependencies.Adapter]
-local = "../adapter-dummy/"
+git = "https://github.com/taoheorg/adapter-dummy.git"
+rev = "bd9b099eb3d5c1ca0da181b6ee3f4426cf3bec01"
 
 [dependencies.MoveStdlib]
 git = "https://github.com/move-language/move.git"
