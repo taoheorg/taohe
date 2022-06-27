@@ -5,7 +5,7 @@ TaoHe is a collection of nestable smart contract resources that can be used to c
 
 > **Example**: You could place tokens into a time locked tao, and place that inside an NFT tao, effectively creating a non-fungible time locked token.
 
-[Participate in the TaoHe discussion on Diem Community](https://community.diem.com/t/introducing-taohe-collection-of-nestable-move-resources).
+[See TaoHe on Movey](https://www.movey.net/packages/TaoHe), the package metadata repository for Move. Archived version of the original announcement can be found [here](https://web.archive.org/web/20211130211800/https://community.diem.com/t/introducing-taohe-collection-of-nestable-move-resources/3531).
 
 ## Design
 ### What taos are
