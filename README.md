@@ -1,4 +1,6 @@
 # ▣ TaoHe: Collection of nestable Move resources
+[![Mentioned in Awesome Move](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/MystenLabs/awesome-move#libraries)
+
 TaoHe is a collection of nestable smart contract resources that can be used to create secure on-chain applications on various [Move-powered blockchains](https://github.com/MystenLabs/awesome-move#move-powered-blockchains). Resources can be nested like a Russian doll ([матрёшка](https://en.wikipedia.org/wiki/Matryoshka_doll)), or Chinese boxes ([套盒](https://en.wikipedia.org/wiki/Chinese_boxes)), the namesake of this project. ▣ is used as the logo, since it depicts a box inside another box.
 
 *Tao* is a simple Move resource that has been designed to be nested inside other taos. *TaoHe* is a collection of taos, and a special Root resource that can be used to store a resource directly into an account (taos themselves can be stored into resources only, for simplicity).
