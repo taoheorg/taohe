@@ -1,5 +1,5 @@
 # ▣ TaoHe: Collection of nestable Move resources
-[![Mentioned in Awesome Move](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/MystenLabs/awesome-move#libraries)
+[![Mentioned in Awesome Move](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/MystenLabs/awesome-move#libraries) ![GitHub](https://img.shields.io/github/license/taoheorg/taohe) [![Movey](https://img.shields.io/badge/Movey-TaoHe-001f60)](https://www.movey.net/packages/TaoHe)
 
 TaoHe is a collection of nestable smart contract resources that can be used to create secure on-chain applications on various [Move-powered blockchains](https://github.com/MystenLabs/awesome-move#move-powered-blockchains). Resources can be nested like a Russian doll ([матрёшка](https://en.wikipedia.org/wiki/Matryoshka_doll)), or Chinese boxes ([套盒](https://en.wikipedia.org/wiki/Chinese_boxes)), the namesake of this project. ▣ is used as the logo, since it depicts a box inside another box.
 
