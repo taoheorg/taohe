@@ -5,13 +5,15 @@ TaoHe is a collection of nestable smart contract resources that can be used to c
 
 *Tao* is a simple Move resource that has been designed to be nested inside other taos. *TaoHe* is a collection of taos, and a special Root resource that can be used to store a resource directly into an account (taos themselves can be stored into resources only, for simplicity).
 
-> **Example**: You could place tokens into a time locked tao, and place that inside an NFT tao, effectively creating a non-fungible time locked token.
+TaoHe follows the [Nestable Resources](http://www.move-patterns.com/nestable_resources.html) software design pattern.
+
+> **Example**: Tokens can be placed into a time locked resource ([Timelock](sources/Timelock.move)), which in turn can be placed into a resource which can be used only by a certain user ([Ownable](sources/Ownable.move)), effectively creating a timelocked non-fungible token.
 
 [See TaoHe on Movey](https://www.movey.net/packages/TaoHe), the package metadata repository for Move. Archived version of the original announcement can be found [here](https://web.archive.org/web/20211130211800/https://community.diem.com/t/introducing-taohe-collection-of-nestable-move-resources/3531).
 
 ## Design
 ### What taos are
-Taos are meant to form disposable structures that contain a meaningful resource (such as tokens). In order to access the resource in question, taos must be dismantled. A new tao can be created though, if so desired. Nesting taos inside each other can form complicated logics, such as time locked non-fungible tokens.
+Taos are meant to form disposable structures that contain a meaningful resource (such as tokens). In order to access the resource in question, taos must be dismantled. A new tao can be created though, if so desired. Nesting taos inside each other can form complicated logics, such as timelocked non-fungible tokens.
 
 ### Why taos are small
 Keeping code footprint per each tao in minimum is vital for safer code, and is simpler to audit. Keeping taos simple also shifts the code footprint to scripts, which are easier to develop and update than smart contracts.
@@ -71,7 +73,7 @@ DX is not good at the moment since types must be known beforehand, and written i
 ## Documentation
 See [doc/](doc/) for `dove prove -- --docgen` generated documentation.
 
-## Legal
+## License
 This repository is released under the *Apache License 2.0*, and is copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). See `Move.toml` for more information on dependencies. No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/master/LICENSE#L143).
 
 ## Trusted source
