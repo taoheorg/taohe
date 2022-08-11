@@ -13,7 +13,7 @@ the content.
 -  [Function `unwrap`](#0x2f66c09143acc52a85fec529a4e20c85_Ownable_unwrap)
 
 
-<pre><code><b>use</b> <a href="">0x1::Signer</a>;
+<pre><code><b>use</b> <a href="">0x1::signer</a>;
 <b>use</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors">0x2f66c09143acc52a85fec529a4e20c85::Errors</a>;
 </code></pre>
 
@@ -137,7 +137,7 @@ Immutable read-only reference to the owner address, and <code>content</code>.
 If <code>account </code> is the <code>owner</code>, extract <code>content</code>.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_unwrap">unwrap</a>&lt;Content&gt;(account: &signer, tao: <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Ownable::Tao</a>&lt;Content&gt;): Content
+<pre><code><b>public</b> <b>fun</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_unwrap">unwrap</a>&lt;Content&gt;(account: &<a href="">signer</a>, tao: <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Ownable::Tao</a>&lt;Content&gt;): Content
 </code></pre>
 
 
@@ -146,10 +146,10 @@ If <code>account </code> is the <code>owner</code>, extract <code>content</code>
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_unwrap">unwrap</a>&lt;Content&gt;(account: &signer, tao: <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Tao</a>&lt;Content&gt;): Content {
+<pre><code><b>public</b> <b>fun</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_unwrap">unwrap</a>&lt;Content&gt;(account: &<a href="">signer</a>, tao: <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Tao</a>&lt;Content&gt;): Content {
     <b>let</b> <a href="Ownable.md#0x2f66c09143acc52a85fec529a4e20c85_Ownable_Tao">Tao</a>&lt;Content&gt; { owner, content } = tao;
 
-    <b>assert</b>!(owner == <a href="_address_of">Signer::address_of</a>(account), <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors_ownable_not_owned">Errors::ownable_not_owned</a>());
+    <b>assert</b>!(owner == <a href="_address_of">signer::address_of</a>(account), <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors_ownable_not_owned">Errors::ownable_not_owned</a>());
 
     content
 }
@@ -164,7 +164,7 @@ If <code>account </code> is the <code>owner</code>, extract <code>content</code>
 
 
 
-<pre><code><b>aborts_if</b> tao.owner != <a href="_address_of">Signer::address_of</a>(account);
+<pre><code><b>aborts_if</b> tao.owner != <a href="_address_of">signer::address_of</a>(account);
 <b>ensures</b> result == tao.content;
 </code></pre>
 

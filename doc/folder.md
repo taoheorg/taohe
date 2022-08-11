@@ -15,7 +15,7 @@
 
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="folder.md#folder_2">folder_2</a>(account: signer)
+<pre><code><b>public</b> <b>fun</b> <a href="folder.md#folder_2">folder_2</a>(account: <a href="">signer</a>)
 </code></pre>
 
 
@@ -24,9 +24,9 @@
 <summary>Implementation</summary>
 
 
-<pre><code><b>fun</b> <a href="folder.md#folder_2">folder_2</a>(account: signer) {
+<pre><code><b>fun</b> <a href="folder.md#folder_2">folder_2</a>(account: <a href="">signer</a>) {
     // Extracting, and inserting it again
-    <b>let</b> vec2: vector&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt; = <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_unwrap">Folder::unwrap</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">Root::extract</a>&lt;<a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;&gt;(&account));
+    <b>let</b> vec2: <a href="">vector</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt; = <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_unwrap">Folder::unwrap</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">Root::extract</a>&lt;<a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;&gt;(&account));
     <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">Root::create</a>&lt;<a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;&gt;(&account, <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_wrap">Folder::wrap</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(vec2));
 }
 </code></pre>

@@ -37,7 +37,7 @@ A simple tao struct containing a vector of resources.
 
 <dl>
 <dt>
-<code>content: vector&lt;Content&gt;</code>
+<code>content: <a href="">vector</a>&lt;Content&gt;</code>
 </dt>
 <dd>
 
@@ -54,7 +54,7 @@ A simple tao struct containing a vector of resources.
 Create a new tao, with the static set of resources inside it.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_wrap">wrap</a>&lt;Content&gt;(content: vector&lt;Content&gt;): <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;Content&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_wrap">wrap</a>&lt;Content&gt;(content: <a href="">vector</a>&lt;Content&gt;): <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -63,7 +63,7 @@ Create a new tao, with the static set of resources inside it.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_wrap">wrap</a>&lt;Content&gt;(content: vector&lt;Content&gt;): <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; {
+<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_wrap">wrap</a>&lt;Content&gt;(content: <a href="">vector</a>&lt;Content&gt;): <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; {
     <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; { content }
 }
 </code></pre>
@@ -91,7 +91,7 @@ Create a new tao, with the static set of resources inside it.
 Immutable read-only reference to the vector containing resources.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_read">read</a>&lt;Content&gt;(tao: &<a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;Content&gt;): &vector&lt;Content&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_read">read</a>&lt;Content&gt;(tao: &<a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;Content&gt;): &<a href="">vector</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -100,7 +100,7 @@ Immutable read-only reference to the vector containing resources.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_read">read</a>&lt;Content&gt;(tao: &<a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt;): &vector&lt;Content&gt; {
+<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_read">read</a>&lt;Content&gt;(tao: &<a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt;): &<a href="">vector</a>&lt;Content&gt; {
     <b>let</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; { content } = tao;
 
     content
@@ -130,7 +130,7 @@ Immutable read-only reference to the vector containing resources.
 Destroy the tao, and return the static set of resources inside it.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_unwrap">unwrap</a>&lt;Content&gt;(tao: <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;Content&gt;): vector&lt;Content&gt;
+<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_unwrap">unwrap</a>&lt;Content&gt;(tao: <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Folder::Tao</a>&lt;Content&gt;): <a href="">vector</a>&lt;Content&gt;
 </code></pre>
 
 
@@ -139,7 +139,7 @@ Destroy the tao, and return the static set of resources inside it.
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_unwrap">unwrap</a>&lt;Content&gt;(tao: <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt;): vector&lt;Content&gt; {
+<pre><code><b>public</b> <b>fun</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_unwrap">unwrap</a>&lt;Content&gt;(tao: <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt;): <a href="">vector</a>&lt;Content&gt; {
     <b>let</b> <a href="Folder.md#0x2f66c09143acc52a85fec529a4e20c85_Folder_Tao">Tao</a>&lt;Content&gt; { content } = tao;
 
     content

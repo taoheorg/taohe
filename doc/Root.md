@@ -14,8 +14,7 @@ Instead it's a special kind of resource used to host taos.
 -  [Function `extract`](#0x2f66c09143acc52a85fec529a4e20c85_Root_extract)
 
 
-<pre><code><b>use</b> <a href="">0x1::Signer</a>;
-<b>use</b> <a href="">0x1::Vector</a>;
+<pre><code><b>use</b> <a href="">0x1::signer</a>;
 </code></pre>
 
 
@@ -38,7 +37,7 @@ Root resource used to host other resources (can be taos).
 
 <dl>
 <dt>
-<code>content: vector&lt;Content&gt;</code>
+<code>content: <a href="">vector</a>&lt;Content&gt;</code>
 </dt>
 <dd>
 
@@ -54,7 +53,7 @@ Root resource used to host other resources (can be taos).
 
 
 
-<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_push_content">push_content</a>&lt;Content: store, key&gt;(account: &signer, content: Content)
+<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_push_content">push_content</a>&lt;Content: store, key&gt;(account: &<a href="">signer</a>, content: Content)
 </code></pre>
 
 
@@ -63,14 +62,14 @@ Root resource used to host other resources (can be taos).
 <summary>Implementation</summary>
 
 
-<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_push_content">push_content</a>&lt;Content: key + store&gt;(account: &signer, content: Content) <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
-    <b>let</b> <b>address</b> = <a href="_address_of">Signer::address_of</a>(account);
+<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_push_content">push_content</a>&lt;Content: key + store&gt;(account: &<a href="">signer</a>, content: Content) <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
+    <b>let</b> <b>address</b> = <a href="_address_of">signer::address_of</a>(account);
     <b>if</b> (<b>exists</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<b>address</b>)) {
         <b>let</b> root = <b>borrow_global_mut</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<b>address</b>);
-        <a href="_push_back">Vector::push_back</a>&lt;Content&gt;(&<b>mut</b> root.content, content);
+        <a href="_push_back">vector::push_back</a>&lt;Content&gt;(&<b>mut</b> root.content, content);
     } <b>else</b> {
-        <b>let</b> vec1 = <a href="_empty">Vector::empty</a>&lt;Content&gt;();
-        <a href="_push_back">Vector::push_back</a>&lt;Content&gt;(&<b>mut</b> vec1, content);
+        <b>let</b> vec1 = <a href="_empty">vector::empty</a>&lt;Content&gt;();
+        <a href="_push_back">vector::push_back</a>&lt;Content&gt;(&<b>mut</b> vec1, content);
         <b>move_to</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(account, <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt; { content: vec1 });
     }
 }
@@ -86,7 +85,7 @@ Root resource used to host other resources (can be taos).
 
 
 
-<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_pop_content">pop_content</a>&lt;Content: store, key&gt;(account: &signer): Content
+<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_pop_content">pop_content</a>&lt;Content: store, key&gt;(account: &<a href="">signer</a>): Content
 </code></pre>
 
 
@@ -95,10 +94,10 @@ Root resource used to host other resources (can be taos).
 <summary>Implementation</summary>
 
 
-<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_pop_content">pop_content</a>&lt;Content: key + store&gt;(account: &signer): Content <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
-    <b>let</b> <b>address</b> = <a href="_address_of">Signer::address_of</a>(account);
+<pre><code><b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_pop_content">pop_content</a>&lt;Content: key + store&gt;(account: &<a href="">signer</a>): Content <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
+    <b>let</b> <b>address</b> = <a href="_address_of">signer::address_of</a>(account);
     <b>let</b> root = <b>borrow_global_mut</b>&lt;<a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a>&lt;Content&gt;&gt;(<b>address</b>);
-    <a href="_pop_back">Vector::pop_back</a>&lt;Content&gt;(&<b>mut</b> root.content)
+    <a href="_pop_back">vector::pop_back</a>&lt;Content&gt;(&<b>mut</b> root.content)
 }
 </code></pre>
 
@@ -113,7 +112,7 @@ Root resource used to host other resources (can be taos).
 Place a resource into a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> for <code>account</code>. Create one if neccessary.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">create</a>&lt;Content: store, key&gt;(account: &signer, content: Content)
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">create</a>&lt;Content: store, key&gt;(account: &<a href="">signer</a>, content: Content)
 </code></pre>
 
 
@@ -122,7 +121,7 @@ Place a resource into a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c8
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">create</a>&lt;Content: key + store&gt;(account: &signer, content: Content) <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">create</a>&lt;Content: key + store&gt;(account: &<a href="">signer</a>, content: Content) <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
     <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_push_content">push_content</a>&lt;Content&gt;(account, content);
 }
 </code></pre>
@@ -138,7 +137,7 @@ Place a resource into a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c8
 Extract a resource from a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a></code> of an <code>account</code>.
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store, key&gt;(account: &signer): Content
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store, key&gt;(account: &<a href="">signer</a>): Content
 </code></pre>
 
 
@@ -147,7 +146,7 @@ Extract a resource from a <code><a href="Root.md#0x2f66c09143acc52a85fec529a4e20
 <summary>Implementation</summary>
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store + key&gt;(account: &signer): Content <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
+<pre><code><b>public</b> <b>fun</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_extract">extract</a>&lt;Content: store + key&gt;(account: &<a href="">signer</a>): Content <b>acquires</b> <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root">Root</a> {
     <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_pop_content">pop_content</a>&lt;Content&gt;(account)
 }
 </code></pre>

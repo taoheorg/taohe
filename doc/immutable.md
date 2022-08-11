@@ -15,7 +15,7 @@
 
 
 
-<pre><code><b>public</b> <b>fun</b> <a href="immutable.md#immutable_1">immutable_1</a>(account: signer)
+<pre><code><b>public</b> <b>fun</b> <a href="immutable.md#immutable_1">immutable_1</a>(account: <a href="">signer</a>)
 </code></pre>
 
 
@@ -24,7 +24,7 @@
 <summary>Implementation</summary>
 
 
-<pre><code><b>fun</b> <a href="immutable.md#immutable_1">immutable_1</a>(account: signer) {
+<pre><code><b>fun</b> <a href="immutable.md#immutable_1">immutable_1</a>(account: <a href="">signer</a>) {
     <a href="Root.md#0x2f66c09143acc52a85fec529a4e20c85_Root_create">Root::create</a>&lt;<a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_Tao">Immutable::Tao</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;&gt;(&account, <a href="Immutable.md#0x2f66c09143acc52a85fec529a4e20c85_Immutable_wrap">Immutable::wrap</a>&lt;<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_Torch">Torch::Torch</a>&gt;(<a href="Torch.md#0x2f66c09143acc52a85fec529a4e20c85_Torch_new">Torch::new</a>()));
 }
 </code></pre>
