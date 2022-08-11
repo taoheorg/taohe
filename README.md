@@ -28,14 +28,15 @@ Tao's lifespan is divided into three separate phases, listed here chronologicall
 Taos are not meant to replace specialized smart contract development for complicated applications, but can be used as part of one.
 
 ## Building and developing
-TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [`Move Language` plugin](https://marketplace.visualstudio.com/items?itemName=PontemNetwork.move-language).
+TaoHe is developed with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and the [`move-analyzer` plugin](https://marketplace.visualstudio.com/items?itemName=move.move-analyzer).
 
-We use **[Dove build system 1.7.1](https://github.com/pontem-network/move-tools/releases/tag/1.7.1)** for building, package management, dependencies, formal verification and testing. After successful Dove installation, you can just run:
+We use **[Move CLI](https://github.com/move-language/move/tree/b53bb030b556a4e6ac2728d50ec7baaddf0b9a56#quickstart)** (HEAD: `b53bb03`) for building, package management, dependencies, formal verification and testing. After building the Docker image, you can just issue:
 ```
-dove build
+alias move="docker run -v \`pwd\`:/project move/cli"
 ```
+on your POSIX system to get the `move` command.
 
-> **Jumpstart**: `dove run -v "dummy()"` (replace `dummy` with any function residing in [scripts/](scripts/))
+> **Jumpstart**: `move sandbox publish && move sandbox run -v scripts/folder.move --signers 0xA` (replace `folder` with any function residing in [scripts/](scripts/))
 
 ### Selecting blockchain
 TaoHe is designed to support every Move powered blockchain. This is achieved by *Connectors*, which is a thin middleware between TaoHe and the desired target blockchain. At the moment only the [Dummy Connector](https://github.com/taoheorg/connector-dummy) is available for easier testing and development, but you can search GitHub for other [Move Connectors](https://github.com/topics/move-connector).
@@ -45,7 +46,7 @@ To change the connector, replace the `Connector` dependency with your desired co
 ### Formal verification
 Every tao has formal verification specs embedded. You can run the formal verification by running:
 ```
-dove prove
+move prove
 ```
 
 > Learn more about installing the formal verification tools and dependencies [here](https://github.com/move-language/move/blob/main/language/move-prover/doc/user/install.md).
@@ -53,14 +54,12 @@ dove prove
 > **Warning**: Although every tao has formal verification specs, `move-prover` is still under development, and might have some limitations. Please see each source file for more information.
 
 ### Using TaoHe for your projects
-You can also add TaoHe as a dependency for your Dove based project by adding these lines to your project's `Move.toml`:
+You can also add TaoHe as a dependency for your Move project by adding these lines to your project's `Move.toml`:
 
 ```
-[addresses]
-TaoHe = "0x2f66c09143acc52a85fec529a4e20c85"
-
 [dependencies.TaoHe]
 git = "https://github.com/taoheorg/taohe"
+addr_subst = { "TaoHe" = "0x2f66c09143acc52a85fec529a4e20c85" }
 rev="...."
 ```
 
@@ -71,7 +70,7 @@ rev="...."
 DX is not good at the moment since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script functions (a new Move feature).
 
 ## Documentation
-See [doc/](doc/) for `dove prove -- --docgen` generated documentation.
+See [doc/](doc/) for `move docgen` generated documentation.
 
 ## License
 This repository is released under the *Apache License 2.0*, and is copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). See `Move.toml` for more information on dependencies. No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/main/LICENSE#L143).
