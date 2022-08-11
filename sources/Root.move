@@ -17,8 +17,8 @@
 /// Root is not technically a tao, since it can't be nested.
 /// Instead it's a special kind of resource used to host taos.
 module TaoHe::Root {
-    use Std::Signer;
-    use Std::Vector;
+    use std::signer;
+    use std::vector;
     #[test_only]
     use TaoHe::Torch;
 
@@ -29,21 +29,21 @@ module TaoHe::Root {
 
     ///
     fun push_content<Content: key + store>(account: &signer, content: Content) acquires Root {
-        let address = Signer::address_of(account);
+        let address = signer::address_of(account);
         if (exists<Root<Content>>(address)) {
             let root = borrow_global_mut<Root<Content>>(address);
-            Vector::push_back<Content>(&mut root.content, content);
+            vector::push_back<Content>(&mut root.content, content);
         } else {
-            let vec1 = Vector::empty<Content>();
-            Vector::push_back<Content>(&mut vec1, content);
+            let vec1 = vector::empty<Content>();
+            vector::push_back<Content>(&mut vec1, content);
             move_to<Root<Content>>(account, Root<Content> { content: vec1 });
         }
     }
 
     fun pop_content<Content: key + store>(account: &signer): Content acquires Root {
-        let address = Signer::address_of(account);
+        let address = signer::address_of(account);
         let root = borrow_global_mut<Root<Content>>(address);
-        Vector::pop_back<Content>(&mut root.content)
+        vector::pop_back<Content>(&mut root.content)
     }
 
     /// Place a resource into a `Root` for `account`. Create one if neccessary.

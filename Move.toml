@@ -15,5 +15,6 @@ rev = "ad6581bc051f33517173a411ee6ef0846d16600c"
 
 [dependencies.MoveStdlib]
 git = "https://github.com/move-language/move.git"
-rev = "d253bf1c21314679d17e6935116f30baf409f264"
+rev = "e2bb7e9822a6c15154149599f3c44f34258b72c0"
 subdir = "language/move-stdlib"
+addr_subst = { "std" = "0x1" }

@@ -17,7 +17,7 @@
 /// A tao for implementing a simple ownership model: owner can extract
 /// the content.
 module TaoHe::Ownable {
-    use Std::Signer;
+    use std::signer;
     use TaoHe::Errors;
 
     /// Simple ownership tao: the `owner` can extract `content`.
@@ -66,12 +66,12 @@ module TaoHe::Ownable {
     public fun unwrap<Content>(account: &signer, tao: Tao<Content>): Content {
         let Tao<Content> { owner, content } = tao;
 
-        assert!(owner == Signer::address_of(account), Errors::ownable_not_owned());
+        assert!(owner == signer::address_of(account), Errors::ownable_not_owned());
 
         content
     }
     spec unwrap {
-        aborts_if tao.owner != Signer::address_of(account);
+        aborts_if tao.owner != signer::address_of(account);
 
         ensures result == tao.content;
     }

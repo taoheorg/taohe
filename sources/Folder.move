@@ -20,7 +20,7 @@
 /// tao is destroyed.
 module TaoHe::Folder {
     #[test_only]
-    use Std::Vector;
+    use std::vector;
 
     /// A simple tao struct containing a vector of resources.
     struct Tao<Content> has key, store {
@@ -36,10 +36,10 @@ module TaoHe::Folder {
     }
     #[test]
     fun test_wrap() {
-        let vec1 = Vector::empty<bool>();
-        Vector::push_back<bool>(&mut vec1, true);
+        let vec1 = vector::empty<bool>();
+        vector::push_back<bool>(&mut vec1, true);
         let Tao {content} = wrap<bool>(vec1);
-        let value = Vector::pop_back(&mut content);
+        let value = vector::pop_back(&mut content);
 
         assert!(value == true, 123);
     }
@@ -55,10 +55,10 @@ module TaoHe::Folder {
     }
     #[test]
     fun test_read() {
-        let tao = Tao { content: Vector::empty<bool>() };
+        let tao = Tao { content: vector::empty<bool>() };
 
         let (content) = read<bool>(&tao);
-        assert!(*content == Vector::empty<bool>(), 123);
+        assert!(*content == vector::empty<bool>(), 123);
 
         let Tao<bool> { content: _ } = tao;
     }
@@ -74,10 +74,10 @@ module TaoHe::Folder {
     }
     #[test]
     fun test_unwrap() {
-        let tao = Tao { content: Vector::empty<bool>() };
+        let tao = Tao { content: vector::empty<bool>() };
         let content = unwrap<bool>(tao);
 
-        assert!(content == Vector::empty<bool>(), 123);
+        assert!(content == vector::empty<bool>(), 123);
     }
 
     spec module {

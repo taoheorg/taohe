@@ -14,15 +14,15 @@
 // limitations under the License.
 
 script {
-    use Std::Vector;
+    use std::vector;
 
     use TaoHe::Torch;
     use TaoHe::Root;
     use TaoHe::Folder;
 
     fun folder_1(account: signer) {
-        let vec1 = Vector::empty<Torch::Torch>();
-        Vector::push_back<Torch::Torch>(&mut vec1, Torch::new());
+        let vec1 = vector::empty<Torch::Torch>();
+        vector::push_back<Torch::Torch>(&mut vec1, Torch::new());
         Root::create<Folder::Tao<Torch::Torch>>(&account, Folder::wrap<Torch::Torch>(vec1));
     }
 }
