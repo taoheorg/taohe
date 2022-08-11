@@ -5,7 +5,7 @@ TaoHe is a collection of nestable smart contract resources that can be used to c
 
 *Tao* is a simple Move resource that has been designed to be nested inside other taos. *TaoHe* is a collection of taos, and a special Root resource that can be used to store a resource directly into an account (taos themselves can be stored into resources only, for simplicity).
 
-TaoHe follows the [Nestable Resources](http://www.move-patterns.com/nestable_resources.html) software design pattern.
+TaoHe follows the [Nestable Resources](http://www.move-patterns.com/nestable-resources.html) software design pattern.
 
 > **Example**: Tokens can be placed into a time locked resource ([Timelock](sources/Timelock.move)), which in turn can be placed into a resource which can be used only by a certain user ([Ownable](sources/Ownable.move)), effectively creating a timelocked non-fungible token.
 
