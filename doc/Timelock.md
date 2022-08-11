@@ -12,7 +12,7 @@ Simple timelocked tao: allow extracting only when a certain time has passed
 -  [Function `unwrap`](#0x2f66c09143acc52a85fec529a4e20c85_Timelock_unwrap)
 
 
-<pre><code><b>use</b> <a href="">0x2f66c09143acc52a85fec529a4e20c85::Adapter</a>;
+<pre><code><b>use</b> <a href="">0x2f66c09143acc52a85fec529a4e20c85::Connector</a>;
 <b>use</b> <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors">0x2f66c09143acc52a85fec529a4e20c85::Errors</a>;
 </code></pre>
 
@@ -58,7 +58,7 @@ passed (in seconds).
 ## Function `wrap`
 
 Create a new timelocked tao. <code>unlock_time</code> is in seconds, will be
-compared against <code><a href="_current_timestamp">Adapter::current_timestamp</a>()</code> on production
+compared against <code><a href="_current_timestamp">Connector::current_timestamp</a>()</code> on production
 network. Time can be 0, at least for now.
 
 
@@ -150,7 +150,7 @@ Extract <code>tao.content</code> if <code>tao.unlock_time</code> has passed.
 
 <pre><code><b>public</b> <b>fun</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_unwrap">unwrap</a>&lt;Content&gt;(tao: <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt;): Content {
     <b>let</b> <a href="Timelock.md#0x2f66c09143acc52a85fec529a4e20c85_Timelock_Tao">Tao</a>&lt;Content&gt; { content, unlock_time } = tao;
-    <b>let</b> current_timestamp: u64 = <a href="_current_timestamp">Adapter::current_timestamp</a>();
+    <b>let</b> current_timestamp: u64 = <a href="_current_timestamp">Connector::current_timestamp</a>();
 
     <b>assert</b>!(current_timestamp &gt; unlock_time, <a href="Errors.md#0x2f66c09143acc52a85fec529a4e20c85_Errors_timelock_too_early">Errors::timelock_too_early</a>());
 
@@ -167,7 +167,7 @@ Extract <code>tao.content</code> if <code>tao.unlock_time</code> has passed.
 
 
 
-<pre><code><b>aborts_if</b> (tao.unlock_time &gt;= <a href="_current_timestamp">Adapter::current_timestamp</a>());
+<pre><code><b>aborts_if</b> (tao.unlock_time &gt;= <a href="_current_timestamp">Connector::current_timestamp</a>());
 </code></pre>
 
 

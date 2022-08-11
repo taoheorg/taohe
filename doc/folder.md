@@ -15,7 +15,7 @@
 
 
 
-<pre><code><b>public</b>(<b>script</b>) <b>fun</b> <a href="folder.md#folder_2">folder_2</a>(account: signer)
+<pre><code><b>public</b> <b>fun</b> <a href="folder.md#folder_2">folder_2</a>(account: signer)
 </code></pre>
 
 

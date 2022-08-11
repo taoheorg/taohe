@@ -15,6 +15,7 @@ Instead it's a special kind of resource used to host taos.
 
 
 <pre><code><b>use</b> <a href="">0x1::Signer</a>;
+<b>use</b> <a href="">0x1::Vector</a>;
 </code></pre>
 
 

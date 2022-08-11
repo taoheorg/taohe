@@ -12,7 +12,7 @@ Simple timestamped tao: timestamp when the tao was created.
 -  [Function `unwrap`](#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_unwrap)
 
 
-<pre><code><b>use</b> <a href="">0x2f66c09143acc52a85fec529a4e20c85::Adapter</a>;
+<pre><code><b>use</b> <a href="">0x2f66c09143acc52a85fec529a4e20c85::Connector</a>;
 </code></pre>
 
 
@@ -82,7 +82,7 @@ timestamp manipulation.
 
 
 <pre><code><b>public</b> <b>fun</b> <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_wrap">wrap</a>&lt;Content&gt;(content: Content): <a href="Timestamp.md#0x2f66c09143acc52a85fec529a4e20c85_Timestamp_Tao">Tao</a>&lt;Content&gt; {
-    <b>let</b> current_timestamp: u64 = <a href="_current_timestamp">Adapter::current_timestamp</a>();
+    <b>let</b> current_timestamp: u64 = <a href="_current_timestamp">Connector::current_timestamp</a>();
 
     <b>assert</b>!(current_timestamp &gt; 0, 123);
 
@@ -99,9 +99,9 @@ timestamp manipulation.
 
 
 
-<pre><code><b>aborts_if</b> <a href="_current_timestamp">Adapter::current_timestamp</a>() == 0 <b>with</b> 123;
+<pre><code><b>aborts_if</b> <a href="_current_timestamp">Connector::current_timestamp</a>() == 0 <b>with</b> 123;
 <b>ensures</b> result.content == content;
-<b>ensures</b> result.timestamp == <a href="_current_timestamp">Adapter::current_timestamp</a>();
+<b>ensures</b> result.timestamp == <a href="_current_timestamp">Connector::current_timestamp</a>();
 </code></pre>
 
 

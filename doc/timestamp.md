@@ -15,7 +15,7 @@
 
 
 
-<pre><code><b>public</b>(<b>script</b>) <b>fun</b> <a href="timestamp.md#timestamp_2">timestamp_2</a>(account: signer)
+<pre><code><b>public</b> <b>fun</b> <a href="timestamp.md#timestamp_2">timestamp_2</a>(account: signer)
 </code></pre>
 
 

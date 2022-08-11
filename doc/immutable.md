@@ -15,7 +15,7 @@
 
 
 
-<pre><code><b>public</b>(<b>script</b>) <b>fun</b> <a href="immutable.md#immutable_1">immutable_1</a>(account: signer)
+<pre><code><b>public</b> <b>fun</b> <a href="immutable.md#immutable_1">immutable_1</a>(account: signer)
 </code></pre>
 
 

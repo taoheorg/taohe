@@ -15,7 +15,7 @@ This dummy script serves two purposes:
 - provide a template for future scripts.
 
 
-<pre><code><b>public</b>(<b>script</b>) <b>fun</b> <a href="dummy.md#dummy">dummy</a>()
+<pre><code><b>public</b> <b>fun</b> <a href="dummy.md#dummy">dummy</a>()
 </code></pre>
 
 
