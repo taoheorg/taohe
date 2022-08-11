@@ -74,7 +74,7 @@ DX is not good at the moment since types must be known beforehand, and written i
 See [doc/](doc/) for `dove prove -- --docgen` generated documentation.
 
 ## License
-This repository is released under the *Apache License 2.0*, and is copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). See `Move.toml` for more information on dependencies. No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/master/LICENSE#L143).
+This repository is released under the *Apache License 2.0*, and is copyrighted to *Solarius Intellectual Properties Ky* (Forssa, Finland, EU). See `Move.toml` for more information on dependencies. No warranty or fitness for a particular purpose provided, as stipulated in [the License](https://github.com/taoheorg/taohe/blob/main/LICENSE#L143).
 
 ## Trusted source
-Smart contracts are mission critical and as such should always originate from trusted sources. That's why every commit on `master` is signed with [Ville's GPG key](https://keys.openpgp.org/search?q=0x49065E1275E46F96). Upstream repository is [here](https://github.com/taoheorg/taohe/) and the official webpage is at [www.taohe.org](https://www.taohe.org).
+Smart contracts are mission critical and as such should always originate from trusted sources. That's why every commit on `main` is signed with [Ville's GPG key](https://keys.openpgp.org/search?q=0x49065E1275E46F96). Upstream repository is [here](https://github.com/taoheorg/taohe/) and the official webpage is at [www.taohe.org](https://www.taohe.org).
