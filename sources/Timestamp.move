@@ -16,7 +16,7 @@
 
 /// Simple timestamped tao: timestamp when the tao was created.
 module TaoHe::Timestamp {
-    use Adapter::Adapter;
+    use Connector::Connector;
 
     /// Timestamped tao, containing timestamp when the tao was created.
     /// Timestamp is fetched on-chain, so it can't be manipulated.
@@ -31,17 +31,17 @@ module TaoHe::Timestamp {
     /// Creating a timestamped tao. On-chain timestamp is used, to prevent
     /// timestamp manipulation.
     public fun wrap<Content>(content: Content): Tao<Content> {
-        let current_timestamp: u64 = Adapter::current_timestamp();
+        let current_timestamp: u64 = Connector::current_timestamp();
 
         assert!(current_timestamp > 0, 123);
 
         Tao<Content> { timestamp: current_timestamp, content }
     }
     spec wrap {
-        aborts_if Adapter::current_timestamp() == 0 with 123;
+        aborts_if Connector::current_timestamp() == 0 with 123;
 
         ensures result.content == content;
-        ensures result.timestamp == Adapter::current_timestamp();
+        ensures result.timestamp == Connector::current_timestamp();
     }
     #[test]
     fun test_wrap() {

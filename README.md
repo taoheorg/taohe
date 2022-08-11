@@ -38,9 +38,9 @@ dove build
 > **Jumpstart**: `dove run -v "dummy()"` (replace `dummy` with any function residing in [scripts/](scripts/))
 
 ### Selecting blockchain
-TaoHe is designed to support every Move powered blockchain. This is achieved by *Adapters*, which is a thin middleware between TaoHe and the desired target blockchain. At the moment only the [Dummy Adapter](https://github.com/taoheorg/adapter-dummy) is available for easier testing and development, but you can search GitHub for other [Move Adapters](https://github.com/topics/move-adapter).
+TaoHe is designed to support every Move powered blockchain. This is achieved by *Connectors*, which is a thin middleware between TaoHe and the desired target blockchain. At the moment only the [Dummy Connector](https://github.com/taoheorg/connector-dummy) is available for easier testing and development, but you can search GitHub for other [Move Connectors](https://github.com/topics/move-connector).
 
-To change the adapter, replace the `Adapter` dependency with your desired adapter in your `Move.toml`.
+To change the connector, replace the `Connector` dependency with your desired connector in your `Move.toml`.
 
 ### Formal verification
 Every tao has formal verification specs embedded. You can run the formal verification by running:

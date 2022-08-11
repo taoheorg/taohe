@@ -16,7 +16,7 @@
 
 /// Simple timelocked tao: allow extracting only when a certain time has passed
 module TaoHe::Timelock {
-    use Adapter::Adapter;
+    use Connector::Connector;
     use TaoHe::Errors;
 
     /// Tao for a simple timelock: extract `content` if `unlock_time` has
@@ -27,7 +27,7 @@ module TaoHe::Timelock {
     }
 
     /// Create a new timelocked tao. `unlock_time` is in seconds, will be
-    /// compared against `Adapter::current_timestamp()` on production
+    /// compared against `Connector::current_timestamp()` on production
     /// network. Time can be 0, at least for now.
     public fun wrap<Content>(unlock_time: u64, content: Content): Tao<Content> {
         Tao<Content> { unlock_time, content }
@@ -67,21 +67,21 @@ module TaoHe::Timelock {
     /// Extract `tao.content` if `tao.unlock_time` has passed.
     public fun unwrap<Content>(tao: Tao<Content>): Content {
         let Tao<Content> { content, unlock_time } = tao;
-        let current_timestamp: u64 = Adapter::current_timestamp();
+        let current_timestamp: u64 = Connector::current_timestamp();
 
         assert!(current_timestamp > unlock_time, Errors::timelock_too_early());
 
         content
     }
     spec unwrap {
-        aborts_if (tao.unlock_time >= Adapter::current_timestamp());
+        aborts_if (tao.unlock_time >= Connector::current_timestamp());
 
         // Result cannot be verified at the moment:
         // https://github.com/diem/diem/issues/8303
     }
     #[test]
     fun test_unwrap() {
-        let timestamp = Adapter::current_timestamp();
+        let timestamp = Connector::current_timestamp();
         let tao = Tao { unlock_time: timestamp - 1, content: true };
         let content = unwrap<bool>(tao);
 
@@ -89,7 +89,7 @@ module TaoHe::Timelock {
     }
     #[test, expected_failure]
     fun test_unwrap_too_early() {
-        let timestamp = Adapter::current_timestamp();
+        let timestamp = Connector::current_timestamp();
         let tao = Tao { unlock_time: timestamp + 1, content: true };
         let content = unwrap<bool>(tao);
 
