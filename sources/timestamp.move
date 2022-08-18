@@ -15,7 +15,7 @@
  
 
 /// Simple timestamped tao: timestamp when the tao was created.
-module TaoHe::Timestamp {
+module TaoHe::timestamp {
     use Connector::Connector;
 
     /// Timestamped tao, containing timestamp when the tao was created.

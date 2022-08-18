@@ -15,7 +15,7 @@
 
 
 /// A simple tao whose only purpose is to keep the content immutable
-module TaoHe::Immutable {
+module TaoHe::immutable {
     /// Static tao containing a resource. Can't be extracted.
     struct Tao<Content> has key, store {
         content: Content

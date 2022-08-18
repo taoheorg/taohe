@@ -18,7 +18,7 @@
 /// As with normal tao lifespan, the tao is created with a
 /// set of resources, and the same set will be returned when the
 /// tao is destroyed.
-module TaoHe::Folder {
+module TaoHe::folder {
     #[test_only]
     use std::vector;
 

@@ -21,7 +21,7 @@
 /// Subcategories start from 1, so a TaoHe error message can be
 /// distinguished from other error messages by:
 ///     category == 0x80 and subcategory >= 0x01.
-module TaoHe::Errors {
+module TaoHe::errors {
     // We define our own category (0x80)
     const CATEGORY_TAOHE: u8 = 128;
 

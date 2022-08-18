@@ -16,25 +16,25 @@
 script {
     use std::vector;
 
-    use TaoHe::Torch;
-    use TaoHe::Root;
-    use TaoHe::Folder;
+    use TaoHe::torch;
+    use TaoHe::root;
+    use TaoHe::folder;
 
     fun folder_1(account: signer) {
-        let vec1 = vector::empty<Torch::Torch>();
-        vector::push_back<Torch::Torch>(&mut vec1, Torch::new());
-        Root::create<Folder::Tao<Torch::Torch>>(&account, Folder::wrap<Torch::Torch>(vec1));
+        let vec1 = vector::empty<torch::Torch>();
+        vector::push_back<torch::Torch>(&mut vec1, torch::new());
+        root::create<folder::Tao<torch::Torch>>(&account, folder::wrap<torch::Torch>(vec1));
     }
 }
 
 script {
-    use TaoHe::Torch;
-    use TaoHe::Folder;
-    use TaoHe::Root;
+    use TaoHe::torch;
+    use TaoHe::folder;
+    use TaoHe::root;
 
     fun folder_2(account: signer) {
         // Extracting, and inserting it again
-        let vec2: vector<Torch::Torch> = Folder::unwrap<Torch::Torch>(Root::extract<Folder::Tao<Torch::Torch>>(&account));
-        Root::create<Folder::Tao<Torch::Torch>>(&account, Folder::wrap<Torch::Torch>(vec2));
+        let vec2: vector<torch::Torch> = folder::unwrap<torch::Torch>(root::extract<folder::Tao<torch::Torch>>(&account));
+        root::create<folder::Tao<torch::Torch>>(&account, folder::wrap<torch::Torch>(vec2));
     }
 }

@@ -15,9 +15,9 @@
  
 
 /// Simple timelocked tao: allow extracting only when a certain time has passed
-module TaoHe::Timelock {
+module TaoHe::timelock {
     use Connector::Connector;
-    use TaoHe::Errors;
+    use TaoHe::errors;
 
     /// Tao for a simple timelock: extract `content` if `unlock_time` has
     /// passed (in seconds).
@@ -69,7 +69,7 @@ module TaoHe::Timelock {
         let Tao<Content> { content, unlock_time } = tao;
         let current_timestamp: u64 = Connector::current_timestamp();
 
-        assert!(current_timestamp > unlock_time, Errors::timelock_too_early());
+        assert!(current_timestamp > unlock_time, errors::timelock_too_early());
 
         content
     }

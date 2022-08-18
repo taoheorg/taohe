@@ -16,11 +16,11 @@
 
 /// Root is not technically a tao, since it can't be nested.
 /// Instead it's a special kind of resource used to host taos.
-module TaoHe::Root {
+module TaoHe::root {
     use std::signer;
     use std::vector;
     #[test_only]
-    use TaoHe::Torch;
+    use TaoHe::torch;
 
     /// Root resource used to host other resources (can be taos).
     struct Root<Content: key + store> has key, store {
@@ -53,8 +53,8 @@ module TaoHe::Root {
 
     #[test(account = @0x123)]
     fun test_create(account: signer) acquires Root {
-        let torch = Torch::new();
-        create<Torch::Torch>(&account, torch);
+        let torch = torch::new();
+        create<torch::Torch>(&account, torch);
     }
 
     /// Extract a resource from a `Root` of an `account`.
@@ -64,10 +64,10 @@ module TaoHe::Root {
 
     #[test(account = @0x123)]
     fun test_extract(account: signer) acquires Root {
-        let torch = Torch::new();
-        create<Torch::Torch>(&account, torch);
-        let content = extract<Torch::Torch>(&account);
-        Torch::destroy(content);
+        let torch = torch::new();
+        create<torch::Torch>(&account, torch);
+        let content = extract<torch::Torch>(&account);
+        torch::destroy(content);
     }
 
 }

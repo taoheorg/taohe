@@ -18,7 +18,7 @@
 /// Can be passed along like.. ..a torch.
 /// This is not technically a tao, since it can't contain
 /// other taos.
-module TaoHe::Torch {
+module TaoHe::torch {
     /// This resource does not contain anything, and is
     /// intended to be used only for testing.
     struct Torch has key, store {}

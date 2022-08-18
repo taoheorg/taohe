@@ -14,26 +14,26 @@
 // limitations under the License.
 
 script {
-    use TaoHe::Torch;
-    use TaoHe::Root;
-    use TaoHe::Timelock;
+    use TaoHe::torch;
+    use TaoHe::root;
+    use TaoHe::timelock;
 
     // Unlock timestamp must be < 100 in order to be extracted when
     // using move-executor.
     const UNLOCK_TIMESTAMP: u64 = 99;
 
     fun timelock_1(account: signer) {
-        Root::create<Timelock::Tao<Torch::Torch>>(&account, Timelock::wrap<Torch::Torch>(UNLOCK_TIMESTAMP, Torch::new()));
+        root::create<timelock::Tao<torch::Torch>>(&account, timelock::wrap<torch::Torch>(UNLOCK_TIMESTAMP, torch::new()));
     }
 }
 
 script {
-    use TaoHe::Torch;
-    use TaoHe::Root;
-    use TaoHe::Timelock;
+    use TaoHe::torch;
+    use TaoHe::root;
+    use TaoHe::timelock;
 
     fun timelock_2(account: signer) {
         // Extract torch, and wrap it into Root
-        Root::create<Torch::Torch>(&account, Timelock::unwrap<Torch::Torch>(Root::extract<Timelock::Tao<Torch::Torch>>(&account)));
+        root::create<torch::Torch>(&account, timelock::unwrap<torch::Torch>(root::extract<timelock::Tao<torch::Torch>>(&account)));
     }
 }
