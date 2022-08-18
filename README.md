@@ -67,7 +67,7 @@ rev="...."
 
 ## Known problems
 ### Poor developer experience
-DX is not good at the moment since types must be known beforehand, and written in their full form, resulting in lengthy inscrutable lines of code. This could be solved by creating an intermediate Yaml based description language which could be used to generate transaction scripts and transaction script functions (a new Move feature).
+Wrapping and unwrapping scripts for complicated taos can get long and confusing, hindering the DX. Therefore a rudimentary generator has been developed. You can call the generator with test input by issuing `./generator.js generator_test.json` ([Node.js](http://nvm.sh) required).
 
 ## Documentation
 See [doc/](doc/) for `move docgen` generated documentation.
